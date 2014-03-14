@@ -1,0 +1,56 @@
+body {
+	padding-top: 50px;
+}
+
+form {
+	margin: 20px 0;
+}
+
+.button-holder {
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+
+.form-control {
+	max-width: 400px;
+}
+textarea.form-control {
+	max-width: none;
+}
+
+.page {
+	margin: 20px 0;
+}
+.page__title {
+	font-size: 22px;
+	margin-top: 0;
+}
+.page__sections {
+	ul {
+		padding-left: 20px;
+	}
+}
+.section {
+	margin: 10px 0;
+}
+.section__class {
+	display: block;
+	font-style: italic;
+}
+.section__weight {
+	display: block;
+}
+.section__section {
+	background: #ddd;
+	padding: 5px;
+	.section__title {
+		font-size: 1.5em;
+	}
+}
+.section__actions {
+	margin: 10px 0;
+}
+
+#tinymce {
+	font-size: 14px;
+}

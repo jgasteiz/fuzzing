@@ -1,0 +1,9 @@
+<div class="section ImageLinkSection grid__item {{ section.layout }} tablet--one-whole">
+	<a href="{% url 'page' section.link %}">
+		<div class="ImageLinkSection__image">
+			<img src="{{ section.get_image_url }}" alt="">
+		</div>
+		<span class="ImageLinkSection__title">{{ section.title }}</span>
+		<span class="ImageLinkSection__subtitle">{{ section.subtitle }}</span>
+	</a>
+</div>

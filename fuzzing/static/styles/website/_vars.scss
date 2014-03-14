@@ -1,0 +1,13 @@
+$gutter: 40px;
+
+$breakpoints: (
+    'palm' '(max-width: 480px)',
+    'lap' '(min-width: 481px) and (max-width: 659px)',
+    'tablet' '(max-width: 659px)',
+    'portable' '(max-width: 959px)',
+    'desk' '(min-width: 960px)'
+);
+
+$breakpoint-has-widths: ('palm', 'lap', 'tablet', 'portable', 'desk');
+$breakpoint-has-push:   ('palm', 'lap', 'tablet', 'portable', 'desk');
+$breakpoint-has-pull:   ('palm', 'lap', 'tablet', 'portable', 'desk');

@@ -1,0 +1,11 @@
+{% extends "cms/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block header_js %}
+	{{ form.media }}
+{% endblock header_js %}
+
+{% block content %}
+	<h1>Update section</h1>
+	{% crispy form form.helper %}
+{% endblock content %}

@@ -1,0 +1,73 @@
+{% extends "cms/base.html" %}
+
+{% block content %}
+	<div class="row">
+		<div class="col-md-2">
+			<h1>Pages</h1>
+		</div>
+		<div class="col-md-2">
+			<div class="button-holder">
+				<a href="{% url 'create_page' %}" class="btn btn-primary">Create page</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+	{% for page in page_list %}
+		<div class="col-md-6">
+			<div class="page well">
+				<h2 class="page__title">{{ page.title }}</h2>
+				<div class="page__weight">
+					<strong>Page weight: </strong>{{ page.weight }}
+				</div>
+				<div class="page__offset">
+					<strong>Page side offset: </strong>{{ page.side_offset }}
+				</div>
+				<div class="page__actions button-holder">
+					<div class="btn-group">
+						<button type="button" class="btn btn-sm btn-primary">Add section</button>
+						<button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown">
+							<span class="caret"></span>
+							<span class="sr-only">Toggle Dropdown</span>
+						</button>
+						<ul class="dropdown-menu" role="menu">
+							{% for section in section_list %}
+							<li><a href="{% url 'create_section' page.pk section %}">{{ section }}</a></li>	
+							{% endfor %}
+						</ul>
+					</div>
+					<a href="{% url 'update_page' page.pk %}" class="btn btn-sm btn-primary" type="button">Edit</a>
+					<a href="{% url 'delete_page' page.pk %}" class="btn btn-sm btn-danger" type="button">Delete</a>
+					<a href="{% url 'change_page_weight' page.pk -1 %}" class="btn btn-sm btn-default" type="button"><span class="glyphicon glyphicon-arrow-up"></span></a>
+					<a href="{% url 'change_page_weight' page.pk 1 %}" class="btn btn-sm btn-default" type="button"><span class="glyphicon glyphicon-arrow-down"></span></a>
+				</div>
+				<div class="page__sections">
+					<strong>Page sections:</strong>
+					<ul>
+						{% with page.get_sections as sections %}					    
+						{% for section in sections %}
+						<li class="section">
+							<span class="section__class">{{ section.get_class }}</span>
+							<span class="section__weight"><strong>Section weight:</strong> {{ section.weight }}</span>
+							<span class="section__layout"><strong>Section layout:</strong> {{ section.layout }}</span>
+							<div class="section__section">{{ section.preview|safe }}</div>
+							<div class="section__actions">
+								<a href="{% url 'update_section' section.pk section.get_class %}" class="btn btn-sm btn-primary">Edit</a>
+								<a href="{% url 'delete_section' section.pk section.get_class %}" class="btn btn-sm btn-danger">Delete</a>
+								<a href="{% url 'change_section_weight' section.pk section.get_class -1 %}" class="btn btn-sm btn-default" type="button"><span class="glyphicon glyphicon-arrow-up"></span></a>
+								<a href="{% url 'change_section_weight' section.pk section.get_class 1 %}" class="btn btn-sm btn-default" type="button"><span class="glyphicon glyphicon-arrow-down"></span></a>
+							</div>
+						</li>
+						{% endfor %}
+						{% endwith %}
+					</ul>
+				</div>
+			</div>
+		</div>
+	{% if forloop.counter|divisibleby:2 %}
+	</div>
+	<div class="row">
+	{% endif %}
+	{% endfor %}
+	</div>
+{% endblock content %}
