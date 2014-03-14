@@ -1,27 +1,30 @@
 from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404, redirect
-from django.views import generic
-from django.views.generic import detail
+from django.views.generic import DetailView
 from django.conf import settings
 
 from fuzzing.core import models
 
 
-class NavigationItemsMixin(object):
+class PageView(DetailView):
+    """
+    Main view for rendering pages.
+    """
+    template_name = 'website/page.html'
+
     def get_context_data(self, *args, **kwargs):
-        ctx = super(NavigationItemsMixin, self).get_context_data(*args, **kwargs)
+        ctx = super(PageView, self).get_context_data(*args, **kwargs)
+
         page_list = models.Page.objects.filter(in_navigation=True)
+
+        # Create a list of nav_items with pages slugs and titles.
         ctx['nav_item_list'] = [{'slug': page.slug, 'title': page.title} for page in page_list]
+        # TODO: take the app title from a settings model.
         ctx['app_title'] = settings.APP_TITLE
-        if len(ctx['nav_item_list']) > 0:
-            ctx['first_page'] = '/%s/' % ctx['nav_item_list'][0]['slug']
+
         if self.kwargs and self.kwargs['slug']:
             ctx['current_page'] = self.kwargs['slug']
         return ctx
-
-
-class PageView(NavigationItemsMixin, generic.DetailView):
-    template_name = 'website/page.html'
 
     def get(self, request, *args, **kwargs):
         self.object = self.get_object()

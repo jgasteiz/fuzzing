@@ -15,6 +15,12 @@ LAYOUT_CHOICES = (
     ('two-thirds', 'Two Thirds'),
 )
 
+ALIGNMENT_CHOICES = (
+    ('top', 'Top Aligned'),
+    ('middle', 'Middle Aligned'),
+    ('bottom', 'Bottom Aligned'),
+)
+
 OFFSET_CHOICES = (
     ('0', 'No offset'),
     ('5%', '5%'),
@@ -127,6 +133,12 @@ class Section(BaseModel):
         default='one-whole',
         help_text='Size of this section in the layout.')
 
+    alignment = models.CharField(
+        max_length=64,
+        choices=ALIGNMENT_CHOICES,
+        default='top',
+        help_text='Alignment of this section.')
+
     class Meta:
         abstract = True
 
@@ -168,6 +180,7 @@ class ImageSection(ImageSectionMixin, Section):
                 'image',
                 'page',
                 'layout',
+                'alignment',
             ),
             cls.get_button_layout()
         )
@@ -199,6 +212,7 @@ class ImageLinkSection(ImageSectionMixin, Section):
                 'image',
                 'page',
                 'layout',
+                'alignment',
             ),
             cls.get_button_layout()
         )
@@ -225,6 +239,7 @@ class TextSection(Section):
                 'text',
                 'page',
                 'layout',
+                'alignment',
             ),
             cls.get_button_layout()
         )
