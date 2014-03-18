@@ -371,6 +371,18 @@ th {
   font-weight: 700;
   src: url(../../fonts/lato-bold.woff) format("woff"); }
 
+@font-face {
+  font-family: 'ChaparralPro';
+  font-style: normal;
+  font-weight: 400;
+  src: url(../../fonts/ChaparralPro-Regular.otf) format("opentype"); }
+
+@font-face {
+  font-family: 'ChaparralPro';
+  font-style: normal;
+  font-weight: 700;
+  src: url(../../fonts/ChaparralPro-Bold.otf) format("opentype"); }
+
 /*------------------------------------*\
     $CSSWIZARDRY-GRIDS
 \*------------------------------------*/
@@ -1218,7 +1230,7 @@ html {
   padding: 0 20px; }
 
 body {
-  font-family: 'Lato', sans-serif;
+  font-family: "ChaparralPro", sans-serif;
   font-size: 18px;
   margin: 60px 0 60px 200px; }
   body.overflow-hidden {
@@ -1302,7 +1314,6 @@ img {
 .navigation__link {
   color: #222;
   display: block;
-  font-family: 'Coming Soon', cursive;
   font-size: 16px;
   line-height: 2em;
   text-decoration: none; }

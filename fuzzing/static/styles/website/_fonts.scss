@@ -4,6 +4,7 @@
 	font-weight: 400;
 	src: url(../../fonts/coming-soon.woff) format('woff');
 }
+
 @font-face {
 	font-family: 'Lato';
 	font-style: normal;
@@ -15,4 +16,17 @@
 	font-style: normal;
 	font-weight: 700;
 	src: url(../../fonts/lato-bold.woff) format('woff');
+}
+
+@font-face {
+	font-family: 'ChaparralPro';
+	font-style: normal;
+	font-weight: 400;
+	src: url(../../fonts/ChaparralPro-Regular.otf) format('opentype');
+}
+@font-face {
+	font-family: 'ChaparralPro';
+	font-style: normal;
+	font-weight: 700;
+	src: url(../../fonts/ChaparralPro-Bold.otf) format('opentype');
 }
