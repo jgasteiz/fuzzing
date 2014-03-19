@@ -109,6 +109,8 @@ STATICFILES_DIRS = (
 STATIC_URL = '/static/'
 UPLOADS_ROOT = 'uploads'
 
+DEBUG_TOOLBAR_PATCH_SETTINGS = False
+
 try:
     from local_settings import *
 except ImportError:
