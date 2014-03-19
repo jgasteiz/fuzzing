@@ -358,31 +358,26 @@ th {
   font-style: normal;
   font-weight: 400;
   src: url(../../fonts/coming-soon.woff) format("woff"); }
-
 @font-face {
   font-family: 'Lato';
   font-style: normal;
   font-weight: 400;
   src: url(../../fonts/lato-regular.woff) format("woff"); }
-
 @font-face {
   font-family: 'Lato';
   font-style: normal;
   font-weight: 700;
   src: url(../../fonts/lato-bold.woff) format("woff"); }
-
 @font-face {
   font-family: 'ChaparralPro';
   font-style: normal;
   font-weight: 400;
   src: url(../../fonts/ChaparralPro-Regular.otf) format("opentype"); }
-
 @font-face {
   font-family: 'ChaparralPro';
   font-style: normal;
   font-weight: 700;
   src: url(../../fonts/ChaparralPro-Bold.otf) format("opentype"); }
-
 /*------------------------------------*\
     $CSSWIZARDRY-GRIDS
 \*------------------------------------*/
@@ -1227,12 +1222,12 @@ th {
  */
 html {
   font-size: 100%;
+  margin: 0;
   padding: 0 20px; }
 
 body {
   font-family: "ChaparralPro", sans-serif;
-  font-size: 18px;
-  margin: 60px 0 60px 200px; }
+  font-size: 18px; }
   body.overflow-hidden {
     height: 100%;
     overflow: hidden; }
@@ -1287,41 +1282,31 @@ img {
   margin: 10px 0; }
 
 .header {
-  left: 20px;
-  position: fixed;
-  top: 20px;
-  width: 200px; }
+  margin: 20px 0 80px; }
   @media only screen and (max-width: 960px) {
     .header {
-      margin: 20px 0;
-      position: initial;
-      width: auto; } }
+      margin: 20px 0 40px; } }
 
 .navigation {
-  transition: top 0.8s ease-in-out; }
+  text-align: center; }
   .navigation > ul {
     list-style: none;
     margin: 0;
     padding: 0; }
-    @media only screen and (max-width: 960px) {
-      .navigation > ul {
-        margin: 0 -15px; } }
-    @media only screen and (max-width: 960px) {
-      .navigation > ul > li {
-        display: inline-block;
-        padding: 0 15px; } }
+    .navigation > ul > li {
+      display: inline-block;
+      padding: 0 15px; }
 
 .navigation__link {
   color: #222;
   display: block;
-  font-size: 16px;
   line-height: 2em;
   text-decoration: none; }
   .navigation__link:hover, .navigation__link.is-active {
     color: #00AA00; }
   @media only screen and (max-width: 480px) {
     .navigation__link {
-      font-size: 12px; } }
+      font-size: 14px; } }
 
 .navigation__site-brand {
   font-weight: 700; }

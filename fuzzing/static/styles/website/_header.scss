@@ -1,39 +1,25 @@
 .header {
-	left: 20px;
-	position: fixed;
-	top: 20px;
-	width: 200px;
+	margin: 20px 0 80px;
 
 	@include respond-to(portable) {
-		margin: 20px 0;
-		position: initial;
-		width: auto;
+		margin: 20px 0 40px;
 	}
 }
-
 .navigation {
-	transition: top 0.8s ease-in-out;
-
+	text-align: center;
 	> ul {
 		list-style: none;
 		margin: 0;
 		padding: 0;
-		@include respond-to(portable) {
-			margin: 0 -15px;
-		}
 		> li {
-			@include respond-to(portable) {
-				display: inline-block;
-				padding: 0 15px;
-			}
+			display: inline-block;
+			padding: 0 15px;
 		}
 	}
 }
 .navigation__link {
 	color: #222;
 	display: block;
-	// font-family: 'Coming Soon', cursive;
-	font-size: 16px;
 	line-height: 2em;
 	text-decoration: none;
 
@@ -43,7 +29,7 @@
 	}
 
 	@include respond-to(palm) {
-		font-size: 12px;
+		font-size: 14px;
 	}
 }
 
