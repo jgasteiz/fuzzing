@@ -109,6 +109,11 @@ STATICFILES_DIRS = (
 STATIC_URL = '/static/'
 UPLOADS_ROOT = 'uploads'
 
+LOGIN_REDIRECT_URL = '/cms/'
+LOGOUT_REDIRECT_URL = '/'
+LOGIN_URL = '/cms/login/'
+LOGOUT_URL = '/cms/logout/'
+
 DEBUG_TOOLBAR_PATCH_SETTINGS = False
 
 try:

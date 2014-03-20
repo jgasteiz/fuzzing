@@ -1,10 +1,18 @@
 from django.conf import settings
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login as auth_login, logout as auth_logout
+from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse_lazy
-from django.views import generic
+from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, get_object_or_404
+from django.utils.decorators import method_decorator
+from django.views import generic
+from django.views.decorators.debug import sensitive_post_parameters
 
 from fuzzing.core import models
-from fuzzing.cms import forms
+
+from . import forms
+
 
 SECTIONS_DICT = {
     'ImageSection': {
@@ -22,12 +30,49 @@ SECTIONS_DICT = {
 }
 
 
+# Auth
+class Login(generic.FormView):
+    form_class = AuthenticationForm
+    template_name = 'cms/login.html'
+
+    def form_valid(self, form):
+        redirect_to = settings.LOGIN_REDIRECT_URL
+        auth_login(self.request, form.get_user())
+        if self.request.session.test_cookie_worked():
+            self.request.session.delete_test_cookie()
+        return HttpResponseRedirect(redirect_to)
+
+    def form_invalid(self, form):
+        return self.render_to_response(self.get_context_data(form=form))
+
+    @method_decorator(sensitive_post_parameters('password'))
+    def dispatch(self, request, *args, **kwargs):
+        request.session.set_test_cookie()
+        return super(Login, self).dispatch(request, *args, **kwargs)
+
+
+class Logout(generic.View):
+    def get(self, request, *args, **kwargs):
+        auth_logout(request)
+        return HttpResponseRedirect(settings.LOGOUT_REDIRECT_URL)
+
+
 class CMSMixin(object):
+    """
+    Ensures that user must be authenticated in order to access view.
+
+    Taken from: https://djangosnippets.org/snippets/2442/
+    """
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(CMSMixin, self).dispatch(*args, **kwargs)
+
     def get_context_data(self, *args, **kwargs):
         ctx = super(CMSMixin, self).get_context_data(*args, **kwargs)
         ctx['url'] = self.url
         ctx['section_list'] = sorted(list(SECTIONS_DICT))
         ctx['app_title'] = settings.APP_TITLE
+        ctx['current_user'] = self.request.user
         return ctx
 
 

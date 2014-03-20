@@ -1,7 +1,11 @@
 from django.conf.urls import patterns, include, url
 
+from . import views
 
 urlpatterns = patterns('fuzzing.cms.views',
+
+    url(r'^login/$', views.Login.as_view(), name='login'),
+    url(r'^logout/$', views.Logout.as_view(), name='logout'),
 
     url(r'^$', 'pages', name='pages'),
     url(r'^pages/$', 'pages', name='pages'),
