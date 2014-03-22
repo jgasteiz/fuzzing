@@ -31,8 +31,14 @@ OFFSET_CHOICES = (
 )
 
 
+# class SiteSettings(models.Model):
+#     site_name = models.CharField(max_length=255)
+#     site_theme = models.CharField(max_length=255, choices=settings.THEME_CHOICES)
+
+
 class BaseModel(models.Model):
-    weight = models.IntegerField(default=0, help_text='The higher the weight, the lower in the page will appear.')
+    weight = models.IntegerField(default=0,
+        help_text='The higher the weight, the lower - or the righter - in the page will appear.')
 
     class Meta:
         abstract = True
@@ -67,10 +73,10 @@ class BaseModel(models.Model):
 
 class Page(BaseModel):
     """"""
-    title = models.CharField(max_length=36, help_text='Page title')
-    slug = models.CharField(max_length=64, blank=True, help_text='Page slug')
-    in_navigation = models.BooleanField(default=True, help_text='Should it be visible in navigation?')
-    is_home_page = models.BooleanField(default=False, help_text='Is this the main page?')
+    title = models.CharField(max_length=36, help_text='Title of the page')
+    slug = models.CharField(max_length=64, blank=True, help_text='How the page url will appear in the browser.')
+    in_navigation = models.BooleanField(default=True, help_text='Should this page be in the main navigation?')
+    is_home_page = models.BooleanField(default=False, help_text='Is this the main page of the site?')
     parent_page = models.ForeignKey('Page', blank=True, null=True)
     side_offset = models.CharField(
         max_length=64,
@@ -93,6 +99,11 @@ class Page(BaseModel):
         if not self.slug:
             possible_slug = slugify(self.title)
             self.slug = self.get_unique_slug(possible_slug)
+
+        # There can only be one home page
+        if self.is_home_page is True:
+            rest_of_pages = Page.objects.exclude(pk=self.pk)
+            rest_of_pages.update(is_home_page=False)
 
         super(Page, self).save(*args, **kwargs)
 

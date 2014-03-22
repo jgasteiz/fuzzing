@@ -16,6 +16,14 @@
 	{% for page in page_list %}
 		<div class="col-md-6">
 			<div class="page well">
+				<div class="pull-right">
+				{% if page.is_home_page %}
+					<span class="label label-info">Homepage</span>
+				{% endif %}
+				{% if page.in_navigation %}
+					<span class="label label-primary">In navigation</span>
+				{% endif %}
+				</div>
 				<h2 class="page__title">{{ page.title }}</h2>
 				<div class="page__weight">
 					<strong>Page weight: </strong>{{ page.weight }}

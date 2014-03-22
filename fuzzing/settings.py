@@ -114,6 +114,11 @@ LOGOUT_REDIRECT_URL = '/'
 LOGIN_URL = '/cms/login/'
 LOGOUT_URL = '/cms/logout/'
 
+THEME_CHOICES = (
+    ('larevolta', 'La Revolta'),
+    ('taller', 'Taller de Asier'),
+)
+
 DEBUG_TOOLBAR_PATCH_SETTINGS = False
 
 try:
