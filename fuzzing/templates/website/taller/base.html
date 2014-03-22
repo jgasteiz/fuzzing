@@ -12,21 +12,24 @@
 		<meta name="viewport" content="width=device-width">
 		<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-		<link rel="stylesheet" href="{% static "styles/website/main.css" %}">
+		<link rel="stylesheet" href="{% static "styles/themes/taller.css" %}">
 	</head>
 	<body>
 		<!--[if lt IE 10]>
 			<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 		<![endif]-->
 
-		<header id="header" class="header">
+		<header id="header" class="header {% if nav_open %}is-open{% endif %}">
+			<a {% if current_page %}href="/?nav-open"{% endif %} class="{% if not current_page %}intro-opener{% endif %} header__logo--small">{{ site_settings.site_name }}</a>
+			<a {% if current_page %}href="/?nav-open"{% else %}{% endif %} class="{% if not current_page %}intro-opener{% endif %} header__logo">
+				<img class="" src="{% static "images/taller/logo.png" %}" alt="{{ site_settings.site_name }} - Logo">
+			</a>
 			{% spaceless %}				
 			<nav class="navigation">
 				<ul>
-					<li><a href="/" class="navigation__link navigation__site-brand">{{ site_settings.site_name }}</a></li>
 				{% for nav_item in nav_item_list %}
 					<li>
-						<a class="navigation__link {% ifequal nav_item.slug current_page %}is-active{% endifequal %}"
+						<a class="navigation__link nav-opener {% ifequal nav_item.slug current_page %}is-active{% endifequal %}"
 							href="/{{ nav_item.slug }}/">{{ nav_item.title }}</a>
 					</li>
 				{% endfor %}
@@ -35,11 +38,12 @@
 			{% endspaceless %}
 		</header>
 
-		<article id="main" role="main">{% block content %}{% endblock content %}</article>
+		<article id="main" class="{% if nav_open %}is-active{% endif %}" role="main">{% block content %}{% endblock content %}</article>
 
 		<footer class="footer"></footer>
 
 		<script src="{% static "vendor/jquery/jquery.js" %}"></script>
+		<script src="{% static "vendor/lodash/dist/lodash.js" %}"></script>
 
 		<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
 		<script>
@@ -50,5 +54,7 @@
 			r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
 			ga('create','UA-XXXXX-X');ga('send','pageview');
 		</script>
+
+		<script src="{% static "scripts/taller/taller.js" %}"></script>
 </body>
 </html>

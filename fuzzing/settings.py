@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'reversion',
+    'tinymce',
     'south',
     'crispy_forms',
     'debug_toolbar',
@@ -116,6 +117,12 @@ THEME_CHOICES = (
     ('larevolta', 'La Revolta'),
     ('taller', 'Taller de Asier'),
 )
+
+TINYMCE_DEFAULT_CONFIG = {
+    'theme': "advanced",
+    'cleanup_on_startup': True,
+    'custom_undo_redo_levels': 10,
+}
 
 DEBUG_TOOLBAR_PATCH_SETTINGS = False
 

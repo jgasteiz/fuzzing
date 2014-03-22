@@ -10,19 +10,27 @@ class PageView(DetailView):
     """
     Main view for rendering pages.
     """
-    template_name = 'website/page.html'
+    template_name = 'website/theme/page.html'
 
     def get_context_data(self, *args, **kwargs):
         ctx = super(PageView, self).get_context_data(*args, **kwargs)
 
         page_list = models.Page.objects.filter(in_navigation=True)
+        site_settings = models.SiteSettings.objects.get_or_create()[0]
 
         # Create a list of nav_items with pages slugs and titles.
         ctx['nav_item_list'] = [{'slug': page.slug, 'title': page.title} for page in page_list]
-        ctx['site_settings'] = models.SiteSettings.objects.get_or_create()[0]
+        ctx['site_settings'] = site_settings
+
+        # Replace the `theme` directory with the current theme.
+        self.template_name = self.template_name.replace('theme', site_settings.site_theme)
 
         if self.kwargs and self.kwargs['slug']:
             ctx['current_page'] = self.kwargs['slug']
+
+        if 'current_page' in ctx or 'nav-open' in self.request.GET:
+            ctx['nav_open'] = True
+
         return ctx
 
     def get(self, request, *args, **kwargs):

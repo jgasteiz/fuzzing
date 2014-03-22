@@ -1,6 +1,7 @@
 from django import forms
 
 from crispy_forms.helper import FormHelper
+from tinymce.widgets import TinyMCE
 
 from fuzzing.core import models
 
@@ -47,5 +48,7 @@ class ImageLinkSectionForm(FormHelperMixin, forms.ModelForm):
 
 
 class TextSectionForm(FormHelperMixin, forms.ModelForm):
+    text = forms.CharField(required=False, widget=TinyMCE(attrs={'cols': 120, 'rows': 20}))
+
     class Meta:
         model = models.TextSection

@@ -1,0 +1,98 @@
+.header__logo {
+	left: 50%;
+	margin-left: -400px;
+	margin-top: -260px;
+	position: absolute;
+	top: 50%;
+	transition: all 0.8s ease-in-out;
+	z-index: 99;
+
+	@include respond-to(portable) {
+		width: auto;
+		left: 20px;
+		margin: 0;
+		right: 20px;
+		top: 20%;
+	}
+
+	.is-open & {
+		opacity: 0.2;
+		top: 100px;
+		z-index: -1;
+
+		@include respond-to(portable) {
+			margin-top: 0;
+			top: 10px;
+		}
+	}
+}
+.header__logo--small {
+	@extend %wrapper;
+	color: #222;
+	display: block;
+	font-family: "Coming Soon", sans-serif;
+	font-size: 28px;
+	margin-bottom: 20px;
+	margin-top: 20px;
+	opacity: 0;
+	text-decoration: none;
+	transition: opacity 0.4s ease-in-out;
+	z-index: 99;
+	.is-open & {
+		opacity: 1;
+	}
+	@include respond-to(portable) {
+		margin-top: 0;
+		position: absolute;
+		top: 20px;
+	}
+}
+.navigation {
+	position: absolute;
+	top: 90%;
+	left: 0;
+	right: 0;
+	margin: 0;
+	background-color: #000;
+	padding: 0 20px;
+	transition: top 0.8s ease-in-out;
+	z-index: 100;
+
+	@include respond-to(portable) {
+		top: 70%;
+	}
+
+	> ul {
+		@extend %wrapper;
+		padding: 0;
+		> li {
+			display: inline-block;
+			margin: 0 50px 0 0;
+			@include respond-to(portable) {
+				margin: 0 20px 0 0;
+			}
+		}
+	}
+
+	.is-open & {
+		top: 84px;
+	}
+}
+.navigation__link {
+	color: #FFF;
+	display: block;
+	font-family: 'Coming Soon', cursive;
+	font-size: 20px;
+	line-height: $nav-height;
+	text-decoration: none;
+
+	&:hover {
+		color: #b0ffbb;
+	}
+	&.is-active {
+		color: #00ef0b;
+	}
+	@include respond-to(portable) {
+		font-size: 16px;
+	}
+}
