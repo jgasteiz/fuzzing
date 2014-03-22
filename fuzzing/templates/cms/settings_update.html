@@ -1,0 +1,8 @@
+{% extends "cms/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+	<h1>Update settings</h1>
+
+	{% crispy form form.helper %}
+{% endblock content %}

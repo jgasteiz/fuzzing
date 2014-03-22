@@ -19,8 +19,7 @@ class PageView(DetailView):
 
         # Create a list of nav_items with pages slugs and titles.
         ctx['nav_item_list'] = [{'slug': page.slug, 'title': page.title} for page in page_list]
-        # TODO: take the app title from a settings model.
-        ctx['app_title'] = settings.APP_TITLE
+        ctx['site_settings'] = models.SiteSettings.objects.get_or_create()[0]
 
         if self.kwargs and self.kwargs['slug']:
             ctx['current_page'] = self.kwargs['slug']

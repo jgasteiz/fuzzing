@@ -1,0 +1,22 @@
+{% extends "cms/base.html" %}
+
+{% block content %}
+	<div class="row">
+		<div class="col-md-2">
+			<h1>Site settings</h1>
+		</div>
+		<div class="col-md-2">
+			<div class="button-holder">
+				<a href="{% url 'update_settings' site_settings.pk %}" class="btn btn-primary">Update settings</a>
+			</div>
+		</div>
+	</div>
+    <div class="well">
+        <p>
+            <strong>Site name: </strong>{{ site_settings.site_name }}
+        </p>
+        <p>
+            <strong>Site theme: </strong>{{ site_settings.site_theme }}
+        </p>
+    </div>
+{% endblock content %}

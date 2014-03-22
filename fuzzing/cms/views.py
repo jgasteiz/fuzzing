@@ -69,11 +69,26 @@ class CMSMixin(object):
 
     def get_context_data(self, *args, **kwargs):
         ctx = super(CMSMixin, self).get_context_data(*args, **kwargs)
-        ctx['url'] = self.url
-        ctx['section_list'] = sorted(list(SECTIONS_DICT))
-        ctx['app_title'] = settings.APP_TITLE
         ctx['current_user'] = self.request.user
+        ctx['section_list'] = sorted(list(SECTIONS_DICT))
+        ctx['site_settings'] = models.SiteSettings.objects.get_or_create()[0]
+        ctx['url'] = self.url
         return ctx
+
+
+# Site settings
+class SiteSettingsView(CMSMixin, generic.DetailView):
+    model = models.SiteSettings
+    template_name = 'cms/settings.html'
+    url = 'settings'
+
+
+class UpdateSiteSettings(CMSMixin, generic.edit.UpdateView):
+    form_class = forms.SiteSettingsForm
+    model = models.SiteSettings
+    template_name = 'cms/settings_update.html'
+    success_url = reverse_lazy('pages')
+    url = 'settings'
 
 
 # Pages
@@ -83,8 +98,6 @@ class PagesView(CMSMixin, generic.ListView):
     template_name = 'cms/pages.html'
     url = 'page'
 
-pages = PagesView.as_view()
-
 
 class CreatePage(CMSMixin, generic.edit.CreateView):
     form_class = forms.PageForm
@@ -92,8 +105,6 @@ class CreatePage(CMSMixin, generic.edit.CreateView):
     template_name = 'cms/page_create.html'
     success_url = reverse_lazy('pages')
     url = 'page'
-
-create_page = CreatePage.as_view()
 
 
 class UpdatePage(CMSMixin, generic.edit.UpdateView):
@@ -103,16 +114,12 @@ class UpdatePage(CMSMixin, generic.edit.UpdateView):
     success_url = reverse_lazy('pages')
     url = 'page'
 
-update_page = UpdatePage.as_view()
-
 
 class DeletePage(CMSMixin, generic.edit.DeleteView):
     model = models.Page
     template_name = 'cms/page_confirm_delete.html'
     success_url = reverse_lazy('pages')
     url = 'page'
-
-delete_page = DeletePage.as_view()
 
 
 class ChangePageWeight(CMSMixin, generic.edit.View):
@@ -127,8 +134,6 @@ class ChangePageWeight(CMSMixin, generic.edit.View):
         else:
             page.increase_weight()
         return redirect(self.success_url)
-
-change_page_weight = ChangePageWeight.as_view()
 
 
 # Sections
@@ -148,8 +153,6 @@ class CreateSection(SectionObjectsMixin, CMSMixin, generic.edit.CreateView):
         initial = super(CreateSection, self).get_initial()
         initial['page'] = int(self.kwargs['page_pk'])
         return initial
-
-create_section = CreateSection.as_view()
 
 
 class UpdateSection(SectionObjectsMixin, CMSMixin, generic.edit.UpdateView):
@@ -172,8 +175,6 @@ class UpdateSection(SectionObjectsMixin, CMSMixin, generic.edit.UpdateView):
         return self.object
 
 
-update_section = UpdateSection.as_view()
-
 
 class DeleteSection(CMSMixin, generic.edit.DeleteView):
     template_name = 'cms/section_confirm_delete.html'
@@ -192,8 +193,6 @@ class DeleteSection(CMSMixin, generic.edit.DeleteView):
         self.object.delete()
         return redirect(self.success_url)
 
-delete_section = DeleteSection.as_view()
-
 
 class ChangeSectionWeight(CMSMixin, generic.edit.View):
     success_url = reverse_lazy('pages')
@@ -210,5 +209,3 @@ class ChangeSectionWeight(CMSMixin, generic.edit.View):
             section.weight = section.weight + 1
             section.save()
         return redirect(self.success_url)
-
-change_section_weight = ChangeSectionWeight.as_view()

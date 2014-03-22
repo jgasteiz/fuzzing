@@ -70,8 +70,6 @@ TINYMCE_DEFAULT_CONFIG = {
     'custom_undo_redo_levels': 10,
 }
 
-APP_TITLE = 'Fuzzing CMS'
-
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 

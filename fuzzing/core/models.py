@@ -31,9 +31,27 @@ OFFSET_CHOICES = (
 )
 
 
-# class SiteSettings(models.Model):
-#     site_name = models.CharField(max_length=255)
-#     site_theme = models.CharField(max_length=255, choices=settings.THEME_CHOICES)
+class SiteSettings(models.Model):
+    """
+    Site settings
+    - control the app name, which will appear in all pages titles and in the navigation bar.
+    - pick the theme for the site.
+    """
+    site_name = models.CharField(max_length=255, blank=True)
+    site_theme = models.CharField(max_length=255, blank=True, choices=settings.THEME_CHOICES)
+
+    @classmethod
+    def get_form_layout(cls):
+        return Layout(
+            WellFieldset('Site Settings',
+                'site_name',
+                'site_theme',
+            ),
+            FormActions(
+                Submit('submit', 'Submit'),
+                HTML('<a class="btn btn-default" href="{% url \'pages\' %}">Cancel</a>'),
+            )
+        )
 
 
 class BaseModel(models.Model):

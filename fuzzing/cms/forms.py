@@ -6,16 +6,18 @@ from fuzzing.core import models
 
 
 class FormHelperMixin(object):
-    def get_form_helper(self):
-        helper = FormHelper()
-        helper.form_class = 'form'
-        return helper
-
     def __init__(self, *args, **kwargs):
         super(FormHelperMixin, self).__init__(*args, **kwargs)
-        self.helper = self.get_form_helper()
+        helper = FormHelper()
+        helper.form_class = 'form'
+        self.helper = helper
         self.model = self.instance.__class__
         self.helper.layout = self.model.get_form_layout()
+
+
+class SiteSettingsForm(FormHelperMixin, forms.ModelForm):
+    class Meta:
+        model = models.SiteSettings
 
 
 class PageForm(FormHelperMixin, forms.ModelForm):
