@@ -256,8 +256,7 @@ class TextSection(Section):
     def preview(self):
         return '<div class="section">\
                     <span class="section__title">%s</span>\
-                    <p class="section__text">%s ...</p>\
-                </div>' % (self.title, self.text[:16])
+                </div>' % self.title
 
     @classmethod
     def get_form_layout(cls):

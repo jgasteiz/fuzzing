@@ -58,7 +58,7 @@
 							<span class="section__class">{{ section.get_class }}</span>
 							<span class="section__weight"><strong>Section weight:</strong> {{ section.weight }}</span>
 							<span class="section__layout"><strong>Section layout:</strong> {{ section.layout }}</span>
-							<div class="section__section">{{ section.preview }}</div>
+							<div class="section__section">{{ section.preview|safe }}</div>
 							<div class="section__actions">
 								<a href="{% url 'update_section' section.pk section.get_class %}" class="btn btn-sm btn-primary">Edit</a>
 								<a href="{% url 'delete_section' section.pk section.get_class %}" class="btn btn-sm btn-danger">Delete</a>
