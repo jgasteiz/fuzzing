@@ -15,6 +15,10 @@ from . import forms
 
 
 SECTIONS_DICT = {
+    'BackgroundImageTextSection': {
+        'model': models.BackgroundImageTextSection,
+        'form_class': forms.BackgroundImageTextSectionForm
+    },
     'ImageSection': {
         'model': models.ImageSection,
         'form_class': forms.ImageSectionForm

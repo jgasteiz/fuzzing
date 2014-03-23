@@ -31,6 +31,13 @@ class PageForm(FormHelperMixin, forms.ModelForm):
         self.fields['parent_page'] = forms.ModelChoiceField(queryset=page_qs, required=False)
 
 
+class BackgroundImageTextSectionForm(FormHelperMixin, forms.ModelForm):
+    text = forms.CharField(required=False, widget=TinyMCE(attrs={'cols': 120, 'rows': 20}))
+
+    class Meta:
+        model = models.BackgroundImageTextSection
+
+
 class ImageSectionForm(FormHelperMixin, forms.ModelForm):
     class Meta:
         model = models.ImageSection

@@ -156,6 +156,21 @@ class Page(BaseModel):
 
 class Section(BaseModel):
     """"""
+    page = models.ForeignKey('Page', default=None, null=True)
+
+    class Meta:
+        abstract = True
+
+    @classmethod
+    def template_name(cls):
+        return 'website/sections/%s.html' % cls.__name__
+
+    def get_class(self):
+        return self.__class__.__name__
+
+
+class LayoutMixin(models.Model):
+    """"""
     layout = models.CharField(
         max_length=64,
         choices=LAYOUT_CHOICES,
@@ -171,15 +186,18 @@ class Section(BaseModel):
     class Meta:
         abstract = True
 
-    @classmethod
-    def template_name(cls):
-        return 'website/sections/%s.html' % cls.__name__
 
-    def get_class(self):
-        return self.__class__.__name__
+class TextSectionMixin(models.Model):
+    """"""
+    title = models.CharField(blank=True, max_length=64, help_text='Title')
+    text = models.TextField(blank=True, help_text='Text')
+
+    class Meta:
+        abstract = True
 
 
 class ImageSectionMixin(models.Model):
+    """"""
     image = models.ImageField(upload_to=settings.UPLOADS_ROOT, help_text='Image to display')
 
     class Meta:
@@ -189,10 +207,9 @@ class ImageSectionMixin(models.Model):
         return '%s%s' % (settings.STATIC_URL, self.image.url)
 
 
-class ImageSection(ImageSectionMixin, Section):
+class ImageSection(ImageSectionMixin, LayoutMixin, Section):
     """"""
     title = models.CharField(blank=True, max_length=64, help_text='Image title')
-    page = models.ForeignKey('Page', default=None, null=True)
 
     def preview(self):
         return '<div class="section">\
@@ -207,20 +224,23 @@ class ImageSection(ImageSectionMixin, Section):
             WellFieldset('Section details',
                 'title',
                 'image',
-                'page',
+            ),
+            WellFieldset('Section layout',
                 'layout',
                 'alignment',
+            ),
+            WellFieldset('Parent page',
+                'page',
             ),
             cls.get_button_layout()
         )
 
 
-class ImageLinkSection(ImageSectionMixin, Section):
+class ImageLinkSection(ImageSectionMixin, LayoutMixin, Section):
     """"""
     title = models.CharField(blank=True, max_length=64, help_text='Link title')
     subtitle = models.CharField(blank=True, max_length=256, help_text='Link title')
     link = models.CharField(blank=True, max_length=64, help_text='To which page should this section link to?')
-    page = models.ForeignKey('Page', default=None, null=True)
 
     def preview(self):
         return '<div class="section">\
@@ -239,19 +259,20 @@ class ImageLinkSection(ImageSectionMixin, Section):
                 'subtitle',
                 'link',
                 'image',
-                'page',
+            ),
+            WellFieldset('Section layout',
                 'layout',
                 'alignment',
+            ),
+            WellFieldset('Parent page',
+                'page',
             ),
             cls.get_button_layout()
         )
 
 
-class TextSection(Section):
+class TextSection(TextSectionMixin, LayoutMixin, Section):
     """"""
-    title = models.CharField(blank=True, max_length=64, help_text='Title')
-    text = models.TextField(blank=True, help_text='Text')
-    page = models.ForeignKey('Page', default=None, null=True)
 
     def preview(self):
         return '<div class="section">\
@@ -265,12 +286,81 @@ class TextSection(Section):
             WellFieldset('Section details',
                 'title',
                 'text',
-                'page',
+            ),
+            WellFieldset('Section layout',
                 'layout',
                 'alignment',
+            ),
+            WellFieldset('Parent page',
+                'page',
             ),
             cls.get_button_layout()
         )
 
 
-SECTIONS = [ImageSection, ImageLinkSection, TextSection]
+class BackgroundImageTextSection(ImageSectionMixin, TextSectionMixin, Section):
+    """"""
+    BACKGROUND_POSITION_CHOICES = (
+        ('top', 'Top'),
+        ('center', 'Center'),
+        ('bottom', 'Bottom'),
+    )
+    TEXT_COLOR_CHOICES = (
+        ('#ffffff', 'White'),
+        ('#000000', 'Black'),
+    )
+    TEXT_SIDE_CHOICES = (
+        ('left', 'Left'),
+        ('right', 'Right'),
+    )
+
+    background_position = models.CharField(
+        choices=BACKGROUND_POSITION_CHOICES,
+        default='center',
+        max_length=64,
+        help_text='What alignment do you want for the background image?'
+    )
+    text_color = models.CharField(
+        choices=TEXT_COLOR_CHOICES,
+        default='#000000',
+        max_length=64,
+        help_text='Text color for this section?'
+    )
+    text_side = models.CharField(
+        choices=TEXT_SIDE_CHOICES,
+        default='left',
+        max_length=64,
+        help_text='Where do you want the text to appear?'
+    )
+
+    def preview(self):
+        return '<div class="section">\
+                    <p><strong>background image:</strong> %s</p>\
+                    <span class="section__title">%s</span>\
+                </div>' % (self.image, self.title)
+
+    @classmethod
+    def get_form_layout(cls):
+        return Layout(
+            cls.get_basic_layout(),
+            WellFieldset('Section details',
+                'title',
+                'text',
+                'image',
+                'text_color',
+                'text_side',
+                'background_position',
+            ),
+            WellFieldset('Section\'s page',
+                'page',
+            ),
+            cls.get_button_layout()
+        )
+
+
+SECTIONS = (
+    BackgroundImageTextSection,
+    ImageLinkSection,
+    ImageSection,
+    TextSection,
+)
