@@ -41,11 +41,6 @@
 	.is-open & {
 		opacity: 1;
 	}
-	@include respond-to(portable) {
-		margin-top: 0;
-		position: absolute;
-		top: 20px;
-	}
 }
 .navigation {
 	position: absolute;
@@ -78,6 +73,14 @@
 		top: 84px;
 	}
 }
+
+.sub-navigation {
+	@extend .navigation;
+	.is-open & {
+		top: 140px;
+	}
+}
+
 .navigation__link {
 	color: #FFF;
 	display: block;

@@ -1022,7 +1022,7 @@ th {
 /**
  * Pull classes, to move grid items back to the left by certain amounts.
  */
-article[role="main"], .section, .header__logo--small, .navigation > ul {
+article[role="main"], .section, .header__logo--small, .navigation > ul, .sub-navigation > ul {
   margin: 0 auto;
   max-width: 960px; }
 
@@ -1079,13 +1079,12 @@ img {
 
 article[role="main"] {
   opacity: 0;
-  padding-top: 80px;
+  margin-top: 80px;
   transition: opacity 0.4s ease-in-out; }
   article[role="main"].is-active {
     opacity: 1; }
-  @media only screen and (max-width: 960px) {
-    article[role="main"] {
-      margin-top: 80px; } }
+  article[role="main"].with-sub-nav {
+    margin-top: 140px; }
 
 .browsehappy {
   background: #FF8;
@@ -1128,13 +1127,8 @@ article[role="main"] {
   z-index: 99; }
   .is-open .header__logo--small {
     opacity: 1; }
-  @media only screen and (max-width: 960px) {
-    .header__logo--small {
-      margin-top: 0;
-      position: absolute;
-      top: 20px; } }
 
-.navigation {
+.navigation, .sub-navigation {
   position: absolute;
   top: 90%;
   left: 0;
@@ -1145,18 +1139,21 @@ article[role="main"] {
   transition: top 0.8s ease-in-out;
   z-index: 100; }
   @media only screen and (max-width: 960px) {
-    .navigation {
+    .navigation, .sub-navigation {
       top: 70%; } }
-  .navigation > ul {
+  .navigation > ul, .sub-navigation > ul {
     padding: 0; }
-    .navigation > ul > li {
+    .navigation > ul > li, .sub-navigation > ul > li {
       display: inline-block;
       margin: 0 50px 0 0; }
       @media only screen and (max-width: 960px) {
-        .navigation > ul > li {
+        .navigation > ul > li, .sub-navigation > ul > li {
           margin: 0 20px 0 0; } }
-  .is-open .navigation {
+  .is-open .navigation, .is-open .sub-navigation {
     top: 84px; }
+
+.is-open .sub-navigation {
+  top: 140px; }
 
 .navigation__link {
   color: #FFF;

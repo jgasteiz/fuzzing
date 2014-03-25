@@ -91,16 +91,28 @@ class BaseModel(models.Model):
 
 class Page(BaseModel):
     """"""
-    title = models.CharField(max_length=36, help_text='Title of the page')
-    slug = models.CharField(max_length=64, blank=True, help_text='How the page url will appear in the browser.')
-    in_navigation = models.BooleanField(default=True, help_text='Should this page be in the main navigation?')
-    is_home_page = models.BooleanField(default=False, help_text='Is this the main page of the site?')
-    parent_page = models.ForeignKey('Page', blank=True, null=True)
+    title = models.CharField(
+        help_text='Title of the page',
+        max_length=36)
+    slug = models.CharField(
+        blank=True,
+        help_text='How the page url will appear in the browser.',
+        max_length=64)
+    in_navigation = models.BooleanField(
+        default=True,
+        help_text='Should this page be in the main navigation?')
+    is_home_page = models.BooleanField(
+        default=False,
+        help_text='Is this the main page of the site?')
+    parent_page = models.ForeignKey(
+        'Page',
+        blank=True,
+        null=True)
     side_offset = models.CharField(
         max_length=64,
         choices=OFFSET_CHOICES,
         default='0',
-        help_text='Side offset percentage for the page.')
+        help_text='Pick the percentage of white space you want on each side of the page.')
 
     def __unicode__(self):
         return self.title
@@ -134,8 +146,12 @@ class Page(BaseModel):
                 'slug',
                 'in_navigation',
                 'is_home_page',
-                'parent_page',
+            ),
+            WellFieldset('Page layout',
                 'side_offset',
+            ),
+            WellFieldset('Page parent',
+                'parent_page',
             ),
             cls.get_button_layout()
         )

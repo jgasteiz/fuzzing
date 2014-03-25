@@ -30,15 +30,32 @@
 				{% for nav_item in nav_item_list %}
 					<li>
 						<a class="navigation__link nav-opener {% ifequal nav_item.slug current_page %}is-active{% endifequal %}"
-							href="/{{ nav_item.slug }}/">{{ nav_item.title }}</a>
+							href="{% url 'page' nav_item.slug %}">{{ nav_item.title }}</a>
 					</li>
 				{% endfor %}
 				</ul>
 			</nav>
+			{% if sub_nav_item_list %}
+			<nav class="sub-navigation">
+				<ul>
+				{% for nav_item in sub_nav_item_list %}
+					<li>
+						<a class="navigation__link {% ifequal nav_item.slug current_page %}is-active{% endifequal %}"
+						   href="{% url 'page' nav_item.slug %}">{{ nav_item.title }}</a>
+					</li>
+				{% endfor %}
+				</ul>
+			</nav>
+			{% endif %}
 			{% endspaceless %}
 		</header>
 
-		<article id="main" class="{% if nav_open %}is-active{% endif %}" role="main">{% block content %}{% endblock content %}</article>
+		<article
+				id="main"
+				class="{% if nav_open %}is-active{% endif %} {% if sub_nav_item_list %}with-sub-nav{% endif %}"
+				role="main">
+			{% block content %}{% endblock content %}
+		</article>
 
 		<footer class="footer"></footer>
 
