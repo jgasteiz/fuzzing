@@ -2,8 +2,7 @@ $gutter: 40px;
 
 $breakpoints: (
     'palm' '(max-width: 480px)',
-    'tablet' '(min-width: 481px)',
-    'portable' '(min-width: 660px)',
+    'portable' '(max-width: 959px)',
     'desk' '(min-width: 960px)'
 );
 

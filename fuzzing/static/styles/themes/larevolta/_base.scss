@@ -32,6 +32,10 @@ img {
 	}
 }
 
+.ImageLinkSection a {
+	color: #9C9EA0;
+}
+
 .page {
 	@include respond-to(portable) {
 		padding: 0 !important;

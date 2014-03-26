@@ -812,106 +812,7 @@ th {
 
   .palm--eleven-twelfths {
     width: 91.666%; } }
-@media only screen and (min-width: 481px) {
-  /**
-   * Whole
-   */
-  .tablet--one-whole {
-    width: 100%; }
-
-  /**
-   * Halves
-   */
-  .tablet--one-half, .tablet--two-quarters, .tablet--three-sixths, .tablet--four-eighths, .tablet--five-tenths, .tablet--six-twelfths {
-    width: 50%; }
-
-  /**
-   * Thirds
-   */
-  .tablet--one-third, .tablet--two-sixths, .tablet--four-twelfths {
-    width: 33.333%; }
-
-  .tablet--two-thirds, .tablet--four-sixths, .tablet--eight-twelfths {
-    width: 66.666%; }
-
-  /**
-   * Quarters
-   */
-  .tablet--one-quarter, .tablet--two-eighths, .tablet--three-twelfths {
-    width: 25%; }
-
-  .tablet--three-quarters, .tablet--six-eighths, .tablet--nine-twelfths {
-    width: 75%; }
-
-  /**
-   * Fifths
-   */
-  .tablet--one-fifth, .tablet--two-tenths {
-    width: 20%; }
-
-  .tablet--two-fifths, .tablet--four-tenths {
-    width: 40%; }
-
-  .tablet--three-fifths, .tablet--six-tenths {
-    width: 60%; }
-
-  .tablet--four-fifths, .tablet--eight-tenths {
-    width: 80%; }
-
-  /**
-   * Sixths
-   */
-  .tablet--one-sixth, .tablet--two-twelfths {
-    width: 16.666%; }
-
-  .tablet--five-sixths, .tablet--ten-twelfths {
-    width: 83.333%; }
-
-  /**
-   * Eighths
-   */
-  .tablet--one-eighth {
-    width: 12.5%; }
-
-  .tablet--three-eighths {
-    width: 37.5%; }
-
-  .tablet--five-eighths {
-    width: 62.5%; }
-
-  .tablet--seven-eighths {
-    width: 87.5%; }
-
-  /**
-   * Tenths
-   */
-  .tablet--one-tenth {
-    width: 10%; }
-
-  .tablet--three-tenths {
-    width: 30%; }
-
-  .tablet--seven-tenths {
-    width: 70%; }
-
-  .tablet--nine-tenths {
-    width: 90%; }
-
-  /**
-   * Twelfths
-   */
-  .tablet--one-twelfth {
-    width: 8.333%; }
-
-  .tablet--five-twelfths {
-    width: 41.666%; }
-
-  .tablet--seven-twelfths {
-    width: 58.333%; }
-
-  .tablet--eleven-twelfths {
-    width: 91.666%; } }
-@media only screen and (min-width: 660px) {
+@media only screen and (max-width: 959px) {
   /**
    * Whole
    */
@@ -1185,6 +1086,9 @@ img {
   @media only screen and (max-width: 960px) {
     .link-back {
       margin: 20px 0; } }
+
+.ImageLinkSection a {
+  color: #9C9EA0; }
 
 @media only screen and (max-width: 960px) {
   .page {
