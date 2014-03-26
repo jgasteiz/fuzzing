@@ -26,6 +26,7 @@ img {
 	color: #008b84;
 	display: block;
 	margin: -40px 0 80px;
+	text-align: center;
 
 	@include respond-to(portable) {
 		margin: 20px 0;

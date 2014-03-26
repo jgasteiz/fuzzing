@@ -1082,7 +1082,8 @@ img {
 .link-back {
   color: #008b84;
   display: block;
-  margin: -40px 0 80px; }
+  margin: -40px 0 80px;
+  text-align: center; }
   @media only screen and (max-width: 960px) {
     .link-back {
       margin: 20px 0; } }
