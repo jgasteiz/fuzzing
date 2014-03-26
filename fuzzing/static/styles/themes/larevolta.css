@@ -1164,6 +1164,8 @@ html {
   padding: 0 20px; }
 
 body {
+  background-color: #2D2D2C;
+  color: #9C9EA0;
   font-family: "ChaparralPro", sans-serif;
   font-size: 18px; }
   body.overflow-hidden {
@@ -1177,7 +1179,7 @@ img {
   max-width: 100%; }
 
 .link-back {
-  color: #C84B4B;
+  color: #008b84;
   display: block;
   margin: -40px 0 80px; }
   @media only screen and (max-width: 960px) {
@@ -1209,12 +1211,12 @@ img {
       padding: 0 15px; }
 
 .navigation__link {
-  color: #222;
+  color: #9C9EA0;
   display: block;
   line-height: 2em;
   text-decoration: none; }
   .navigation__link:hover, .navigation__link.is-active {
-    color: #00AA00; }
+    color: #008b84; }
   @media only screen and (max-width: 480px) {
     .navigation__link {
       font-size: 14px; } }
@@ -1222,4 +1224,4 @@ img {
 .navigation__site-brand {
   font-weight: 700; }
   .navigation__site-brand:hover, .navigation__site-brand.is-active {
-    color: #222; }
+    color: #008b84; }
