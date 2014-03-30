@@ -1,10 +1,9 @@
 $gutter: 40px;
 
-$breakpoints: (
-    'palm' '(max-width: 480px)',
-    'portable' '(max-width: 959px)',
-    'desk' '(min-width: 960px)'
-);
+// Colors
+$background-color: #333333;
+$font-color: #999999;
+$link-color: #008b84;
 
 $breakpoint-has-widths: ('palm', 'lap', 'tablet', 'portable', 'desk');
 $breakpoint-has-push:   ('palm', 'lap', 'tablet', 'portable', 'desk');

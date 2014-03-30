@@ -2,3 +2,17 @@
 	margin: 0 auto;
 	max-width: 960px;
 }
+
+.center-wrapper {
+	&:before {
+		content: '';
+		display: inline-block;
+		height: 100%;
+		vertical-align: middle;
+	}
+}
+
+.center-item {
+	display: inline-block;
+	vertical-align: middle;
+}

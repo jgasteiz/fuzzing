@@ -18,14 +18,14 @@
 	}
 }
 .navigation__link {
-	color: #9C9EA0;
+	color: $font-color;
 	display: block;
 	line-height: 2em;
 	text-decoration: none;
 
 	&:hover,
 	&.is-active {
-		color: #008b84;
+		color: $link-color;
 	}
 
 	@include respond-to(palm) {
@@ -37,6 +37,6 @@
 	font-weight: 700;
 	&:hover,
 	&.is-active {
-		color: #008b84;
+		color: $link-color;
 	}
 }

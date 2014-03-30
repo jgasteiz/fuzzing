@@ -713,7 +713,7 @@ th {
 /**
  * Our responsive classes, if we have enabled them.
  */
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 660px) {
   /**
    * Whole
    */
@@ -1022,6 +1022,16 @@ th {
 /**
  * Pull classes, to move grid items back to the left by certain amounts.
  */
+.center-wrapper:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle; }
+
+.center-item {
+  display: inline-block;
+  vertical-align: middle; }
+
 .section {
   margin-bottom: 40px; }
 
@@ -1035,8 +1045,32 @@ th {
 .ImageLinkSection {
   text-align: center; }
   .ImageLinkSection a {
-    color: #222;
     text-decoration: none; }
+
+.ImageLinkSection__overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+  bottom: -5px;
+  left: -5px;
+  opacity: 0;
+  position: absolute;
+  right: -5px;
+  top: -5px;
+  transition: opacity 0.4s ease-in; }
+  @media only screen and (max-width: 660px) {
+    .ImageLinkSection__overlay {
+      background: none;
+      bottom: -32px;
+      opacity: 1;
+      top: auto; } }
+
+.ImageLinkSection__image {
+  background-position: center;
+  background-size: cover;
+  height: 260px;
+  margin-bottom: 10px;
+  position: relative; }
+  .ImageLinkSection__image:hover .ImageLinkSection__overlay {
+    opacity: 1; }
 
 .ImageLinkSection__title {
   display: block; }
@@ -1056,6 +1090,19 @@ th {
   font-weight: 300;
   margin: 10px 0; }
 
+.ImageSection__image-wrapper {
+  position: relative; }
+  .ImageSection__image-wrapper > img {
+    display: block; }
+
+.ImageSection__overlay {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 10; }
+
 .TextSection__title {
   margin-top: 0; }
 
@@ -1064,9 +1111,12 @@ html {
   margin: 0;
   padding: 0 20px; }
 
+* {
+  box-sizing: border-box; }
+
 body {
-  background-color: #2D2D2C;
-  color: #9C9EA0;
+  background-color: #333333;
+  color: #999999;
   font-family: "ChaparralPro", sans-serif;
   font-size: 18px; }
   body.overflow-hidden {
@@ -1089,7 +1139,7 @@ img {
       margin: 20px 0; } }
 
 .ImageLinkSection a {
-  color: #9C9EA0; }
+  color: #999999; }
 
 @media only screen and (max-width: 960px) {
   .page {
@@ -1116,13 +1166,13 @@ img {
       padding: 0 15px; }
 
 .navigation__link {
-  color: #9C9EA0;
+  color: #999999;
   display: block;
   line-height: 2em;
   text-decoration: none; }
   .navigation__link:hover, .navigation__link.is-active {
     color: #008b84; }
-  @media only screen and (max-width: 480px) {
+  @media only screen and (max-width: 660px) {
     .navigation__link {
       font-size: 14px; } }
 

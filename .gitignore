@@ -2,6 +2,6 @@
 uploads/*
 db.sqlite3
 .sass-cache
-local_settings.py
+local.py
 .idea
 tiny_mce

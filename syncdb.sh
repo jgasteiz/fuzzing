@@ -1,4 +1,4 @@
-dropdb 'larevolta'
-createdb 'larevolta'
+# dropdb 'larevolta'
+# createdb 'larevolta'
+rm dbname.sqlite
 python manage.py syncdb --noinput --migrate
-# python manage.py loaddata data.json

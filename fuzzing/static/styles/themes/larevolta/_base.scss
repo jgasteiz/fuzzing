@@ -3,9 +3,14 @@ html {
 	margin: 0;
 	padding: 0 20px;
 }
+
+* {
+	box-sizing: border-box;
+}
+
 body {
-	background-color: #2D2D2C;
-	color: #9C9EA0;
+	background-color: $background-color;
+	color: $font-color;
 	font-family: "ChaparralPro", sans-serif;
 	font-size: 18px;
 
@@ -23,7 +28,7 @@ img {
 }
 
 .link-back {
-	color: #008b84;
+	color: $link-color;
 	display: block;
 	margin: -40px 0 80px;
 	text-align: center;
@@ -34,7 +39,7 @@ img {
 }
 
 .ImageLinkSection a {
-	color: #9C9EA0;
+	color: $font-color;
 }
 
 .page {
