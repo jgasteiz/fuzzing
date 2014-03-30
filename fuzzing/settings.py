@@ -24,7 +24,7 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '188.226.146.75']
 
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'fuzzing/templates')
@@ -125,3 +125,5 @@ TINYMCE_DEFAULT_CONFIG = {
 }
 
 DEBUG_TOOLBAR_PATCH_SETTINGS = False
+
+from local_settings import *
