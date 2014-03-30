@@ -27,7 +27,7 @@ TEMPLATE_DEBUG = True
 ALLOWED_HOSTS = []
 
 TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, '..', 'fuzzing/templates')
+    os.path.join(BASE_DIR, 'fuzzing/templates')
 )
 
 # Application definition
@@ -102,7 +102,7 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    os.path.join(BASE_DIR, '..', 'fuzzing/static'),
+    os.path.join(BASE_DIR, 'fuzzing/static'),
 )
 
 STATIC_URL = '/static/'
