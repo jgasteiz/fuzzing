@@ -12,7 +12,7 @@
 		<meta name="viewport" content="width=device-width">
 		<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-		<link rel="stylesheet" href="{% static "styles/themes/taller.css" %}">
+		<link rel="stylesheet" href="{% static "css/taller.css" %}">
 	</head>
 	<body>
 		<!--[if lt IE 10]>
@@ -22,7 +22,7 @@
 		<header id="header" class="header {% if nav_open %}is-open{% endif %}">
 			<a {% if current_page %}href="/?nav-open"{% endif %} class="{% if not current_page %}intro-opener{% endif %} header__logo--small">{{ site_settings.site_name }}</a>
 			<a {% if current_page %}href="/?nav-open"{% else %}{% endif %} class="{% if not current_page %}intro-opener{% endif %} header__logo">
-				<img class="" src="{% static "images/taller/logo.png" %}" alt="{{ site_settings.site_name }} - Logo">
+				<img class="" src="{% static "img/taller/logo.png" %}" alt="{{ site_settings.site_name }} - Logo">
 			</a>
 			{% spaceless %}				
 			<nav class="navigation">

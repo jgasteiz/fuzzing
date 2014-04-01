@@ -1,0 +1,75 @@
+﻿/* glue: 0.9.4 hash: 7f430bcb26 */
+        .sprite-sprite-linkedin_hover,
+.sprite-sprite-linkedin,
+.sprite-sprite-flickr_hover,
+.sprite-sprite-flickr,
+.sprite-sprite-facebook_hover,
+.sprite-sprite-facebook {
+            background-image: url('../imgdev.png');
+            background-repeat: no-repeat;
+        }
+        
+        .sprite-sprite-linkedin_hover {
+            background-position: 0 0;
+            width: 128px;
+            height: 128px;
+        }
+        
+        .sprite-sprite-linkedin {
+            background-position: -128px 0;
+            width: 128px;
+            height: 128px;
+        }
+        
+        .sprite-sprite-flickr_hover {
+            background-position: 0 -128px;
+            width: 128px;
+            height: 128px;
+        }
+        
+        .sprite-sprite-flickr {
+            background-position: -128px -128px;
+            width: 128px;
+            height: 128px;
+        }
+        
+        .sprite-sprite-facebook_hover {
+            background-position: -256px 0;
+            width: 128px;
+            height: 128px;
+        }
+        
+        .sprite-sprite-facebook {
+            background-position: -256px -128px;
+            width: 128px;
+            height: 128px;
+        }
+        
+        @media screen and (-webkit-min-device-pixel-ratio: 1.0), screen and (min--moz-device-pixel-ratio: 1.0), screen and (-o-min-device-pixel-ratio: 100/100), screen and (min-device-pixel-ratio: 1.0), screen and (min-resolution: 1.0dppx) {
+            .sprite-sprite-linkedin_hover,
+    .sprite-sprite-linkedin,
+    .sprite-sprite-flickr_hover,
+    .sprite-sprite-flickr,
+    .sprite-sprite-facebook_hover,
+    .sprite-sprite-facebook {
+                background-image: url('../imgdev.png');
+                -webkit-background-size: 384px 256px;
+                -moz-background-size: 384px 256px;
+                background-size: 384px 256px;
+            }
+        }
+        
+        @media screen and (-webkit-min-device-pixel-ratio: 2.0), screen and (min--moz-device-pixel-ratio: 2.0), screen and (-o-min-device-pixel-ratio: 200/100), screen and (min-device-pixel-ratio: 2.0), screen and (min-resolution: 2.0dppx) {
+            .sprite-sprite-linkedin_hover,
+    .sprite-sprite-linkedin,
+    .sprite-sprite-flickr_hover,
+    .sprite-sprite-flickr,
+    .sprite-sprite-facebook_hover,
+    .sprite-sprite-facebook {
+                background-image: url('../imgdev@2x.png');
+                -webkit-background-size: 384px 256px;
+                -moz-background-size: 384px 256px;
+                background-size: 384px 256px;
+            }
+        }
+        
