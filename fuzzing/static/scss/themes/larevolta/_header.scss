@@ -58,6 +58,10 @@
 	color: desaturate($brand-color, 50%);
 	font-weight: 700;
 
+	@include respond-to(palm) {
+		color: $brand-color;
+	}
+
 	&:hover,
 	&.is-active {
 		color: $brand-color;
@@ -66,6 +70,10 @@
 
 .navigation-link--about {
 	color: desaturate($about-color, 30%);
+
+	@include respond-to(palm) {
+		color: $about-color;
+	}
 
 	&:hover,
 	&.is-active {

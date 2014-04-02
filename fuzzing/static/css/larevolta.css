@@ -1383,6 +1383,11 @@ img {
   margin: -40px 0 80px;
   text-align: center;
 }
+@media only screen and (max-width: 660px) {
+  .link-back {
+    color: #e9bd03;
+  }
+}
 .link-back:hover {
   color: #e9bd03;
 }
@@ -1470,12 +1475,22 @@ img {
   color: #aa6776;
   font-weight: 700;
 }
+@media only screen and (max-width: 660px) {
+  .navigation-link--brand {
+    color: #e52b55;
+  }
+}
 .navigation-link--brand:hover, .navigation-link--brand.is-active {
   color: #e52b55;
 }
 
 .navigation-link--about {
   color: #699996;
+}
+@media only screen and (max-width: 660px) {
+  .navigation-link--about {
+    color: #43bfb6;
+  }
 }
 .navigation-link--about:hover, .navigation-link--about.is-active {
   color: #43bfb6;
