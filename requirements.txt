@@ -9,7 +9,6 @@ django-crispy-forms==1.4.0
 django-debug-toolbar==1.0.1
 django-reversion==1.8.0
 django-tinymce==1.5.2
-glue==0.9.4
 gunicorn==18.0
 ipdb==0.8
 ipython==1.2.1
@@ -17,3 +16,5 @@ psycopg2==2.5.2
 readline==6.2.4.1
 sqlparse==0.1.11
 wsgiref==0.1.2
+
+-e git://github.com/potatolondon/glue.git#egg=glue-dev

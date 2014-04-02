@@ -4,6 +4,7 @@ module.exports = function(grunt) {
 
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
+		glueOptions: '--scss --namespace= --sprite-namespace=sprite --retina --recursive',
 		devStaticDir: 'fuzzing/static',
 		sass: {
 			dev: {
@@ -18,15 +19,19 @@ module.exports = function(grunt) {
 			}
 		},
 		glue: {
-			options: {
-				scss: true,
-				url: '../img',
-				'sprite-namespace' : 'sprite',
-				retina: true
-			},
-			dev: {
-				src : 'fuzzing/static/sprite',
-				dest: 'fuzzing/static/scss'
+			larevolta: {
+				files : [{
+					src : 'fuzzing/static/sprite/',
+					img : 'fuzzing/static/img/',
+					css : 'fuzzing/static/scss/themes/larevolta/'
+				}],
+				options: {
+					retina: true,
+					recursive: true,
+					scss: true,
+					"sprite-namespace": "sprite",
+					url: '../img/'
+				}
 			}
 		},
 		watch: {
@@ -70,5 +75,5 @@ module.exports = function(grunt) {
 	});
 
 	// Default task(s).
-	grunt.registerTask('default', ['glue:dev', 'sass:dev', 'concurrent:watch']);
+	grunt.registerTask('default', ['glue:larevolta', 'sass:dev', 'concurrent:watch']);
 };

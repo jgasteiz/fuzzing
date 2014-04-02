@@ -1,11 +1,11 @@
-﻿/* glue: 0.9.4 hash: 7f430bcb26 */
+﻿/* glue: 0.9.4 hash: 5c44e24309 */
         .sprite-sprite-linkedin_hover,
 .sprite-sprite-linkedin,
 .sprite-sprite-flickr_hover,
 .sprite-sprite-flickr,
 .sprite-sprite-facebook_hover,
 .sprite-sprite-facebook {
-            background-image: url('../imgdev.png');
+            background-image: url('../img/sprite.png');
             background-repeat: no-repeat;
         }
         
@@ -52,7 +52,7 @@
     .sprite-sprite-flickr,
     .sprite-sprite-facebook_hover,
     .sprite-sprite-facebook {
-                background-image: url('../imgdev.png');
+                background-image: url('../img/sprite.png');
                 -webkit-background-size: 384px 256px;
                 -moz-background-size: 384px 256px;
                 background-size: 384px 256px;
@@ -66,7 +66,7 @@
     .sprite-sprite-flickr,
     .sprite-sprite-facebook_hover,
     .sprite-sprite-facebook {
-                background-image: url('../imgdev@2x.png');
+                background-image: url('../img/sprite@2x.png');
                 -webkit-background-size: 384px 256px;
                 -moz-background-size: 384px 256px;
                 background-size: 384px 256px;

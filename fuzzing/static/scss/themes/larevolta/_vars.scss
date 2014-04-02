@@ -1,10 +1,12 @@
 $gutter: 40px;
 
 // Colors
-$background-color: #333333;
-$font-color: #999999;
-$link-color: #008b84;
+$background-color: #1A1818;
+$font-color: #737375;
+$link-color: #E9BD03;
+$brand-color: #E52B55;
+$about-color: #43BFB6;
 
 $breakpoint-has-widths: ('palm', 'lap', 'tablet', 'portable', 'desk');
-$breakpoint-has-push:   ('palm', 'lap', 'tablet', 'portable', 'desk');
-$breakpoint-has-pull:   ('palm', 'lap', 'tablet', 'portable', 'desk');
+$breakpoint-has-push: ('palm', 'lap', 'tablet', 'portable', 'desk');
+$breakpoint-has-pull: ('palm', 'lap', 'tablet', 'portable', 'desk');

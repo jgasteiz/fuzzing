@@ -1220,29 +1220,35 @@ article[role="main"], .section, .header__logo--small, .navigation > ul, .sub-nav
 
 .ImageLinkSection__overlay {
   background-color: rgba(0, 0, 0, 0.5);
-  bottom: -5px;
-  left: -5px;
+  bottom: 0;
+  color: #FFF;
+  left: 0;
   opacity: 0;
   position: absolute;
-  right: -5px;
-  top: -5px;
+  right: 0;
+  top: 0;
+  text-shadow: 0px 0px 20px #FFF;
   transition: opacity 0.4s ease-in;
 }
 @media only screen and (max-width: 660px) {
   .ImageLinkSection__overlay {
     background: none;
-    bottom: -32px;
+    bottom: auto;
+    padding-top: 10px;
     opacity: 1;
-    top: auto;
+    top: 100%;
   }
 }
 
 .ImageLinkSection__image {
   background-position: center;
   background-size: cover;
+  display: inline-block;
   height: 260px;
   margin-bottom: 10px;
+  max-width: 100%;
   position: relative;
+  width: 260px;
 }
 .ImageLinkSection__image:hover .ImageLinkSection__overlay {
   opacity: 1;

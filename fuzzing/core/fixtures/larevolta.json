@@ -1,0 +1,119 @@
+[
+{
+    "pk": 1, 
+    "model": "core.sitesettings", 
+    "fields": {
+        "site_theme": "larevolta", 
+        "site_name": "La Revolta"
+    }
+},
+{
+    "pk": 1, 
+    "model": "core.page", 
+    "fields": {
+        "is_home_page": true, 
+        "weight": 0, 
+        "title": "Home", 
+        "parent_page": null, 
+        "side_offset": "15%", 
+        "in_navigation": false, 
+        "slug": "home"
+    }
+},
+{
+    "pk": 2, 
+    "model": "core.page", 
+    "fields": {
+        "is_home_page": false, 
+        "weight": 10, 
+        "title": "Fotografia", 
+        "parent_page": null, 
+        "side_offset": "15%", 
+        "in_navigation": false, 
+        "slug": "fotografia"
+    }
+},
+{
+    "pk": 3, 
+    "model": "core.page", 
+    "fields": {
+        "is_home_page": false, 
+        "weight": 12, 
+        "title": "Cine", 
+        "parent_page": 2, 
+        "side_offset": "15%", 
+        "in_navigation": false, 
+        "slug": "cine"
+    }
+},
+{
+    "pk": 1, 
+    "model": "core.imagesection", 
+    "fields": {
+        "layout": "one-whole", 
+        "weight": 0, 
+        "title": "Una prueba", 
+        "image": "uploads/6202272031_e0c8d8b3ec_o_1.jpg", 
+        "page": 3, 
+        "alignment": "top"
+    }
+},
+{
+    "pk": 2, 
+    "model": "core.imagesection", 
+    "fields": {
+        "layout": "one-whole", 
+        "weight": 1, 
+        "title": "Otra prueba", 
+        "image": "uploads/DSC09343.JPG", 
+        "page": 3, 
+        "alignment": "top"
+    }
+},
+{
+    "pk": 1, 
+    "model": "core.imagelinksection", 
+    "fields": {
+        "layout": "one-half", 
+        "weight": 0, 
+        "title": "Fotografia", 
+        "image": "uploads/ahkmed.jpg", 
+        "link": "fotografia", 
+        "subtitle": "Cine, teatro, retrato, etc.", 
+        "page": 1, 
+        "alignment": "top"
+    }
+},
+{
+    "pk": 2, 
+    "model": "core.imagelinksection", 
+    "fields": {
+        "layout": "one-half", 
+        "weight": 0, 
+        "title": "Cine", 
+        "image": "uploads/6202272031_e0c8d8b3ec_o.jpg", 
+        "link": "cine", 
+        "subtitle": "", 
+        "page": 2, 
+        "alignment": "top"
+    }
+},
+{
+    "pk": 1, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "javi", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": true, 
+        "is_staff": true, 
+        "last_login": "2014-04-02T18:57:38.550Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$12000$pdCTIkHncz4E$zkwq+Le8ZC6xVwtperqanINeqaLQ+ZMTqBPjtL3IAjg=", 
+        "email": "", 
+        "date_joined": "2014-04-02T18:57:31.989Z"
+    }
+}
+]
