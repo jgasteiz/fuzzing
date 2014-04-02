@@ -7,14 +7,18 @@
 }
 .navigation {
 	text-align: center;
+
+	@include respond-to(portable) {
+		text-align: left;
+	}
+	@include respond-to(palm) {
+		text-align: center;
+	}
+
 	> ul {
 		list-style: none;
 		margin: 0;
-		padding: 0 0 0 150px;
-
-		@include respond-to(portable) {
-			padding: 0;
-		}
+		padding: 0;
 
 		> li {
 			display: inline-block;
@@ -23,9 +27,26 @@
 		}
 	}
 	.sprite {
-		display: inline-block;
+		display: block;
 	}
 }
+
+.social-links {
+	position: absolute;
+	right: 10px;
+	top: 10px;
+
+	@include respond-to(palm) {
+		margin: 20px 0 0 !important;
+		position: static;
+		text-align: center;
+	}
+
+	a {
+		display: block;
+	}
+}
+
 .navigation-link {
 	color: $font-color;
 	display: block;
@@ -34,7 +55,9 @@
 }
 
 .navigation-link--brand {
+	color: desaturate($brand-color, 50%);
 	font-weight: 700;
+
 	&:hover,
 	&.is-active {
 		color: $brand-color;
@@ -42,6 +65,8 @@
 }
 
 .navigation-link--about {
+	color: desaturate($about-color, 30%);
+
 	&:hover,
 	&.is-active {
 		color: $about-color;

@@ -28,10 +28,14 @@ img {
 }
 
 .link-back {
-	color: $link-color;
+	color: desaturate($link-color, 50%);
 	display: block;
 	margin: -40px 0 80px;
 	text-align: center;
+
+	&:hover {
+		color: $link-color;
+	}
 
 	@include respond-to(portable) {
 		margin: 20px 0;
