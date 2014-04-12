@@ -1218,6 +1218,22 @@ article[role="main"], .section, .header__logo--small, .navigation > ul, .sub-nav
   text-decoration: none;
 }
 
+.ImageLinkSection__image-wrp {
+  margin-bottom: 10px;
+  display: block;
+  position: relative;
+}
+.ImageLinkSection__image-wrp:hover .ImageLinkSection__overlay {
+  opacity: 1;
+}
+
+.ImageLinkSection__image {
+  background-position: center;
+  background-size: cover;
+  display: block;
+  width: 100%;
+}
+
 .ImageLinkSection__overlay {
   background-color: rgba(0, 0, 0, 0.5);
   bottom: 0;
@@ -1229,6 +1245,7 @@ article[role="main"], .section, .header__logo--small, .navigation > ul, .sub-nav
   top: 0;
   text-shadow: 0px 0px 20px #FFF;
   transition: opacity 0.4s ease-in;
+  z-index: 5;
 }
 @media only screen and (max-width: 660px) {
   .ImageLinkSection__overlay {
@@ -1239,20 +1256,6 @@ article[role="main"], .section, .header__logo--small, .navigation > ul, .sub-nav
     text-shadow: none;
     top: 100%;
   }
-}
-
-.ImageLinkSection__image {
-  background-position: center;
-  background-size: cover;
-  display: inline-block;
-  height: 260px;
-  margin-bottom: 10px;
-  max-width: 100%;
-  position: relative;
-  width: 260px;
-}
-.ImageLinkSection__image:hover .ImageLinkSection__overlay {
-  opacity: 1;
 }
 
 .ImageLinkSection__title {

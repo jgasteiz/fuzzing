@@ -1,1 +1,0 @@
-sass --watch fuzzing/static/styles/themes fuzzing/static/styles/cms
