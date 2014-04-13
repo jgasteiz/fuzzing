@@ -423,6 +423,12 @@ th {
   font-weight: 700;
   src: url(../fonts/ChaparralPro-Bold.otf) format("opentype");
 }
+@font-face {
+  font-family: 'BreeSerif';
+  font-style: normal;
+  font-weight: 400;
+  src: url(../fonts/BreeSerif-Regular.otf) format("opentype");
+}
 /*------------------------------------*\
     $CSSWIZARDRY-GRIDS
 \*------------------------------------*/
@@ -1365,7 +1371,7 @@ html {
 body {
   background-color: #1a1818;
   color: #737375;
-  font-family: "ChaparralPro", sans-serif;
+  font-family: "BreeSerif", sans-serif;
   font-size: 18px;
 }
 body.overflow-hidden {
