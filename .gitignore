@@ -6,3 +6,4 @@ local_settings.py
 .idea
 tiny_mce
 node_modules
+bower_components

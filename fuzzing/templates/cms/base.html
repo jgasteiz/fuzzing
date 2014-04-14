@@ -15,7 +15,7 @@
 		<link rel="stylesheet" href="{% static "css/cms.css" %}">
 		{% block header_js %}{% endblock header_js %}
 	</head>
-	<body>
+	<body ng-app="fuzzingCMS">
 		<!--[if lt IE 10]>
 			<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 		<![endif]-->
@@ -58,7 +58,10 @@
 
 		<footer class="footer"></footer>
 
-		<script src="{% static "vendor/jquery/jquery.min.js" %}"></script>
-		<script src="{% static "vendor/sass-bootstrap/dist/js/bootstrap.min.js" %}"></script>		
+		<script src="{% static "bower_components/angular/angular.min.js" %}"></script>
+		<script src="{% static "bower_components/jquery/dist/jquery.min.js" %}"></script>
+		<script src="{% static "bower_components/sass-bootstrap/dist/js/bootstrap.min.js" %}"></script>
+
+		<script src="{% static "js/cms/main.js" %}"></script>
 	</body>
 </html>

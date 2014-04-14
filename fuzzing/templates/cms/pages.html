@@ -1,126 +1,133 @@
 {% extends "cms/base.html" %}
 
 {% block content %}
-	<div class="row">
-		<div class="col-md-2">
-			<h1>Pages</h1>
-		</div>
-		<div class="col-md-2">
-			<div class="button-holder">
-				<a href="{% url 'create_page' %}" class="btn btn-primary">Create page</a>
+	<div ng-controller="PageListCtrl">
+		<div class="row">
+			<div class="col-md-2">
+				<h1>Pages</h1>
+			</div>
+			<div class="col-md-4">
+				<div class="button-holder">
+					<input type="text" class="form-control" ng-model="search" placeholder="Search page by name"/>
+				</div>
+			</div>
+			<div class="col-md-6 text-right">
+				<div class="button-holder">
+					<a href="{% url 'create_page' %}" class="btn btn-primary">Create page</a>
+				</div>
 			</div>
 		</div>
-	</div>
 
-	<div class="row">
-	{% for page in page_list %}
-		<div class="col-md-6">
-			<div class="page well">
-				<div class="pull-right">
-				{% if page.is_home_page %}
-					<span class="label label-info">Homepage</span>
-				{% endif %}
-				{% if page.in_navigation %}
-					<span class="label label-primary">In navigation</span>
-				{% endif %}
-				</div>
-				<h2 class="page__title">{{ page.title }}</h2>
-				<div class="page__weight">
-					<strong>Page weight: </strong>{{ page.weight }}
-				</div>
-				<div class="page__offset">
-					<strong>Page side offset: </strong>{{ page.side_offset }}
-				</div>
-				<div class="page__actions button-holder">
-					<div class="btn-group">
-						<button type="button" class="btn btn-sm btn-primary">Add section</button>
-						<button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown">
-							<span class="caret"></span>
-							<span class="sr-only">Toggle Dropdown</span>
-						</button>
-						<ul class="dropdown-menu" role="menu">
-							{% for section in section_list %}
-							<li><a href="{% url 'create_section' page.pk section %}">{{ section }}</a></li>	
+		<div class="row">
+		{% for page in page_list %}
+			<div ng-hide="isExcludedByFilter('{{ page.title }}')" class="col-md-6">
+				<div class="page well">
+					<div class="pull-right">
+					{% if page.is_home_page %}
+						<span class="label label-info">Homepage</span>
+					{% endif %}
+					{% if page.in_navigation %}
+						<span class="label label-primary">In navigation</span>
+					{% endif %}
+					</div>
+					<h2 class="page__title">{{ page.title }}</h2>
+					<div class="page__weight">
+						<strong>Page weight: </strong>{{ page.weight }}
+					</div>
+					<div class="page__offset">
+						<strong>Page side offset: </strong>{{ page.side_offset }}
+					</div>
+					<div class="page__actions button-holder">
+						<div class="btn-group">
+							<button type="button" class="btn btn-sm btn-primary">Add section</button>
+							<button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown">
+								<span class="caret"></span>
+								<span class="sr-only">Toggle Dropdown</span>
+							</button>
+							<ul class="dropdown-menu" role="menu">
+								{% for section in section_list %}
+								<li><a href="{% url 'create_section' page.pk section %}">{{ section }}</a></li>
+								{% endfor %}
+							</ul>
+						</div>
+						<div class="btn-group">
+							<button type="button" class="btn btn-sm btn-default">Other actions</button>
+							<button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown">
+								<span class="caret"></span>
+								<span class="sr-only">Toggle Dropdown</span>
+							</button>
+							<ul class="dropdown-menu" role="menu">
+								<li>
+									<a href="{% url 'update_page' page.pk %}">
+										<span class="glyphicon glyphicon-edit"></span> Edit
+									</a>
+								</li>
+								<li>
+									<a href="{% url 'delete_page' page.pk %}">
+										<span class="glyphicon glyphicon-trash"></span> Delete
+									</a>
+								</li>
+								<li>
+									<a href="{% url 'set_page_weight' page.pk -1 %}">
+										<span class="glyphicon glyphicon-arrow-up"></span> Move up
+									</a>
+								</li>
+								<li>
+									<a href="{% url 'set_page_weight' page.pk 1 %}">
+										<span class="glyphicon glyphicon-arrow-down"></span> Move down
+									</a>
+								</li>
+								{% if not page.is_home_page %}
+								<li>
+									<a href="{% url 'set_home_page' page.pk %}">
+										<span class="glyphicon glyphicon-home"></span> Set as home page
+									</a>
+								</li>
+								{% endif %}
+								{% if page.in_navigation %}
+								<li>
+									<a href="{% url 'set_navigation_page' page.pk 0 %}">
+										<span class="glyphicon glyphicon-minus"></span> Remove from navigation
+									</a>
+								</li>
+								{% else %}
+								<li>
+									<a href="{% url 'set_navigation_page' page.pk 1 %}">
+										<span class="glyphicon glyphicon-plus"></span> Add to navigation
+									</a>
+								</li>
+								{% endif %}
+							</ul>
+						</div>
+					</div>
+					<div class="page__sections">
+						<strong>Page sections:</strong>
+						<ul>
+							{% with page.get_sections as sections %}
+							{% for section in sections %}
+							<li class="section">
+								<span class="section__class">{{ section.get_class }}</span>
+								<span class="section__weight"><strong>Section weight:</strong> {{ section.weight }}</span>
+								<span class="section__layout"><strong>Section layout:</strong> {{ section.layout }}</span>
+								<div class="section__section">{{ section.preview|safe }}</div>
+								<div class="section__actions">
+									<a href="{% url 'update_section' section.pk section.get_class %}" class="btn btn-sm btn-primary">Edit</a>
+									<a href="{% url 'delete_section' section.pk section.get_class %}" class="btn btn-sm btn-danger">Delete</a>
+									<a href="{% url 'set_section_weight' section.pk section.get_class -1 %}" class="btn btn-sm btn-default" type="button"><span class="glyphicon glyphicon-arrow-up"></span></a>
+									<a href="{% url 'set_section_weight' section.pk section.get_class 1 %}" class="btn btn-sm btn-default" type="button"><span class="glyphicon glyphicon-arrow-down"></span></a>
+								</div>
+							</li>
 							{% endfor %}
+							{% endwith %}
 						</ul>
 					</div>
-					<div class="btn-group">
-						<button type="button" class="btn btn-sm btn-default">Other actions</button>
-						<button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown">
-							<span class="caret"></span>
-							<span class="sr-only">Toggle Dropdown</span>
-						</button>
-						<ul class="dropdown-menu" role="menu">
-							<li>
-								<a href="{% url 'update_page' page.pk %}">
-									<span class="glyphicon glyphicon-edit"></span> Edit
-								</a>
-							</li>
-							<li>
-								<a href="{% url 'delete_page' page.pk %}">
-									<span class="glyphicon glyphicon-trash"></span> Delete
-								</a>
-							</li>
-							<li>
-								<a href="{% url 'set_page_weight' page.pk -1 %}">
-									<span class="glyphicon glyphicon-arrow-up"></span> Move up
-								</a>
-							</li>
-							<li>
-								<a href="{% url 'set_page_weight' page.pk 1 %}">
-									<span class="glyphicon glyphicon-arrow-down"></span> Move down
-								</a>
-							</li>
-							{% if not page.is_home_page %}
-							<li>
-								<a href="{% url 'set_home_page' page.pk %}">
-									<span class="glyphicon glyphicon-home"></span> Set as home page
-								</a>
-							</li>
-							{% endif %}
-							{% if page.in_navigation %}
-							<li>
-								<a href="{% url 'set_navigation_page' page.pk 0 %}">
-									<span class="glyphicon glyphicon-minus"></span> Remove from navigation
-								</a>
-							</li>
-							{% else %}
-							<li>
-								<a href="{% url 'set_navigation_page' page.pk 1 %}">
-									<span class="glyphicon glyphicon-plus"></span> Add to navigation
-								</a>
-							</li>
-							{% endif %}
-						</ul>
-					</div>
-				</div>
-				<div class="page__sections">
-					<strong>Page sections:</strong>
-					<ul>
-						{% with page.get_sections as sections %}					    
-						{% for section in sections %}
-						<li class="section">
-							<span class="section__class">{{ section.get_class }}</span>
-							<span class="section__weight"><strong>Section weight:</strong> {{ section.weight }}</span>
-							<span class="section__layout"><strong>Section layout:</strong> {{ section.layout }}</span>
-							<div class="section__section">{{ section.preview|safe }}</div>
-							<div class="section__actions">
-								<a href="{% url 'update_section' section.pk section.get_class %}" class="btn btn-sm btn-primary">Edit</a>
-								<a href="{% url 'delete_section' section.pk section.get_class %}" class="btn btn-sm btn-danger">Delete</a>
-								<a href="{% url 'set_section_weight' section.pk section.get_class -1 %}" class="btn btn-sm btn-default" type="button"><span class="glyphicon glyphicon-arrow-up"></span></a>
-								<a href="{% url 'set_section_weight' section.pk section.get_class 1 %}" class="btn btn-sm btn-default" type="button"><span class="glyphicon glyphicon-arrow-down"></span></a>
-							</div>
-						</li>
-						{% endfor %}
-						{% endwith %}
-					</ul>
 				</div>
 			</div>
+		{% if forloop.counter|divisibleby:2 %}
 		</div>
-	{% if forloop.counter|divisibleby:2 %}
-	</div>
-	<div class="row">
-	{% endif %}
-	{% endfor %}
+		<div class="row">
+		{% endif %}
+		{% endfor %}
+		</div>
 	</div>
 {% endblock content %}
