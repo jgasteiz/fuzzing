@@ -126,7 +126,7 @@ class DeletePage(CMSMixin, generic.edit.DeleteView):
     url = 'page'
 
 
-class ChangePageWeight(CMSMixin, generic.edit.View):
+class SetPageWeight(CMSMixin, generic.edit.View):
     success_url = reverse_lazy('pages')
 
     def get(self, request, *args, **kwargs):
@@ -137,6 +137,32 @@ class ChangePageWeight(CMSMixin, generic.edit.View):
             page.decrease_weight()
         else:
             page.increase_weight()
+        return redirect(self.success_url)
+
+
+class SetHomePage(CMSMixin, generic.edit.View):
+    success_url = reverse_lazy('pages')
+
+    def get(self, request, *args, **kwargs):
+        pk = int(self.kwargs['pk'])
+        page = get_object_or_404(models.Page, pk=pk)
+        page.is_home_page = True
+        page.save()
+        return redirect(self.success_url)
+
+
+class SetPageInNavigation(CMSMixin, generic.edit.View):
+    success_url = reverse_lazy('pages')
+
+    def get(self, request, *args, **kwargs):
+        pk = int(self.kwargs['pk'])
+        in_navigation = int(self.kwargs['in_navigation'])
+        page = get_object_or_404(models.Page, pk=pk)
+        if in_navigation == 1:
+            page.in_navigation = True
+        elif in_navigation == 0:
+            page.in_navigation = False
+        page.save()
         return redirect(self.success_url)
 
 
@@ -198,7 +224,7 @@ class DeleteSection(CMSMixin, generic.edit.DeleteView):
         return redirect(self.success_url)
 
 
-class ChangeSectionWeight(CMSMixin, generic.edit.View):
+class SetSectionWeight(CMSMixin, generic.edit.View):
     success_url = reverse_lazy('pages')
 
     def get(self, request, *args, **kwargs):

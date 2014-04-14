@@ -44,10 +44,55 @@
 							{% endfor %}
 						</ul>
 					</div>
-					<a href="{% url 'update_page' page.pk %}" class="btn btn-sm btn-primary" type="button">Edit</a>
-					<a href="{% url 'delete_page' page.pk %}" class="btn btn-sm btn-danger" type="button">Delete</a>
-					<a href="{% url 'change_page_weight' page.pk -1 %}" class="btn btn-sm btn-default" type="button"><span class="glyphicon glyphicon-arrow-up"></span></a>
-					<a href="{% url 'change_page_weight' page.pk 1 %}" class="btn btn-sm btn-default" type="button"><span class="glyphicon glyphicon-arrow-down"></span></a>
+					<div class="btn-group">
+						<button type="button" class="btn btn-sm btn-default">Other actions</button>
+						<button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown">
+							<span class="caret"></span>
+							<span class="sr-only">Toggle Dropdown</span>
+						</button>
+						<ul class="dropdown-menu" role="menu">
+							<li>
+								<a href="{% url 'update_page' page.pk %}">
+									<span class="glyphicon glyphicon-edit"></span> Edit
+								</a>
+							</li>
+							<li>
+								<a href="{% url 'delete_page' page.pk %}">
+									<span class="glyphicon glyphicon-trash"></span> Delete
+								</a>
+							</li>
+							<li>
+								<a href="{% url 'set_page_weight' page.pk -1 %}">
+									<span class="glyphicon glyphicon-arrow-up"></span> Move up
+								</a>
+							</li>
+							<li>
+								<a href="{% url 'set_page_weight' page.pk 1 %}">
+									<span class="glyphicon glyphicon-arrow-down"></span> Move down
+								</a>
+							</li>
+							{% if not page.is_home_page %}
+							<li>
+								<a href="{% url 'set_home_page' page.pk %}">
+									<span class="glyphicon glyphicon-home"></span> Set as home page
+								</a>
+							</li>
+							{% endif %}
+							{% if page.in_navigation %}
+							<li>
+								<a href="{% url 'set_navigation_page' page.pk 0 %}">
+									<span class="glyphicon glyphicon-minus"></span> Remove from navigation
+								</a>
+							</li>
+							{% else %}
+							<li>
+								<a href="{% url 'set_navigation_page' page.pk 1 %}">
+									<span class="glyphicon glyphicon-plus"></span> Add to navigation
+								</a>
+							</li>
+							{% endif %}
+						</ul>
+					</div>
 				</div>
 				<div class="page__sections">
 					<strong>Page sections:</strong>
@@ -62,8 +107,8 @@
 							<div class="section__actions">
 								<a href="{% url 'update_section' section.pk section.get_class %}" class="btn btn-sm btn-primary">Edit</a>
 								<a href="{% url 'delete_section' section.pk section.get_class %}" class="btn btn-sm btn-danger">Delete</a>
-								<a href="{% url 'change_section_weight' section.pk section.get_class -1 %}" class="btn btn-sm btn-default" type="button"><span class="glyphicon glyphicon-arrow-up"></span></a>
-								<a href="{% url 'change_section_weight' section.pk section.get_class 1 %}" class="btn btn-sm btn-default" type="button"><span class="glyphicon glyphicon-arrow-down"></span></a>
+								<a href="{% url 'set_section_weight' section.pk section.get_class -1 %}" class="btn btn-sm btn-default" type="button"><span class="glyphicon glyphicon-arrow-up"></span></a>
+								<a href="{% url 'set_section_weight' section.pk section.get_class 1 %}" class="btn btn-sm btn-default" type="button"><span class="glyphicon glyphicon-arrow-down"></span></a>
 							</div>
 						</li>
 						{% endfor %}

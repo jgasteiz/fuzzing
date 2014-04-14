@@ -144,8 +144,6 @@ class Page(BaseModel):
             WellFieldset('Page details',
                 'title',
                 'slug',
-                'in_navigation',
-                'is_home_page',
             ),
             WellFieldset('Page layout',
                 'side_offset',
