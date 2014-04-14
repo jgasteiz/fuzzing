@@ -9,6 +9,12 @@ fuzzing.app.controller('PageListCtrl', function($scope) {
 
 	$scope.search = '';
 
+	/**
+	 * Function for filtering page names in the cms page list section.
+	 *
+	 * @param name
+	 * @returns {boolean}
+	 */
 	$scope.isExcludedByFilter = function(name) {
 		var search = $scope.search.toLowerCase();
 		name = name.toLowerCase();

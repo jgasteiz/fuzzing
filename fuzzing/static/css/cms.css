@@ -6371,7 +6371,7 @@ textarea.form-control {
   margin-top: 0;
 }
 
-.page__sections ul {
+.page__sections > ul {
   padding-left: 20px;
 }
 
