@@ -12,7 +12,6 @@ fuzzing.app.controller('PageListCtrl', function($scope) {
 	$scope.isExcludedByFilter = function(name) {
 		var search = $scope.search.toLowerCase();
 		name = name.toLowerCase();
-
 		return !(name.indexOf(search) !== -1);
 	}
 });
