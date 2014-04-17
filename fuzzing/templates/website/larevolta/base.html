@@ -22,14 +22,17 @@
 		<header id="header" class="header">
 			{% spaceless %}
 			<nav class="navigation">
+				<a href="/" class="navigation__brand">
+					<span class="sprite sprite-logo navigation__logo"></span>
+					<span class="sprite sprite-logo-mobile navigation__logo-mobile"></span>
+				</a>
 				<ul class="navigation-links">
-					<li><a href="/" class="navigation-link navigation-link--brand">{{ site_settings.site_name }}</a></li>
-				{% for nav_item in nav_item_list %}
+					{% for nav_item in nav_item_list %}
 					<li>
 						<a class="navigation-link navigation-link--{{ nav_item.slug }} {% ifequal nav_item.slug current_page %}is-active{% endifequal %}"
 							href="/{{ nav_item.slug }}/">{{ nav_item.title }}</a>
 					</li>
-				{% endfor %}
+					{% endfor %}
 				</ul>
 				<ul class="social-links">
 					<li>

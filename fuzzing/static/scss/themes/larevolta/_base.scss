@@ -27,6 +27,10 @@ img {
 	max-width: 100%;
 }
 
+.sprite {
+	display: inline-block;
+}
+
 .link-back {
 	color: desaturate($link-color, 50%);
 	display: block;

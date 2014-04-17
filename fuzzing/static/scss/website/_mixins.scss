@@ -1,6 +1,8 @@
 @mixin respond-to($media) {
 	@if $media == palm {
 		@media only screen and (max-width: 660px) { @content; }
+	} @else if $media == lap {
+		@media only screen and (min-width: 661px) and (max-width: 960px) { @content; }
 	} @else if $media == portable {
 		@media only screen and (max-width: 960px) { @content; }
 	} @else if $media == desk {
