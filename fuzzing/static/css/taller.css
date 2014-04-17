@@ -1250,7 +1250,6 @@ article[role="main"], .section, .header__logo--small, .navigation > ul, .sub-nav
   position: absolute;
   right: 0;
   top: 0;
-  text-shadow: 0px 0px 20px #FFF;
   transition: opacity 0.4s ease-in;
   z-index: 5;
 }

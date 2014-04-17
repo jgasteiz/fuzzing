@@ -31,7 +31,7 @@
 .navigation__brand {
 	display: block;
 	height: 90px;
-	margin-bottom: 20px;
+	margin: 40px 0 20px;
 	position: relative;
 	text-align: center;
 
@@ -71,7 +71,7 @@
 .social-links {
 	position: absolute;
 	right: 10px;
-	top: 10px;
+	top: 20px;
 
 	@include respond-to(palm) {
 		margin: 20px 0 0 !important;
