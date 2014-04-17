@@ -1,19 +1,23 @@
-/* glue: 0.3 hash: 8d7fe9b0fd */
+/* glue: 0.3 hash: eeaca1449c */
 .sprite-logo,
 .sprite-logo-mobile,
 .sprite-linkedin,
+.sprite-goup,
 .sprite-flickr,
 .sprite-facebook{background-image:url('../img/sprite.png');background-repeat:no-repeat}
 .sprite-logo{background-position:0px 0px;width:497px;height:77px;}
 .sprite-logo-mobile{background-position:0px -77px;width:300px;height:47px;}
 .sprite-linkedin:hover{background-position:0px -124px;width:50px;height:50px;}
 .sprite-linkedin{background-position:-50px -124px;width:50px;height:50px;}
-.sprite-flickr:hover{background-position:-100px -124px;width:50px;height:50px;}
-.sprite-flickr{background-position:-150px -124px;width:50px;height:50px;}
-.sprite-facebook:hover{background-position:-200px -124px;width:50px;height:50px;}
-.sprite-facebook{background-position:-250px -124px;width:50px;height:50px;}
+.sprite-goup:hover{background-position:-100px -124px;width:50px;height:50px;}
+.sprite-goup{background-position:-150px -124px;width:50px;height:50px;}
+.sprite-flickr:hover{background-position:-200px -124px;width:50px;height:50px;}
+.sprite-flickr{background-position:-250px -124px;width:50px;height:50px;}
+.sprite-facebook:hover{background-position:-300px -124px;width:50px;height:50px;}
+.sprite-facebook{background-position:-350px -124px;width:50px;height:50px;}
 @media only screen and (-webkit-min-device-pixel-ratio: 2.0), only screen and (min--moz-device-pixel-ratio: 2.0), only screen and (-o-min-device-pixel-ratio: 200/100), only screen and (min-device-pixel-ratio: 2.0) {.sprite-logo,
 .sprite-logo-mobile,
 .sprite-linkedin,
+.sprite-goup,
 .sprite-flickr,
 .sprite-facebook{background-image:url('../img/sprite@2x.png');-webkit-background-size: 497px 173px;-moz-background-size: 497px 173px;background-size: 497px 173px;}}

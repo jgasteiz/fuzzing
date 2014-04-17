@@ -104,6 +104,12 @@ class Page(BaseModel):
     is_home_page = models.BooleanField(
         default=False,
         help_text='Is this the main page of the site?')
+    is_long_page = models.BooleanField(
+        default=False,
+        help_text="""
+        Is this page long? If you activate this option, you will see
+        a go-up arrow at the bottom of the page
+        """)
     parent_page = models.ForeignKey(
         'Page',
         blank=True,
@@ -147,6 +153,7 @@ class Page(BaseModel):
             ),
             WellFieldset('Page layout',
                 'side_offset',
+                'is_long_page',
             ),
             WellFieldset('Page parent',
                 'parent_page',

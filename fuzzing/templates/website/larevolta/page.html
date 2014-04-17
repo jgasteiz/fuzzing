@@ -14,5 +14,10 @@
 		{% endfor %}
 		{% endspaceless %}
 		</div>
+
+		{% if page.is_long_page %}
+		<a class="go-up" href="#"><span class="sprite sprite-goup"></span></a>
+		{% endif %}
+
 	</article>
 {% endblock content %}
