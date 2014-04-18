@@ -104,7 +104,11 @@
 				</div>
 				<div class="page__sections">
 					<strong>Page sections:</strong>
-					<ul>
+					<a ng-click="toggleSections('{{ page.pk }}')" href="">
+						<span ng-hide="sectionActive('{{ page.pk }}')">Show sections</span>
+						<span ng-show="sectionActive('{{ page.pk }}')">Hide sections</span>
+					</a>
+					<ul ng-show="sectionActive('{{ page.pk }}')">
 						{% with page.get_sections as sections %}
 						{% for section in sections %}
 						<li class="section">
