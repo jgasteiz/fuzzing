@@ -1,8 +1,11 @@
 .header {
-	margin: 20px 0 80px;
+	margin: 20px 0 40px;
 
 	@include respond-to(portable) {
 		margin: 20px 0 40px;
+	}
+	@include respond-to(palm) {
+		margin: 20px 0;
 	}
 }
 .navigation {
@@ -37,6 +40,9 @@
 
 	@include respond-to(portable) {
 		height: 50px;
+	}
+	@include respond-to(palm) {
+		margin: 20px 0;
 	}
 }
 

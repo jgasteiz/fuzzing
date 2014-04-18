@@ -31,11 +31,21 @@ img {
 	display: inline-block;
 }
 
+.link-back-wrp {
+	display: block;
+	margin: 20px 0 40px;
+	text-align: center;
+
+	@include respond-to(portable) {
+		margin: 20px 0;
+		text-align: left;
+	}
+}
+
 .link-back {
 	color: desaturate($link-color, 50%);
-	display: block;
-	margin: -40px 0 80px;
-	text-align: center;
+	display: inline-block;
+	line-height: 2em;
 
 	@include respond-to(palm) {
 		color: $link-color;
@@ -43,10 +53,6 @@ img {
 
 	&:hover {
 		color: $link-color;
-	}
-
-	@include respond-to(portable) {
-		margin: 20px 0;
 	}
 }
 

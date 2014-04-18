@@ -1203,6 +1203,11 @@ th {
 .section {
   margin-bottom: 40px;
 }
+@media only screen and (max-width: 660px) {
+  .section {
+    margin-bottom: 20px;
+  }
+}
 
 .BackgroundImageTextSection__image {
   background-size: cover;
@@ -1217,6 +1222,11 @@ th {
 }
 .ImageLinkSection a {
   text-decoration: none;
+}
+@media only screen and (max-width: 660px) {
+  .ImageLinkSection {
+    margin-bottom: 60px;
+  }
 }
 
 .ImageLinkSection__image-wrp {
@@ -1421,11 +1431,22 @@ img {
   display: inline-block;
 }
 
+.link-back-wrp {
+  display: block;
+  margin: 20px 0 40px;
+  text-align: center;
+}
+@media only screen and (max-width: 960px) {
+  .link-back-wrp {
+    margin: 20px 0;
+    text-align: left;
+  }
+}
+
 .link-back {
   color: #bca13f;
-  display: block;
-  margin: -40px 0 80px;
-  text-align: center;
+  display: inline-block;
+  line-height: 2em;
 }
 @media only screen and (max-width: 660px) {
   .link-back {
@@ -1434,11 +1455,6 @@ img {
 }
 .link-back:hover {
   color: #fbc500;
-}
-@media only screen and (max-width: 960px) {
-  .link-back {
-    margin: 20px 0;
-  }
 }
 
 .go-up {
@@ -1463,11 +1479,16 @@ img {
 }
 
 .header {
-  margin: 20px 0 80px;
+  margin: 20px 0 40px;
 }
 @media only screen and (max-width: 960px) {
   .header {
     margin: 20px 0 40px;
+  }
+}
+@media only screen and (max-width: 660px) {
+  .header {
+    margin: 20px 0;
   }
 }
 
@@ -1505,6 +1526,11 @@ img {
 @media only screen and (max-width: 960px) {
   .navigation__brand {
     height: 50px;
+  }
+}
+@media only screen and (max-width: 660px) {
+  .navigation__brand {
+    margin: 20px 0;
   }
 }
 

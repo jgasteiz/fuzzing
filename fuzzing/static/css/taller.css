@@ -1208,6 +1208,11 @@ article[role="main"], .section, .header__logo--small, .navigation > ul, .sub-nav
 .section {
   margin-bottom: 40px;
 }
+@media only screen and (max-width: 660px) {
+  .section {
+    margin-bottom: 20px;
+  }
+}
 
 .BackgroundImageTextSection__image {
   background-size: cover;
@@ -1222,6 +1227,11 @@ article[role="main"], .section, .header__logo--small, .navigation > ul, .sub-nav
 }
 .ImageLinkSection a {
   text-decoration: none;
+}
+@media only screen and (max-width: 660px) {
+  .ImageLinkSection {
+    margin-bottom: 60px;
+  }
 }
 
 .ImageLinkSection__image-wrp {

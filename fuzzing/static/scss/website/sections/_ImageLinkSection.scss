@@ -4,6 +4,10 @@
 	a {
 		text-decoration: none;
 	}
+
+	@include respond-to(palm) {
+		margin-bottom: 60px;
+	}
 }
 
 .ImageLinkSection__image-wrp {
