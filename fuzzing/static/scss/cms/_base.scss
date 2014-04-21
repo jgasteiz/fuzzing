@@ -56,9 +56,23 @@ textarea.form-control {
 }
 
 .modal-lg.modal-dialog {
+	height: 100%;
 	width: 90%;
 
+	.modal-header {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		z-index: 99;
+	}
+
+	.modal-content,
 	.modal-body {
-		height: 600px;
+		height: 100%;
+	}
+
+	.modal-body {
+		padding-top: 75px;
 	}
 }
