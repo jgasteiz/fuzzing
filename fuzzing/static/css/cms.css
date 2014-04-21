@@ -6403,3 +6403,12 @@ textarea.form-control {
 #tinymce {
   font-size: 14px;
 }
+
+.modal-lg.modal-dialog {
+  width: 90%;
+}
+.modal-lg.modal-dialog .modal-body {
+  height: 600px;
+}
+
+/*# sourceMappingURL=cms.css.map */

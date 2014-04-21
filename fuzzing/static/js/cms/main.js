@@ -47,4 +47,53 @@ fuzzing.app.controller('PageListCtrl', function($scope) {
 	$scope.toggleSections = function(pageId) {
 		_visiblePageSections[pageId] = !_visiblePageSections[pageId];
 	};
+
+	$scope.openModal = function(url) {
+		$scope.modalOpen = true;
+		$scope.previewUrl = url;
+	}
+});
+
+fuzzing.app.directive('modal', function() {
+	return {
+		scope: {
+			open: '=',
+			url: '='
+		},
+		template:
+			'<div class="modal fade" tabindex="-1" role="dialog">' +
+				'<div class="modal-dialog modal-lg">' +
+					'<div class="modal-content">' +
+						'<div class="modal-header">' +
+							'<button type="button" class="close" ng-click="closeModal()">×</button>' +
+							'<h4 class="modal-title" id="myLargeModalLabel">Preview</h4>' +
+						'</div>' +
+						'<div class="modal-body"></div>' +
+					'</div>' +
+				'</div>' +
+			'</div>',
+		link: function(scope, element) {
+
+			var $modal = $(element).find('.modal');
+
+			var _getPreview = function() {
+				return '<iframe src="' + scope.url + '" height="100%" width="100%"></iframe>';
+			};
+
+			scope.closeModal = function() {
+				$modal.modal('hide');
+				scope.open = false;
+			};
+
+			scope.$watch('open', function(newValue) {
+				if (newValue === true) {
+					$modal.modal({
+						backdrop: 'static',
+						keyboard: false
+					});
+					$modal.find('.modal-body').html(_getPreview());
+				}
+			});
+		}
+	}
 });

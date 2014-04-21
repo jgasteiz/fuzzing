@@ -54,3 +54,11 @@ textarea.form-control {
 #tinymce {
 	font-size: 14px;
 }
+
+.modal-lg.modal-dialog {
+	width: 90%;
+
+	.modal-body {
+		height: 600px;
+	}
+}
