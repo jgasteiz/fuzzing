@@ -1,23 +1,27 @@
-/* glue: 0.3 hash: 6347a24ed9 */
+/* glue: 0.3 hash: 4190b933c1 */
 .sprite-logo,
 .sprite-logo-mobile,
 .sprite-linkedin,
 .sprite-goup,
+.sprite-goback,
 .sprite-flickr,
 .sprite-facebook{background-image:url('../img/sprite.png');background-repeat:no-repeat}
-.sprite-logo{background-position:0px 0px;width:497px;height:77px;}
-.sprite-logo-mobile{background-position:0px -77px;width:297px;height:46px;}
-.sprite-linkedin:hover{background-position:0px -123px;width:50px;height:50px;}
-.sprite-linkedin{background-position:-50px -123px;width:50px;height:50px;}
-.sprite-goup:hover{background-position:-100px -123px;width:50px;height:50px;}
-.sprite-goup{background-position:-150px -123px;width:50px;height:50px;}
-.sprite-flickr:hover{background-position:-200px -123px;width:50px;height:50px;}
-.sprite-flickr{background-position:-250px -123px;width:50px;height:50px;}
-.sprite-facebook:hover{background-position:-300px -123px;width:50px;height:50px;}
-.sprite-facebook{background-position:-350px -123px;width:50px;height:50px;}
+.sprite-logo{background-position:0px 0px;width:497px;height:90px;}
+.sprite-logo-mobile{background-position:0px -90px;width:297px;height:54px;}
+.sprite-linkedin:hover{background-position:-297px -90px;width:50px;height:50px;}
+.sprite-linkedin{background-position:-347px -90px;width:50px;height:50px;}
+.sprite-goup:hover{background-position:-397px -90px;width:50px;height:50px;}
+.sprite-goup{background-position:-447px -90px;width:50px;height:50px;}
+.sprite-goback:hover{background-position:0px -144px;width:50px;height:50px;}
+.sprite-goback{background-position:-50px -144px;width:50px;height:50px;}
+.sprite-flickr:hover{background-position:-100px -144px;width:50px;height:50px;}
+.sprite-flickr{background-position:-150px -144px;width:50px;height:50px;}
+.sprite-facebook:hover{background-position:-200px -144px;width:50px;height:50px;}
+.sprite-facebook{background-position:-250px -144px;width:50px;height:50px;}
 @media only screen and (-webkit-min-device-pixel-ratio: 2.0), only screen and (min--moz-device-pixel-ratio: 2.0), only screen and (-o-min-device-pixel-ratio: 200/100), only screen and (min-device-pixel-ratio: 2.0) {.sprite-logo,
 .sprite-logo-mobile,
 .sprite-linkedin,
 .sprite-goup,
+.sprite-goback,
 .sprite-flickr,
-.sprite-facebook{background-image:url('../img/sprite@2x.png');-webkit-background-size: 497px 173px;-moz-background-size: 497px 173px;background-size: 497px 173px;}}
+.sprite-facebook{background-image:url('../img/sprite@2x.png');-webkit-background-size: 497px 194px;-moz-background-size: 497px 194px;background-size: 497px 194px;}}

@@ -412,22 +412,22 @@ th {
   src: url(../fonts/lato-bold.woff) format("woff");
 }
 @font-face {
-  font-family: 'ChaparralPro';
+  font-family: 'Edmondsans';
   font-style: normal;
   font-weight: 400;
-  src: url(../fonts/ChaparralPro-Regular.otf) format("opentype");
+  src: url(../fonts/Edmondsans-Regular.otf) format("opentype");
 }
 @font-face {
-  font-family: 'ChaparralPro';
+  font-family: 'Edmondsans';
+  font-style: normal;
+  font-weight: 600;
+  src: url(../fonts/Edmondsans-Medium.otf) format("opentype");
+}
+@font-face {
+  font-family: 'Edmondsans';
   font-style: normal;
   font-weight: 700;
-  src: url(../fonts/ChaparralPro-Bold.otf) format("opentype");
-}
-@font-face {
-  font-family: 'BreeSerif';
-  font-style: normal;
-  font-weight: 400;
-  src: url(../fonts/BreeSerif-Regular.otf) format("opentype");
+  src: url(../fonts/Edmondsans-Bold.otf) format("opentype");
 }
 /*------------------------------------*\
     $CSSWIZARDRY-GRIDS
@@ -1206,12 +1206,7 @@ article[role="main"], .section, .header__logo--small, .navigation > ul, .sub-nav
 }
 
 .section {
-  margin-bottom: 40px;
-}
-@media only screen and (max-width: 660px) {
-  .section {
-    margin-bottom: 20px;
-  }
+  margin-bottom: 20px;
 }
 
 .BackgroundImageTextSection__image {
@@ -1235,7 +1230,6 @@ article[role="main"], .section, .header__logo--small, .navigation > ul, .sub-nav
 }
 
 .ImageLinkSection__image-wrp {
-  margin-bottom: 10px;
   display: block;
   position: relative;
 }
@@ -1268,7 +1262,7 @@ article[role="main"], .section, .header__logo--small, .navigation > ul, .sub-nav
     background: none;
     bottom: auto;
     font-size: 18px;
-    padding-top: 10px;
+    padding-top: 15px;
     opacity: 1;
     text-shadow: none;
     top: 100%;
