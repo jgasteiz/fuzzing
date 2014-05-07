@@ -1313,10 +1313,8 @@ th {
   margin-top: 0;
 }
 
-/* glue: 0.3 hash: b8a548eff1 */
-.sprite-logo2,
+/* glue: 0.3 hash: 7228af5836 */
 .sprite-logo,
-.sprite-logo-mobile2,
 .sprite-logo-mobile,
 .sprite-linkedin,
 .sprite-goup,
@@ -1327,94 +1325,80 @@ th {
   background-repeat: no-repeat;
 }
 
-.sprite-logo2 {
+.sprite-logo {
   background-position: 0px 0px;
   width: 497px;
-  height: 90px;
-}
-
-.sprite-logo {
-  background-position: 0px -90px;
-  width: 497px;
-  height: 76px;
-}
-
-.sprite-logo-mobile2 {
-  background-position: 0px -166px;
-  width: 297px;
-  height: 54px;
+  height: 75px;
 }
 
 .sprite-logo-mobile {
-  background-position: 0px -220px;
+  background-position: 0px -75px;
   width: 297px;
   height: 45px;
 }
 
 .sprite-linkedin:hover {
-  background-position: -297px -166px;
+  background-position: 0px -120px;
   width: 50px;
   height: 50px;
 }
 
 .sprite-linkedin {
-  background-position: -347px -166px;
+  background-position: -50px -120px;
   width: 50px;
   height: 50px;
 }
 
 .sprite-goup:hover {
-  background-position: -397px -166px;
+  background-position: -100px -120px;
   width: 50px;
   height: 50px;
 }
 
 .sprite-goup {
-  background-position: -447px -166px;
+  background-position: -150px -120px;
   width: 50px;
   height: 50px;
 }
 
 .sprite-goback:hover {
-  background-position: 0px -265px;
+  background-position: -200px -120px;
   width: 50px;
   height: 50px;
 }
 
 .sprite-goback {
-  background-position: -50px -265px;
+  background-position: -250px -120px;
   width: 50px;
   height: 50px;
 }
 
 .sprite-flickr:hover {
-  background-position: -100px -265px;
+  background-position: -300px -120px;
   width: 50px;
   height: 50px;
 }
 
 .sprite-flickr {
-  background-position: -150px -265px;
+  background-position: -350px -120px;
   width: 50px;
   height: 50px;
 }
 
 .sprite-facebook:hover {
-  background-position: -200px -265px;
+  background-position: -400px -120px;
   width: 50px;
   height: 50px;
 }
 
 .sprite-facebook {
-  background-position: -250px -265px;
+  background-position: 0px -170px;
   width: 50px;
   height: 50px;
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 200 / 100), only screen and (min-device-pixel-ratio: 2) {
-  .sprite-logo2,
   .sprite-logo,
-  .sprite-logo-mobile2,
   .sprite-logo-mobile,
   .sprite-linkedin,
   .sprite-goup,
@@ -1422,9 +1406,9 @@ th {
   .sprite-flickr,
   .sprite-facebook {
     background-image: url("../img/sprite@2x.png");
-    -webkit-background-size: 497px 314px;
-    -moz-background-size: 497px 314px;
-    background-size: 497px 314px;
+    -webkit-background-size: 497px 220px;
+    -moz-background-size: 497px 220px;
+    background-size: 497px 220px;
   }
 }
 html {
