@@ -399,36 +399,42 @@ th {
   font-weight: 400;
   src: url(../fonts/coming-soon.woff) format("woff");
 }
+
 @font-face {
   font-family: 'Lato';
   font-style: normal;
   font-weight: 400;
   src: url(../fonts/lato-regular.woff) format("woff");
 }
+
 @font-face {
   font-family: 'Lato';
   font-style: normal;
   font-weight: 700;
   src: url(../fonts/lato-bold.woff) format("woff");
 }
+
 @font-face {
   font-family: 'Edmondsans';
   font-style: normal;
   font-weight: 400;
   src: url(../fonts/Edmondsans-Regular.otf) format("opentype");
 }
+
 @font-face {
   font-family: 'Edmondsans';
   font-style: normal;
   font-weight: 600;
   src: url(../fonts/Edmondsans-Medium.otf) format("opentype");
 }
+
 @font-face {
   font-family: 'Edmondsans';
   font-style: normal;
   font-weight: 700;
   src: url(../fonts/Edmondsans-Bold.otf) format("opentype");
 }
+
 /*------------------------------------*\
     $CSSWIZARDRY-GRIDS
 \*------------------------------------*/
@@ -1452,5 +1458,3 @@ article[role="main"].with-sub-nav {
     font-size: 16px;
   }
 }
-
-/*# sourceMappingURL=taller.css.map */

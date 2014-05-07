@@ -399,36 +399,42 @@ th {
   font-weight: 400;
   src: url(../fonts/coming-soon.woff) format("woff");
 }
+
 @font-face {
   font-family: 'Lato';
   font-style: normal;
   font-weight: 400;
   src: url(../fonts/lato-regular.woff) format("woff");
 }
+
 @font-face {
   font-family: 'Lato';
   font-style: normal;
   font-weight: 700;
   src: url(../fonts/lato-bold.woff) format("woff");
 }
+
 @font-face {
   font-family: 'Edmondsans';
   font-style: normal;
   font-weight: 400;
   src: url(../fonts/Edmondsans-Regular.otf) format("opentype");
 }
+
 @font-face {
   font-family: 'Edmondsans';
   font-style: normal;
   font-weight: 600;
   src: url(../fonts/Edmondsans-Medium.otf) format("opentype");
 }
+
 @font-face {
   font-family: 'Edmondsans';
   font-style: normal;
   font-weight: 700;
   src: url(../fonts/Edmondsans-Bold.otf) format("opentype");
 }
+
 /*------------------------------------*\
     $CSSWIZARDRY-GRIDS
 \*------------------------------------*/
@@ -1307,8 +1313,10 @@ th {
   margin-top: 0;
 }
 
-/* glue: 0.3 hash: 4190b933c1 */
+/* glue: 0.3 hash: b8a548eff1 */
+.sprite-logo2,
 .sprite-logo,
+.sprite-logo-mobile2,
 .sprite-logo-mobile,
 .sprite-linkedin,
 .sprite-goup,
@@ -1319,80 +1327,94 @@ th {
   background-repeat: no-repeat;
 }
 
-.sprite-logo {
+.sprite-logo2 {
   background-position: 0px 0px;
   width: 497px;
   height: 90px;
 }
 
-.sprite-logo-mobile {
+.sprite-logo {
   background-position: 0px -90px;
+  width: 497px;
+  height: 76px;
+}
+
+.sprite-logo-mobile2 {
+  background-position: 0px -166px;
   width: 297px;
   height: 54px;
 }
 
+.sprite-logo-mobile {
+  background-position: 0px -220px;
+  width: 297px;
+  height: 45px;
+}
+
 .sprite-linkedin:hover {
-  background-position: -297px -90px;
+  background-position: -297px -166px;
   width: 50px;
   height: 50px;
 }
 
 .sprite-linkedin {
-  background-position: -347px -90px;
+  background-position: -347px -166px;
   width: 50px;
   height: 50px;
 }
 
 .sprite-goup:hover {
-  background-position: -397px -90px;
+  background-position: -397px -166px;
   width: 50px;
   height: 50px;
 }
 
 .sprite-goup {
-  background-position: -447px -90px;
+  background-position: -447px -166px;
   width: 50px;
   height: 50px;
 }
 
 .sprite-goback:hover {
-  background-position: 0px -144px;
+  background-position: 0px -265px;
   width: 50px;
   height: 50px;
 }
 
 .sprite-goback {
-  background-position: -50px -144px;
+  background-position: -50px -265px;
   width: 50px;
   height: 50px;
 }
 
 .sprite-flickr:hover {
-  background-position: -100px -144px;
+  background-position: -100px -265px;
   width: 50px;
   height: 50px;
 }
 
 .sprite-flickr {
-  background-position: -150px -144px;
+  background-position: -150px -265px;
   width: 50px;
   height: 50px;
 }
 
 .sprite-facebook:hover {
-  background-position: -200px -144px;
+  background-position: -200px -265px;
   width: 50px;
   height: 50px;
 }
 
 .sprite-facebook {
-  background-position: -250px -144px;
+  background-position: -250px -265px;
   width: 50px;
   height: 50px;
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 200 / 100), only screen and (min-device-pixel-ratio: 2) {
+  .sprite-logo2,
   .sprite-logo,
+  .sprite-logo-mobile2,
   .sprite-logo-mobile,
   .sprite-linkedin,
   .sprite-goup,
@@ -1400,9 +1422,9 @@ th {
   .sprite-flickr,
   .sprite-facebook {
     background-image: url("../img/sprite@2x.png");
-    -webkit-background-size: 497px 194px;
-    -moz-background-size: 497px 194px;
-    background-size: 497px 194px;
+    -webkit-background-size: 497px 314px;
+    -moz-background-size: 497px 314px;
+    background-size: 497px 314px;
   }
 }
 html {
@@ -1649,5 +1671,3 @@ footer {
 .navigation-link--contact:hover, .navigation-link--contact.is-active {
   color: #fbc500;
 }
-
-/*# sourceMappingURL=larevolta.css.map */
