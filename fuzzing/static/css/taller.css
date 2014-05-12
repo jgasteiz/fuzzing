@@ -1271,6 +1271,7 @@ article[role="main"], .section, .header__logo--small, .navigation > ul, .sub-nav
 
 .ImageLinkSection__title {
   display: block;
+  font-weight: 600;
 }
 
 .ImageLinkSection__subtitle {

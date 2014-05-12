@@ -1266,6 +1266,7 @@ th {
 
 .ImageLinkSection__title {
   display: block;
+  font-weight: 600;
 }
 
 .ImageLinkSection__subtitle {
@@ -1435,7 +1436,7 @@ h1,
 h2,
 h3,
 h4 {
-  font-weight: 600;
+  font-weight: 700;
 }
 
 img {
