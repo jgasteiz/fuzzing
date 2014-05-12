@@ -1443,6 +1443,14 @@ img {
   max-width: 100%;
 }
 
+a {
+  color: #43bfb6;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
 .sprite {
   display: inline-block;
 }
@@ -1457,20 +1465,6 @@ img {
     margin: 20px 0;
     text-align: left;
   }
-}
-
-.link-back {
-  color: #bca13f;
-  display: inline-block;
-  line-height: 2em;
-}
-@media only screen and (max-width: 660px) {
-  .link-back {
-    color: #fbc500;
-  }
-}
-.link-back:hover {
-  color: #fbc500;
 }
 
 .go-back {

@@ -120,14 +120,14 @@
 }
 
 .navigation-link--contact {
-	color: desaturate($link-color, 50%);
+	color: desaturate($contact-color, 50%);
 
 	@include respond-to(palm) {
-		color: $link-color;
+		color: $contact-color;
 	}
 
 	&:hover,
 	&.is-active {
-		color: $link-color;
+		color: $contact-color;
 	}
 }

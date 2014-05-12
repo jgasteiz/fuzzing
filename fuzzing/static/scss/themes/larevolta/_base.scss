@@ -35,6 +35,15 @@ img {
 	max-width: 100%;
 }
 
+a {
+	color: $link-color;
+	text-decoration: none;
+
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
 .sprite {
 	display: inline-block;
 }
@@ -47,20 +56,6 @@ img {
 	@include respond-to(portable) {
 		margin: 20px 0;
 		text-align: left;
-	}
-}
-
-.link-back {
-	color: desaturate($link-color, 50%);
-	display: inline-block;
-	line-height: 2em;
-
-	@include respond-to(palm) {
-		color: $link-color;
-	}
-
-	&:hover {
-		color: $link-color;
 	}
 }
 
