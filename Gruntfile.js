@@ -9,8 +9,7 @@ module.exports = function(grunt) {
 		sass: {
 			dev: {
 				options: {
-					style: "expanded",
-					sourcemap: true
+					style: "expanded"
 				},
 				files: {
 					'<%= devStaticDir %>/css/cms.css': '<%= devStaticDir %>/scss/cms/cms.scss',
