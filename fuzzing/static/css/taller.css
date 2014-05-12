@@ -1245,7 +1245,7 @@ article[role="main"], .section, .header__logo--small, .navigation > ul, .sub-nav
 }
 
 .ImageLinkSection__overlay {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(247, 20, 37, 0.5);
   bottom: 0;
   color: #FFF;
   font-size: 24px;
