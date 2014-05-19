@@ -5,6 +5,8 @@
 .page__left-text,
 .page__right-text {
 	p {
+		margin-top: 0;
+
 		@include respond-to(palm) {
 			text-align: left !important;
 		}
