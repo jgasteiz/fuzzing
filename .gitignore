@@ -1,6 +1,7 @@
 *.pyc
 uploads/*
-db.sqlite3
+*.sqlite3
+*.sqlite
 .sass-cache
 local_settings.py
 .idea
