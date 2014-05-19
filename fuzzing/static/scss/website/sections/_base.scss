@@ -1,3 +1,15 @@
 .section {
 	margin-bottom: 20px;
 }
+
+.page__left-text,
+.page__right-text {
+	p {
+		@include respond-to(palm) {
+			text-align: left !important;
+		}
+	}
+	@include respond-to(palm) {
+		text-align: left !important;
+	}
+}

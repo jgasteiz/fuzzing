@@ -1210,6 +1210,19 @@ th {
   margin-bottom: 20px;
 }
 
+@media only screen and (max-width: 660px) {
+  .page__left-text p,
+  .page__right-text p {
+    text-align: left !important;
+  }
+}
+@media only screen and (max-width: 660px) {
+  .page__left-text,
+  .page__right-text {
+    text-align: left !important;
+  }
+}
+
 .BackgroundImageTextSection__image {
   background-size: cover;
   margin-left: -20px;

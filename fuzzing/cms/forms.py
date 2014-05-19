@@ -22,6 +22,9 @@ class SiteSettingsForm(FormHelperMixin, forms.ModelForm):
 
 
 class PageForm(FormHelperMixin, forms.ModelForm):
+    left_text = forms.CharField(required=False, widget=TinyMCE(attrs={'cols': 120, 'rows': 20}))
+    right_text = forms.CharField(required=False, widget=TinyMCE(attrs={'cols': 120, 'rows': 20}))
+
     class Meta:
         model = models.Page
 

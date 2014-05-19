@@ -119,6 +119,14 @@ class Page(BaseModel):
         choices=OFFSET_CHOICES,
         default='0',
         help_text='Pick the percentage of white space you want on each side of the page.')
+    left_text = models.TextField(
+        blank=True,
+        help_text='If you type some text here, it will appear as a fixed column on the left of the page.'
+    )
+    right_text = models.TextField(
+        blank=True,
+        help_text='If you type some text here, it will appear as a fixed column on the right of the page.'
+    )
 
     def __unicode__(self):
         return self.title
@@ -130,6 +138,13 @@ class Page(BaseModel):
             new_slug = "%s-%s" % (slug, counter)
             counter += 1
         return new_slug
+
+    def get_layout_size(self):
+        if self.left_text and self.right_text:
+            return 'one-half'
+        if (self.left_text and not self.right_text) or (self.right_text and not self.left_text):
+            return 'two-thirds'
+        return 'one-whole'
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -150,6 +165,12 @@ class Page(BaseModel):
             WellFieldset('Page details',
                 'title',
                 'slug',
+            ),
+            WellFieldset('Side texts',
+                'left_text',
+                HTML('<p>If you write text here, the page will have a left column with this content.</p>'),
+                'right_text',
+                HTML('<p>If you write text here, the page will have a right column with this content.</p>'),
             ),
             WellFieldset('Page layout',
                 'side_offset',
