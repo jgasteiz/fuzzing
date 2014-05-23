@@ -6,8 +6,15 @@
 - Run `./syncdb.sh`
 - Run `./serve.sh`
 
-## Restore postgres database from sql backup
+## Optional - Create a postgresql database for local development
 
-dropdb larevolta
-createdb larevolta
-psql dbname < filename.sql
+- `psql postgres`
+- `CREATE USER username;`
+- `CREATE DATABASE dbname;`
+- `GRANT ALL PRIVILEGES ON DATABASE dbname to username;`
+
+## Optional - Restore postgres database from sql backup
+
+- `dropdb dbname`
+- `createdb dbname`
+- `psql dbname < filename.sql`
