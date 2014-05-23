@@ -1569,10 +1569,9 @@ footer {
 }
 
 .navigation__brand {
-  display: block;
+  display: inline-block;
   height: 90px;
   margin: 40px 0 20px;
-  position: relative;
   text-align: center;
 }
 @media only screen and (max-width: 960px) {
@@ -1587,16 +1586,8 @@ footer {
   }
 }
 
-.navigation__logo,
-.navigation__logo-mobile {
-  left: 50%;
-  position: absolute;
-  top: 0;
-}
-
 .navigation__logo {
   display: none;
-  margin-left: -248px;
 }
 @media only screen and (min-width: 961px) {
   .navigation__logo {
@@ -1604,15 +1595,6 @@ footer {
   }
 }
 
-.navigation__logo-mobile {
-  margin-left: -150px;
-}
-@media only screen and (min-width: 661px) and (max-width: 960px) {
-  .navigation__logo-mobile {
-    left: 0;
-    margin-left: 0;
-  }
-}
 @media only screen and (min-width: 961px) {
   .navigation__logo-mobile {
     display: none;

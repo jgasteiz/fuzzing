@@ -34,10 +34,9 @@
 }
 
 .navigation__brand {
-	display: block;
+	display: inline-block;
 	height: 90px;
 	margin: 40px 0 20px;
-	position: relative;
 	text-align: center;
 
 	@include respond-to(portable) {
@@ -49,16 +48,8 @@
 	}
 }
 
-.navigation__logo,
-.navigation__logo-mobile {
-	left: 50%;
-	position: absolute;
-	top: 0;
-}
-
 .navigation__logo {
 	display: none;
-	margin-left: -248px;
 
 	@include respond-to(desk) {
 		display: block;
@@ -66,12 +57,6 @@
 }
 
 .navigation__logo-mobile {
-	margin-left: -150px;
-
-	@include respond-to(lap) {
-		left: 0;
-		margin-left: 0;
-	}
 	@include respond-to(desk) {
 		display: none;
 	}
