@@ -1,19 +1,9 @@
 from django.core.urlresolvers import reverse
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import DetailView, TemplateView
 
 from fuzzing.core.models import Page, SiteSettings
 
-
-class NotFoundView(TemplateView):
-    template_name = 'website/theme/404.html'
-
-    def get_context_data(self, *args, **kwargs):
-        ctx = super(NotFoundView, self).get_context_data(*args, **kwargs)
-        self.template_name = self.template_name.replace('theme', site_settings.site_theme)
-        return ctx
-
-not_found = NotFoundView.as_view()
 
 class PageView(DetailView):
     """
@@ -73,3 +63,12 @@ class PageView(DetailView):
             return get_object_or_404(Page, slug=page_slug)
         else:
             return get_object_or_404(Page, is_home_page=True)
+
+
+def customHandler404(request):
+    return render(request, 'website/larevolta/404.html')
+
+
+def customHandler500(request):
+    return render(request, 'website/larevolta/500.html')
+
