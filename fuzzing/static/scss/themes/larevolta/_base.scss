@@ -44,6 +44,11 @@ a {
 	}
 }
 
+p {
+	line-height: 1.4em;
+	margin: 14px 0;
+}
+
 .sprite {
 	display: inline-block;
 }
@@ -67,8 +72,7 @@ a {
 	width: 50px;
 
 	@include respond-to(palm) {
-		left: 10px;
-		top: 95px;
+		top: 85px;
 	}
 }
 

@@ -34,16 +34,8 @@
 				</li>
 				{% endfor %}
 			</ul>
-			<ul class="social-links">
-				<li>
-					<a target="_blank" href="https://www.facebook.com/larevolta"><span class="sprite sprite-facebook"></span></a>
-				</li>
-				<li>
-					<a target="_blank" href="https://www.flickr.com/photos/xmin0rity"><span class="sprite sprite-flickr"></span></a>
-				</li>
-				<li>
-					<a target="_blank" href="https://www.linkedin.com/in/larevolta"><span class="sprite sprite-linkedin"></span></a>
-				</li>
+			<ul class="social-links--header">
+				{% include "website/larevolta/social-links.html" %}
 			</ul>
 		</nav>
 		{% endspaceless %}
@@ -52,6 +44,9 @@
 	<article id="main" role="main">{% block content %}{% endblock content %}</article>
 
 	<footer class="footer">
+		<ul class="social-links--footer">
+			{% include "website/larevolta/social-links.html" %}
+		</ul>
 		<p>© 2014 Sandra Solorzano</p>
 	</footer>
 

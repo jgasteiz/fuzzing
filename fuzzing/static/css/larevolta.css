@@ -1474,6 +1474,11 @@ a:hover {
   text-decoration: underline;
 }
 
+p {
+  line-height: 1.4em;
+  margin: 14px 0;
+}
+
 .sprite {
   display: inline-block;
 }
@@ -1499,8 +1504,7 @@ a:hover {
 }
 @media only screen and (max-width: 660px) {
   .go-back {
-    left: 10px;
-    top: 95px;
+    top: 85px;
   }
 }
 
@@ -1615,20 +1619,38 @@ footer {
   }
 }
 
-.social-links {
+.social-links--header a, .social-links--footer a {
+  display: block;
+}
+
+.social-links--header {
   position: absolute;
   right: 10px;
   top: 20px;
 }
 @media only screen and (max-width: 660px) {
-  .social-links {
-    margin: 30px 0 0 !important;
-    position: static;
-    text-align: center;
+  .social-links--header {
+    display: none;
   }
 }
-.social-links a {
-  display: block;
+
+.social-links--footer {
+  display: none;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.social-links--footer > li {
+  display: inline-block;
+  padding: 0 15px;
+  vertical-align: middle;
+}
+@media only screen and (max-width: 660px) {
+  .social-links--footer {
+    display: block;
+    margin: 30px 0 0 !important;
+    text-align: center;
+  }
 }
 
 @media only screen and (max-width: 660px) {
