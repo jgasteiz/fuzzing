@@ -5,6 +5,8 @@ from website.views import PageView
 
 admin.autodiscover()
 
+handler404 = 'website.views.not_found'
+
 urlpatterns = patterns('',
     url(r'^tinymce/', include('tinymce.urls')),
 
