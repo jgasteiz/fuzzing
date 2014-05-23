@@ -7,7 +7,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>{{ site_settings.site_name }}</title>
+	<title>{% block page_title %}{{ site_settings.site_name }}{% endblock page_title %}</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width">
 	<link rel="shortcut icon" href="{% static "img/larevolta/favicon.png" %}">

@@ -1,6 +1,10 @@
 {% extends "website/larevolta/base.html" %}
 
+{% block page_title %}Server error{% endblock page_title %}
+
 {% block content %}
-	<h1>Congratulations, you found a bug.</h1>
-	<img src="{% static 'img/500.jpg' %}" alt="">
+	<div class="error-wrp">
+		<h1>Congratulations, you found a bug.</h1>
+		<img src="{% static 'img/500.jpg' %}" alt="">
+	</div>
 {% endblock content %}
