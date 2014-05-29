@@ -36,12 +36,11 @@
 .navigation__brand {
 	display: inline-block;
 	height: 90px;
-	margin: 40px 0 20px;
+	margin: 0 0 20px;
 	text-align: center;
 
 	@include respond-to(portable) {
 		height: 54px;
-		margin: 0 0 20px;
 	}
 	@include respond-to(palm) {
 		margin: 20px 0 30px;
@@ -79,26 +78,6 @@
 	}
 }
 
-.social-links--footer {
-	@extend %social-links;
-	display: none;
-	list-style: none;
-	margin: 0;
-	padding: 0;
-
-	> li {
-		display: inline-block;
-		padding: 0 15px;
-		vertical-align: middle;
-	}
-
-	@include respond-to(palm) {
-		display: block;
-		margin: 0 0 20px;
-		text-align: center;
-	}
-}
-
 .navigation-links {
 	@include respond-to(palm) {
 		text-align: right;
@@ -106,34 +85,14 @@
 }
 
 .navigation-link {
-	color: $font-color;
+	color: desaturate($link-color, 30%);
 	display: block;
 	line-height: 2em;
 	text-decoration: none;
-}
-
-.navigation-link--about {
-	color: desaturate($about-color, 30%);
-
-	@include respond-to(palm) {
-		color: $about-color;
-	}
 
 	&:hover,
 	&.is-active {
-		color: $about-color;
-	}
-}
-
-.navigation-link--contact {
-	color: desaturate($contact-color, 50%);
-
-	@include respond-to(palm) {
-		color: $contact-color;
-	}
-
-	&:hover,
-	&.is-active {
-		color: $contact-color;
+		color: $link-color;
+		text-decoration: underline;
 	}
 }

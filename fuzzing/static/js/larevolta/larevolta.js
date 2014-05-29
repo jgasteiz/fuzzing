@@ -6,4 +6,9 @@
 		e.preventDefault();
 		$('body').animate({scrollTop: 0}, 500);
 	});
+	$('.share-opener').click(function(e) {
+		e.preventDefault();
+		var shareContainerId = $(this).data('share-container-id');
+		$('#' + shareContainerId).toggleClass(shareContainerId + '--hidden');
+	});
 })();

@@ -11,7 +11,7 @@ html {
 body {
 	background-color: $background-color;
 	color: $font-color;
-	font-family: "Edmondsans", sans-serif;
+	font-family: "Droid Sans", sans-serif;
 	font-size: 16px;
 
 	&.overflow-hidden {
@@ -95,8 +95,4 @@ p {
 	@include respond-to(portable) {
 		padding: 0 !important;
 	}
-}
-
-footer {
-	text-align: center;
 }

@@ -1,0 +1,59 @@
+footer {
+	text-align: center;
+}
+
+.share {
+	margin: 40px 0;
+	position: relative;
+	text-align: left;
+
+	@include respond-to(palm) {
+		margin: 20px 0 50px;
+		text-align: center;
+	}
+}
+
+.share-opener {
+	text-indent: -9999em;
+}
+
+.share-list {
+	height: 70px;
+	left: 0;
+	line-height: 1.5em;
+	list-style: none;
+	margin: -35px 0 0 70px;
+	padding: 0;
+	position: absolute;
+	top: 50%;
+	z-index: 99;
+
+	@include respond-to(palm) {
+		left: 50%;
+		margin: -35px 0 0 50px;
+	}
+}
+
+.share-list--hidden {
+	display: none;
+}
+
+.social-links--footer {
+	@extend %social-links;
+	display: none;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+
+	> li {
+		display: inline-block;
+		padding: 0 15px;
+		vertical-align: middle;
+	}
+
+	@include respond-to(palm) {
+		display: block;
+		margin: 50px 0;
+		text-align: center;
+	}
+}

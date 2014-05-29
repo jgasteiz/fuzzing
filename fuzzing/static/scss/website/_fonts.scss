@@ -1,39 +1,12 @@
 @font-face {
-	font-family: 'Coming Soon';
+	font-family: 'Droid Sans';
 	font-style: normal;
 	font-weight: 400;
-	src: url(../fonts/coming-soon.woff) format('woff');
-}
-
-@font-face {
-	font-family: 'Lato';
-	font-style: normal;
-	font-weight: 400;
-	src: url(../fonts/lato-regular.woff) format('woff');
+	src: local('Droid Sans'), local('DroidSans'), url(../fonts/droid-sans.woff) format('woff');
 }
 @font-face {
-	font-family: 'Lato';
+	font-family: 'Droid Sans';
 	font-style: normal;
 	font-weight: 700;
-	src: url(../fonts/lato-bold.woff) format('woff');
-}
-
-@font-face {
-	font-family: 'Edmondsans';
-	font-style: normal;
-	font-weight: 400;
-	src: url(../fonts/Edmondsans-Regular.otf) format('opentype');
-}
-@font-face {
-	font-family: 'Edmondsans';
-	font-style: normal;
-	font-weight: 600;
-	src: url(../fonts/Edmondsans-Medium.otf) format('opentype');
-}
-
-@font-face {
-	font-family: 'Edmondsans';
-	font-style: normal;
-	font-weight: 700;
-	src: url(../fonts/Edmondsans-Bold.otf) format('opentype');
+	src: local('Droid Sans Bold'), local('DroidSans-Bold'), url(../fonts/droid-sans-bold.woff) format('woff');
 }

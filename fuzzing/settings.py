@@ -24,6 +24,10 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.core.context_processors.request',
+)
+
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '188.226.146.75']
 
 TEMPLATE_DIRS = (

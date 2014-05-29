@@ -44,10 +44,18 @@
 	<article id="main" role="main">{% block content %}{% endblock content %}</article>
 
 	<footer class="footer">
+		<div class="share">
+			<a href="#" class="share-opener sprite sprite-heart" data-share-container-id="share-list">Share</a>
+			<ul id="share-list" class="share-list share-list--hidden">
+				<li><a target="_blank" href="http://www.facebook.com/sharer.php?u=http://larevolta.me{{ request.path }}">Facebook</a></li>
+				<li><a target="_blank" href="https://twitter.com/share?url=http://larevolta.me{{ request.path }}">Twitter</a></li>
+				<li><a target="_blank" href="https://plus.google.com/share?url=http://larevolta.me{{ request.path }}">Google+</a></li>
+			</ul>
+		</div>
 		<ul class="social-links--footer">
 			{% include "website/larevolta/social-links.html" %}
 		</ul>
-		<p>© 2014 Sandra Solorzano - sitio web desarrollado por <a href="http://javimanzano.me">Javi Manzano</a></p>
+		<p>© 2014 Sandra Solorzano</p>
 	</footer>
 
 	<script src="{% static "bower_components/jquery/dist/jquery.min.js" %}"></script>
