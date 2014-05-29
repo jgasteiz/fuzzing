@@ -1604,6 +1604,7 @@ p {
 
 @media only screen and (max-width: 660px) {
   .navigation-links {
+    padding-left: 70px !important;
     text-align: right;
   }
 }

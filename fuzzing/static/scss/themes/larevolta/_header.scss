@@ -80,6 +80,7 @@
 
 .navigation-links {
 	@include respond-to(palm) {
+		padding-left: 70px !important;
 		text-align: right;
 	}
 }
