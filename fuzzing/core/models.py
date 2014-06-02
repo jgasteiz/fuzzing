@@ -110,6 +110,12 @@ class Page(BaseModel):
         Is this page long? If you activate this option, you will see
         a go-up arrow at the bottom of the page
         """)
+    show_social_icons = models.BooleanField(
+        default=False,
+        help_text='If you check this option, the page will show social icons.')
+    show_share = models.BooleanField(
+        default=False,
+        help_text='If you check this option, the page will show a share link.')
     parent_page = models.ForeignKey(
         'Page',
         blank=True,
@@ -173,8 +179,12 @@ class Page(BaseModel):
                 HTML('<p>If you write text here, the page will have a right column with this content.</p>'),
             ),
             WellFieldset('Page layout',
+                'in_navigation',
+                'is_home_page',
                 'side_offset',
                 'is_long_page',
+                'show_social_icons',
+                'show_share',
             ),
             WellFieldset('Page parent',
                 'parent_page',

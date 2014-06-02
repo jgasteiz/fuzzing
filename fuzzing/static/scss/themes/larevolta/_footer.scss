@@ -1,11 +1,17 @@
 footer {
+	font-size: 12px;
+	margin: 40px 0 0;
+	text-align: center;
+}
+
+.share-wrp {
 	text-align: center;
 }
 
 .share {
-	margin: 40px 0;
+	display: inline-block;
+	margin: 0 0 80px;
 	position: relative;
-	text-align: left;
 
 	@include respond-to(palm) {
 		margin: 20px 0 50px;
@@ -14,7 +20,15 @@ footer {
 }
 
 .share-opener {
-	text-indent: -9999em;
+	color: #555;
+	font-size: 1.2em;
+	font-weight: 700;
+	text-transform: uppercase;
+
+	&:hover {
+		color: $link-color;
+		text-decoration: none;
+	}
 }
 
 .share-list {
@@ -22,10 +36,11 @@ footer {
 	left: 0;
 	line-height: 1.5em;
 	list-style: none;
-	margin: -35px 0 0 70px;
+	margin: 10px 0 0;
 	padding: 0;
 	position: absolute;
-	top: 50%;
+	right: 0;
+	top: 100%;
 	z-index: 99;
 
 	@include respond-to(palm) {
@@ -36,24 +51,4 @@ footer {
 
 .share-list--hidden {
 	display: none;
-}
-
-.social-links--footer {
-	@extend %social-links;
-	display: none;
-	list-style: none;
-	margin: 0;
-	padding: 0;
-
-	> li {
-		display: inline-block;
-		padding: 0 15px;
-		vertical-align: middle;
-	}
-
-	@include respond-to(palm) {
-		display: block;
-		margin: 50px 0;
-		text-align: center;
-	}
 }

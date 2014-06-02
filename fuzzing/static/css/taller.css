@@ -1291,9 +1291,6 @@ article[role="main"], .section, .header__logo--small, .navigation > ul, .sub-nav
 .ImageSection__image-wrapper {
   position: relative;
 }
-.ImageSection__image-wrapper > img {
-  display: block;
-}
 
 .ImageSection__overlay {
   bottom: 0;

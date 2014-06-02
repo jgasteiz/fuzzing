@@ -2,7 +2,7 @@
 
 {% block content %}
 	{% if page.parent_page %}
-	<a class="go-back" href="{{ page.parent_page.get_relative_url }}"><span class="sprite sprite-goback"></span></a>
+	<a class="go-back" href="{{ page.parent_page.get_relative_url }}">Atrás</a>
 	{% endif %}
 	{% spaceless %}
 	<article class="page" style="padding: 0 {{ page.side_offset }};">
@@ -30,7 +30,19 @@
 		{% if page.is_long_page %}
 		<a class="go-up" href="#"><span class="sprite sprite-goup"></span></a>
 		{% endif %}
+		{% if page.show_share %}
+			<div class="share-wrp">
+				{% include "website/larevolta/share.html" %}
+			</div>
+		{% endif %}
 
 	</article>
 	{% endspaceless %}
+
+	{% if page.show_social_icons %}
+	<ul class="social-links">
+		{% include "website/larevolta/social-links.html" %}
+	</ul>
+	{% endif %}
+
 {% endblock content %}

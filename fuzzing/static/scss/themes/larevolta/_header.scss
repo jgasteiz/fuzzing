@@ -13,7 +13,7 @@
 
 	@include respond-to(portable) {
 		padding-left: 70px;
-		text-align: left;
+		text-align: right;
 	}
 	@include respond-to(palm) {
 		padding-left: 0;
@@ -25,10 +25,19 @@
 		margin: 0;
 		padding: 0;
 
+		@include respond-to(palm) {
+			margin-top: 80px;
+		}
+
 		> li {
 			display: inline-block;
 			padding: 0 15px;
 			vertical-align: middle;
+
+			@include respond-to(palm) {
+				padding-left: 20px;
+				padding-right: 0;
+			}
 		}
 	}
 }
@@ -36,14 +45,17 @@
 .navigation__brand {
 	display: inline-block;
 	height: 90px;
-	margin: 0 0 20px;
+	margin: 20px 0 10px;
 	text-align: center;
 
 	@include respond-to(portable) {
 		height: 54px;
+		margin: 0 0 10px;
 	}
 	@include respond-to(palm) {
-		margin: 20px 0 30px;
+		margin: 0 0 0 -149px;
+		position: absolute;
+		top: 20px;
 	}
 }
 
@@ -61,23 +73,6 @@
 	}
 }
 
-%social-links {
-	a {
-		display: block;
-	}
-}
-
-.social-links--header {
-	@extend %social-links;
-	position: absolute;
-	right: 10px;
-	top: 20px;
-
-	@include respond-to(palm) {
-		display: none;
-	}
-}
-
 .navigation-links {
 	@include respond-to(palm) {
 		padding-left: 70px !important;
@@ -86,14 +81,15 @@
 }
 
 .navigation-link {
-	color: desaturate($link-color, 30%);
+	border-bottom: 1px solid transparent;
+	color: $font-color;
 	display: block;
-	line-height: 2em;
-	text-decoration: none;
+	line-height: 26px;
 
 	&:hover,
 	&.is-active {
+		border-bottom: 1px solid $link-color;
 		color: $link-color;
-		text-decoration: underline;
+		text-decoration: none;
 	}
 }
