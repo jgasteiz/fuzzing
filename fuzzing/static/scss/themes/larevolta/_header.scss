@@ -26,7 +26,7 @@
 		padding: 0;
 
 		@include respond-to(palm) {
-			margin-top: 80px;
+			margin-top: 90px;
 		}
 
 		> li {
@@ -35,8 +35,12 @@
 			vertical-align: middle;
 
 			@include respond-to(palm) {
-				padding-left: 20px;
+				padding-left: 15px;
 				padding-right: 0;
+
+				&:first-child {
+					padding-left: 0;
+				}
 			}
 		}
 	}

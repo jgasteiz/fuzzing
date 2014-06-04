@@ -1557,7 +1557,7 @@ p {
 }
 @media only screen and (max-width: 660px) {
   .navigation > ul {
-    margin-top: 80px;
+    margin-top: 90px;
   }
 }
 .navigation > ul > li {
@@ -1567,8 +1567,11 @@ p {
 }
 @media only screen and (max-width: 660px) {
   .navigation > ul > li {
-    padding-left: 20px;
+    padding-left: 15px;
     padding-right: 0;
+  }
+  .navigation > ul > li:first-child {
+    padding-left: 0;
   }
 }
 
