@@ -8,6 +8,15 @@ html {
 	box-sizing: border-box;
 }
 
+::selection {
+	background: $link-color;
+	color: #ffffff;
+}
+::-moz-selection {
+	background: $link-color;
+	color: #ffffff;
+}
+
 body {
 	background-color: $background-color;
 	color: $font-color;
@@ -69,29 +78,30 @@ p {
 	}
 }
 
+// .go-up,
+// .go-back {
+// 	color: $link-color;
+//
+// 	&:hover {
+// 		text-decoration: underline;
+// 	}
+// }
+
 .go-back {
-	color: #555;
-	font-size: 1.2em;
-	font-weight: 700;
 	left: 20px;
 	position: absolute;
-	text-transform: uppercase;
 	top: 20px;
 
 	@include respond-to(palm) {
-		top: 85px;
-	}
-
-	&:hover {
-		color: $link-color;
-		text-decoration: none;
+		display: inline-block;
+		margin: 0 0 20px;
+		position: static;
 	}
 }
 
 .go-up {
-	display: block;
-	margin: 0 auto 40px;
-	width: 50px;
+	display: inline-block;
+	margin: 0 0 20px;
 }
 
 .ImageLinkSection a {

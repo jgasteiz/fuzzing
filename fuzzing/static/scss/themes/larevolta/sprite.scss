@@ -1,31 +1,19 @@
-/* glue: 0.3 hash: 86dc097cd4 */
+/* glue: 0.3 hash: 5c74a343fd */
 .sprite-logo,
 .sprite-logo-mobile,
 .sprite-linkedin,
-.sprite-heart,
-.sprite-goup,
-.sprite-goback,
 .sprite-flickr,
 .sprite-facebook{background-image:url('../img/sprite.png');background-repeat:no-repeat}
 .sprite-logo{background-position:0px 0px;width:497px;height:75px;}
 .sprite-logo-mobile{background-position:0px -75px;width:297px;height:45px;}
 .sprite-linkedin:hover{background-position:0px -120px;width:50px;height:50px;}
 .sprite-linkedin{background-position:-50px -120px;width:50px;height:50px;}
-.sprite-heart:hover{background-position:-100px -120px;width:50px;height:50px;}
-.sprite-heart{background-position:-150px -120px;width:50px;height:50px;}
-.sprite-goup:hover{background-position:-200px -120px;width:50px;height:50px;}
-.sprite-goup{background-position:-250px -120px;width:50px;height:50px;}
-.sprite-goback:hover{background-position:-300px -120px;width:50px;height:50px;}
-.sprite-goback{background-position:-350px -120px;width:50px;height:50px;}
-.sprite-flickr:hover{background-position:-400px -120px;width:50px;height:50px;}
-.sprite-flickr{background-position:0px -170px;width:50px;height:50px;}
-.sprite-facebook:hover{background-position:-50px -170px;width:50px;height:50px;}
-.sprite-facebook{background-position:-100px -170px;width:50px;height:50px;}
+.sprite-flickr:hover{background-position:-100px -120px;width:50px;height:50px;}
+.sprite-flickr{background-position:-150px -120px;width:50px;height:50px;}
+.sprite-facebook:hover{background-position:-200px -120px;width:50px;height:50px;}
+.sprite-facebook{background-position:-250px -120px;width:50px;height:50px;}
 @media only screen and (-webkit-min-device-pixel-ratio: 2.0), only screen and (min--moz-device-pixel-ratio: 2.0), only screen and (-o-min-device-pixel-ratio: 200/100), only screen and (min-device-pixel-ratio: 2.0) {.sprite-logo,
 .sprite-logo-mobile,
 .sprite-linkedin,
-.sprite-heart,
-.sprite-goup,
-.sprite-goback,
 .sprite-flickr,
-.sprite-facebook{background-image:url('../img/sprite@2x.png');-webkit-background-size: 497px 220px;-moz-background-size: 497px 220px;background-size: 497px 220px;}}
+.sprite-facebook{background-image:url('../img/sprite@2x.png');-webkit-background-size: 497px 170px;-moz-background-size: 497px 170px;background-size: 497px 170px;}}

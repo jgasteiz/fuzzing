@@ -18,3 +18,8 @@
 - `dropdb dbname`
 - `createdb dbname`
 - `psql dbname < filename.sql`
+
+
+## Useful tips
+
+- Start postgresql server on Mac OS X: `pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start`

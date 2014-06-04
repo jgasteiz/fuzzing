@@ -10,7 +10,7 @@ footer {
 
 .share {
 	display: inline-block;
-	margin: 0 0 80px;
+	margin: 40px 0 80px;
 	position: relative;
 
 	@include respond-to(palm) {
@@ -20,7 +20,7 @@ footer {
 }
 
 .share-opener {
-	color: #555;
+	color: $font-color;
 	font-size: 1.2em;
 	font-weight: 700;
 	text-transform: uppercase;
@@ -42,11 +42,6 @@ footer {
 	right: 0;
 	top: 100%;
 	z-index: 99;
-
-	@include respond-to(palm) {
-		left: 50%;
-		margin: -35px 0 0 50px;
-	}
 }
 
 .share-list--hidden {

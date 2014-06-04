@@ -32,30 +32,45 @@
 	background-color: rgba(247, 20, 37, 0.75);
 	bottom: 0;
 	color: #FFF;
-	font-size: 24px;
 	left: 0;
 	opacity: 0;
+	padding: 0 10px;
 	position: absolute;
 	right: 0;
 	top: 0;
-	transition: opacity 0.4s ease-in;
+	transition: opacity 0.2s ease-in;
 	z-index: 5;
 
 	@include respond-to (palm) {
 		background: none;
 		bottom: auto;
-		font-size: 18px;
-		padding-top: 15px;
+		color: #555555;
+		padding-top: 5px;
 		opacity: 1;
 		text-shadow: none;
 		top: 100%;
 	}
 }
 
+.ImageLinkSection__title,
+.ImageLinkSection__subtitle {
+	line-height: 1.4em;
+}
+
 .ImageLinkSection__title {
 	display: block;
-	font-weight: 600;
+	font-size: 24px;
+
+	@include respond-to (palm) {
+		font-size: 18px;
+	}
 }
+
 .ImageLinkSection__subtitle {
 	display: block;
+	font-size: 16px;
+
+	@include respond-to (palm) {
+		font-size: 12px;
+	}
 }
