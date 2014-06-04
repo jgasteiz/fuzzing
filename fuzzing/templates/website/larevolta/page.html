@@ -19,16 +19,16 @@
 				{% empty %}
 					<h1 class="grid__item one-whole">No sections</h1>
 				{% endfor %}
-				{% if page.is_long_page %}
-					<div class="grid__item one-whole">
-						<a class="go-up" href="#">Subir</a>
-					</div>
-				{% endif %}
 				</div>
 			</div>
 			{% if page.right_text %}
 			<div class="grid__item one-quarter palm--one-whole page__left-text">
 				{{ page.right_text|safe }}
+			</div>
+			{% endif %}
+			{% if page.is_long_page %}
+			<div class="grid__item one-whole">
+				<a class="go-up" href="#">Subir</a>
 			</div>
 			{% endif %}
 		</div>
