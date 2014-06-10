@@ -57,6 +57,7 @@
 		margin: 0 0 10px;
 	}
 	@include respond-to(palm) {
+		left: 50%;
 		margin: 0 0 0 -149px;
 		position: absolute;
 		top: 20px;

@@ -1589,6 +1589,7 @@ p {
 }
 @media only screen and (max-width: 660px) {
   .navigation__brand {
+    left: 50%;
     margin: 0 0 0 -149px;
     position: absolute;
     top: 20px;
