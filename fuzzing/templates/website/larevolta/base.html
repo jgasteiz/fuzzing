@@ -51,6 +51,7 @@
 
 	<script src="{% static "bower_components/jquery/dist/jquery.min.js" %}"></script>
 
+	{% if not request.user.is_authenticated %}
 	<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
 	<script>
 		(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
@@ -60,6 +61,7 @@
 		r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
 		ga('create','UA-51535781-1');ga('send','pageview');
 	</script>
+	{% endif %}
 
 	<script src="{% static "js/larevolta/larevolta.js" %}"></script>
 </body>
