@@ -55,6 +55,8 @@ class SiteSettings(models.Model):
 
 
 class BaseModel(models.Model):
+    published = models.BooleanField(default=True,
+        help_text='Only published pages/secions will be shown in live.')
     weight = models.IntegerField(default=0,
         help_text='The higher the weight, the lower - or the righter - in the page will appear.')
 
@@ -66,6 +68,7 @@ class BaseModel(models.Model):
     def get_basic_layout(cls):
         return Layout(
             WellFieldset('Basic details',
+                'published',
                 'weight',
             )
         )
