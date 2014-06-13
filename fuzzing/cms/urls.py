@@ -25,10 +25,6 @@ urlpatterns = patterns('',
 
     url(r'^set_page_weight/(?P<pk>[-\d]+)/(?P<weight>[-\d]+)/$',
         views.SetPageWeight.as_view(), name='set_page_weight'),
-    url(r'^set_home_page/(?P<pk>[-\d]+)/$',
-        views.SetHomePage.as_view(), name='set_home_page'),
-    url(r'^set_navigation_page/(?P<pk>[-\d]+)/(?P<in_navigation>[-\d]+)/$',
-        views.SetPageInNavigation.as_view(), name='set_navigation_page'),
 
     # Sections
     url(r'^create_section/(?P<page_pk>[-\d]+)/(?P<section>[-\w]+)/$',

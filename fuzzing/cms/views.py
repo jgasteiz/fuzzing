@@ -140,32 +140,6 @@ class SetPageWeight(CMSMixin, generic.edit.View):
         return redirect(self.success_url)
 
 
-class SetHomePage(CMSMixin, generic.edit.View):
-    success_url = reverse_lazy('pages')
-
-    def get(self, request, *args, **kwargs):
-        pk = int(self.kwargs['pk'])
-        page = get_object_or_404(models.Page, pk=pk)
-        page.is_home_page = True
-        page.save()
-        return redirect(self.success_url)
-
-
-class SetPageInNavigation(CMSMixin, generic.edit.View):
-    success_url = reverse_lazy('pages')
-
-    def get(self, request, *args, **kwargs):
-        pk = int(self.kwargs['pk'])
-        in_navigation = int(self.kwargs['in_navigation'])
-        page = get_object_or_404(models.Page, pk=pk)
-        if in_navigation == 1:
-            page.in_navigation = True
-        elif in_navigation == 0:
-            page.in_navigation = False
-        page.save()
-        return redirect(self.success_url)
-
-
 # Sections
 class SectionObjectsMixin(object):
     def get_form_class(self):

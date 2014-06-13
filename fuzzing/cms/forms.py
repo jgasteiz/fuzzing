@@ -52,7 +52,7 @@ class ImageLinkSectionForm(FormHelperMixin, forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(ImageLinkSectionForm, self).__init__(*args, **kwargs)
-        pages = models.Page.objects.exclude(is_home_page=True)
+        pages = models.Page.objects.published().exclude(is_home_page=True)
         choices = [(page.slug, page.title) for page in pages]
         self.fields['link'] = forms.ChoiceField(choices=choices)
 

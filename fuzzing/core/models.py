@@ -3,7 +3,7 @@ from django.db import models
 from django.utils.text import slugify
 
 from crispy_forms.bootstrap import FormActions
-from crispy_forms.layout import Layout, Div, Field, Submit, HTML
+from crispy_forms.layout import Layout, Submit, HTML
 
 from fuzzing.cms.fields import WellFieldset
 
@@ -54,11 +54,18 @@ class SiteSettings(models.Model):
         )
 
 
+class BaseManager(models.Manager):
+    def published(self):
+        return self.filter(published=True)
+
+
 class BaseModel(models.Model):
     published = models.BooleanField(default=True,
         help_text='Only published pages/secions will be shown in live.')
     weight = models.IntegerField(default=0,
         help_text='The higher the weight, the lower - or the righter - in the page will appear.')
+
+    objects = BaseManager()
 
     class Meta:
         abstract = True
@@ -284,7 +291,7 @@ class ImageSection(ImageSectionMixin, LayoutMixin, Section):
                 'layout',
                 'alignment',
             ),
-            WellFieldset('Parent page',
+            WellFieldset('Page containing this section',
                 'page',
             ),
             cls.get_button_layout()

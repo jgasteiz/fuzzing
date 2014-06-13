@@ -14,7 +14,7 @@ class PageView(DetailView):
     def get_context_data(self, *args, **kwargs):
         ctx = super(PageView, self).get_context_data(*args, **kwargs)
 
-        page_list = Page.objects.filter(in_navigation=True)
+        page_list = Page.objects.published().filter(in_navigation=True)
         site_settings = SiteSettings.objects.get_or_create()[0]
 
         # Create a list of nav_items with pages slugs and titles.
@@ -30,7 +30,7 @@ class PageView(DetailView):
             ctx['current_page'] = self.kwargs['slug']
 
         # Check if current page has children and pick them for the sub nav.
-        page_children = Page.objects.filter(parent_page=self.object)
+        page_children = Page.objects.published().filter(parent_page=self.object)
         if page_children:
             ctx['sub_nav_item_list'] = (
                 [{'slug': page.slug, 'title': page.title} for page in page_children]
@@ -38,7 +38,7 @@ class PageView(DetailView):
 
         # Check if current page has parent and pick its siblings for the sub nav.
         if self.object.parent_page:
-            page_siblings = Page.objects.filter(parent_page=self.object.parent_page)
+            page_siblings = Page.objects.published().filter(parent_page=self.object.parent_page)
             ctx['sub_nav_item_list'] = (
                 [{'slug': page.slug, 'title': page.title} for page in page_siblings]
             )
@@ -60,7 +60,7 @@ class PageView(DetailView):
     def get_object(self):
         page_slug = self.kwargs.get('slug', None)
         if page_slug:
-            return get_object_or_404(Page, slug=page_slug)
+            return get_object_or_404(Page, slug=page_slug, published=True)
         else:
             return get_object_or_404(Page, is_home_page=True)
 
