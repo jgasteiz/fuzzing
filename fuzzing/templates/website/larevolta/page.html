@@ -1,12 +1,14 @@
 {% extends "website/larevolta/base.html" %}
 
 {% block content %}
-	{% if page.parent_page %}
-	<a class="go-back" href="{{ page.parent_page.get_relative_url }}">Atrás</a>
-	{% endif %}
 	{% spaceless %}
 	<article class="page" style="padding: 0 {{ page.side_offset }};">
 		<div class="grid">
+            {% if page.parent_page %}
+            <div class="grid__item one-whole">
+                <a class="go-back" href="{{ page.parent_page.get_relative_url }}">Atrás</a>
+            </div>
+            {% endif %}
 			{% if page.left_text %}
 			<div class="grid__item one-quarter palm--one-whole page__left-text">
 				{{ page.left_text|safe }}

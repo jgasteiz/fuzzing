@@ -78,28 +78,8 @@ p {
 	}
 }
 
-// .go-up,
-// .go-back {
-// 	color: $link-color;
-//
-// 	&:hover {
-// 		text-decoration: underline;
-// 	}
-// }
-
+.go-up,
 .go-back {
-	left: 20px;
-	position: absolute;
-	top: 20px;
-
-	@include respond-to(palm) {
-		display: inline-block;
-		margin: 0 0 20px;
-		position: static;
-	}
-}
-
-.go-up {
 	display: inline-block;
 	margin: 0 0 20px;
 }
