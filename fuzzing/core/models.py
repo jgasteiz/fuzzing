@@ -202,12 +202,18 @@ class Page(BaseModel):
             cls.get_button_layout()
         )
 
-    def get_sections(self):
+    def get_sections(self, published=True):
         page_sections = []
         for kls in SECTIONS:
-            page_sections = page_sections + [section for section in kls.objects.filter(page=self)]
+            section_list = kls.objects.filter(page=self)
+            if published:
+                section_list = section_list.filter(published=True)
+            page_sections = page_sections + [section for section in section_list]
         page_sections.sort(key=lambda x: x.weight, reverse=False)
         return page_sections
+
+    def get_sections_cms(self):
+        return self.get_sections(published=False)
 
     @property
     def get_relative_url(self):

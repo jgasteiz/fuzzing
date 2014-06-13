@@ -77,7 +77,7 @@
                         <span ng-show="sectionActive('{{ page.pk }}')">Hide sections</span>
                     </a>
                     <ul ng-show="sectionActive('{{ page.pk }}')">
-                        {% with page.get_sections as sections %}
+                        {% with page.get_sections_cms as sections %}
                         {% for section in sections %}
                         <li class="section">
                             <span class="section__class">{{ section.get_class }}</span>
