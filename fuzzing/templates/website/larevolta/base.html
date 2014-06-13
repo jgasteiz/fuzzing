@@ -10,8 +10,9 @@
 	<title>{% block page_title %}{{ site_settings.site_name }}{% endblock page_title %}</title>
 
 	<meta name="keywords" content="fotografía, publicidad, diseño grafico, barcelona, identidad visual corporativa, diseño editorial, logotipos, freelance" />
-	<meta name="Title" content="larevolta.me">
-	<meta name="description" content="La Revolta | Photography and Graphic Design">
+	<meta name="title" content="La Revolta">
+	<meta name="author" content="Sandra Solorzano">
+	<meta name="description" content="Photography and Graphic Design">
 	<meta name="viewport" content="width=device-width">
 	<meta name="robots" content="index, follow" />
 
@@ -51,6 +52,7 @@
 
 	<script src="{% static "bower_components/jquery/dist/jquery.min.js" %}"></script>
 
+	{% if not request.user.is_authenticated %}
 	<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
 	<script>
 		(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
@@ -60,6 +62,7 @@
 		r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
 		ga('create','UA-51535781-1');ga('send','pageview');
 	</script>
+	{% endif %}
 
 	<script src="{% static "js/larevolta/larevolta.js" %}"></script>
 </body>
