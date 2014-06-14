@@ -6349,6 +6349,10 @@ form {
   margin: 20px 0;
 }
 
+img {
+  max-width: 100%;
+}
+
 .button-holder {
   margin-top: 20px;
   margin-bottom: 10px;
@@ -6379,6 +6383,10 @@ textarea.form-control {
   margin: 10px 0;
 }
 
+.section-border {
+  border: 1px solid #888;
+}
+
 .section__class {
   display: block;
   font-style: italic;
@@ -6389,7 +6397,7 @@ textarea.form-control {
 }
 
 .section__section {
-  background: #ddd;
+  background: #eee;
   padding: 5px;
 }
 .section__section .section__title {

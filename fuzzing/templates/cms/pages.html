@@ -21,99 +21,102 @@
         </div>
     </div>
 
-    <div class="row">
     {% for page in page_list %}
-        <div ng-hide="isExcludedByFilter('{{ page.title }}')" class="col-md-6">
-            <div class="page well">
-                <div class="pull-right">
-                {% if page.is_home_page %}
-                    <span class="label label-info">Homepage</span>
-                {% endif %}
-                {% if page.in_navigation %}
-                    <span class="label label-primary">In navigation</span>
-                {% endif %}
-                </div>
-                <h2 class="page__title">{{ page.weight }} - {{ page.title }}</h2>
-                <div class="page__weight">
-                    <strong>Page weight: </strong>{{ page.weight }}
-                </div>
-                <div class="page__offset">
-                    <strong>Page side offset: </strong>{{ page.side_offset }}
-                </div>
-                <div class="page__actions button-holder">
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-primary">Add section</button>
-                        <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown">
-                            <span class="caret"></span>
-                            <span class="sr-only">Toggle Dropdown</span>
-                        </button>
-                        <ul class="dropdown-menu" role="menu">
-                            {% for section in section_list %}
-                            <li><a href="{% url 'create_section' page.pk section %}">{{ section }}</a></li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                    <button ng-click="openModal('{% url 'page' page.slug %}')" type="button" class="btn btn-sm btn-info">Preview</button>
-                    <hr/>
-                    <div class="btn-group">
-                        <a class="btn btn-sm btn-default" href="{% url 'update_page' page.pk %}">
-                            <span class="glyphicon glyphicon-edit"></span> Edit
-                        </a>
-                        <a class="btn btn-sm btn-default" href="{% url 'delete_page' page.pk %}">
-                            <span class="glyphicon glyphicon-trash"></span> Delete
-                        </a>
-                        <a class="btn btn-sm btn-default" href="{% url 'set_page_weight' page.pk -1 %}">
-                            <span class="glyphicon glyphicon-arrow-up"></span> Move page up
-                        </a>
-                        <a class="btn btn-sm btn-default" href="{% url 'set_page_weight' page.pk 1 %}">
-                            <span class="glyphicon glyphicon-arrow-down"></span> Move page down
-                        </a>
-                    </div>
-                </div>
-                <div class="page__sections">
-                    <strong>Page sections:</strong>
-                    {% if site_settings.show_admin_section_expander %}
-                    <a ng-click="toggleSections('{{ page.pk }}')" href="">
-                        <span ng-hide="sectionActive('{{ page.pk }}')">Show sections</span>
-                        <span ng-show="sectionActive('{{ page.pk }}')">Hide sections</span>
-                    </a>
-                    {% endif %}
-                    <ul {% if site_settings.show_admin_section_expander %}ng-show="sectionActive('{{ page.pk }}')"{% endif %}>
-                        {% with page.get_sections_cms as sections %}
-                        {% for section in sections %}
-                        <li class="section">
-                            <span class="section__class">{{ section.get_class }}</span>
-                            <span class="section__weight"><strong>Section weight:</strong> {{ section.weight }}</span>
-                            <span class="section__layout"><strong>Section layout:</strong> {{ section.layout }}</span>
-                            <div class="section__section">{{ section.preview|safe }}</div>
-                            <div class="section__actions">
-                                <div class="btn-group">
-                                    <a class="btn btn-sm btn-default" href="{% url 'update_section' section.pk section.get_class %}">
-                                        <span class="glyphicon glyphicon-edit"></span> Edit
-                                    </a>
-                                    <a class="btn btn-sm btn-default" href="{% url 'delete_section' section.pk section.get_class %}">
-                                        <span class="glyphicon glyphicon-trash"></span> Delete
-                                    </a>
-                                    <a class="btn btn-sm btn-default" href="{% url 'set_section_weight' section.pk section.get_class -1 %}">
-                                        <span class="glyphicon glyphicon-arrow-up"></span> Move up
-                                    </a>
-                                    <a class="btn btn-sm btn-default" href="{% url 'set_section_weight' section.pk section.get_class 1 %}">
-                                        <span class="glyphicon glyphicon-arrow-down"></span> Move down
-                                    </a>
-                                </div>
-                            </div>
-                        </li>
+    <div ng-hide="isExcludedByFilter('{{ page.title }}')">
+        <div class="page well">
+            <div class="pull-right">
+            {% if page.is_home_page %}
+                <span class="label label-info">Homepage</span>
+            {% endif %}
+            {% if page.in_navigation %}
+                <span class="label label-primary">In navigation</span>
+            {% endif %}
+            </div>
+            <h2 class="page__title">{{ page.weight }} - {{ page.title }}</h2>
+            <div class="page__weight">
+                <strong>Page weight: </strong>{{ page.weight }}
+            </div>
+            <div class="page__offset">
+                <strong>Page side offset: </strong>{{ page.side_offset }}
+            </div>
+            <div class="page__actions button-holder">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-primary">Add section</button>
+                    <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown">
+                        <span class="caret"></span>
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        {% for section in section_list %}
+                        <li><a href="{% url 'create_section' page.pk section %}">{{ section }}</a></li>
                         {% endfor %}
-                        {% endwith %}
                     </ul>
+                </div>
+                <button ng-click="openModal('{% url 'page' page.slug %}')" type="button" class="btn btn-sm btn-info">Preview</button>
+                <hr/>
+                <div class="btn-group">
+                    <a class="btn btn-sm btn-default" href="{% url 'update_page' page.pk %}">
+                        <span class="glyphicon glyphicon-edit"></span> Edit
+                    </a>
+                    <a class="btn btn-sm btn-default" href="{% url 'delete_page' page.pk %}">
+                        <span class="glyphicon glyphicon-trash"></span> Delete
+                    </a>
+                    <a class="btn btn-sm btn-default" href="{% url 'set_page_weight' page.pk -1 %}">
+                        <span class="glyphicon glyphicon-arrow-up"></span> Move page up
+                    </a>
+                    <a class="btn btn-sm btn-default" href="{% url 'set_page_weight' page.pk 1 %}">
+                        <span class="glyphicon glyphicon-arrow-down"></span> Move page down
+                    </a>
+                </div>
+            </div>
+            <div class="page__sections">
+                <strong>Page sections:</strong>
+                {% if site_settings.show_admin_section_expander %}
+                <a ng-click="toggleSections('{{ page.pk }}')" href="">
+                    <span ng-hide="sectionActive('{{ page.pk }}')">Show sections</span>
+                    <span ng-show="sectionActive('{{ page.pk }}')">Hide sections</span>
+                </a>
+                {% endif %}
+                <div {% if site_settings.show_admin_section_expander %}ng-show="sectionActive('{{ page.pk }}')"{% endif %} class="row">
+                {% with page.get_sections_cms as sections %}
+                {% for section in sections %}
+                {% if section.layout %}
+                    <div class="section section-border {{ section.layout_cms }}">
+                        <span class="section__class">{{ section.weight }} - {{ section.get_class }}</span>
+                        <span class="section__layout"><strong>Section layout:</strong> {{ section.layout }}</span>
+                        <div class="section__section">{{ section.preview|safe }}</div>
+                        <div class="section__actions">
+                            <div class="btn-group">
+                                <a class="btn btn-sm btn-default" href="{% url 'update_section' section.pk section.get_class %}">
+                                    <span class="glyphicon glyphicon-edit"></span> Edit
+                                </a>
+                                <a class="btn btn-sm btn-default" href="{% url 'delete_section' section.pk section.get_class %}">
+                                    <span class="glyphicon glyphicon-trash"></span> Delete
+                                </a>
+                                <a class="btn btn-sm btn-default" href="{% url 'set_section_weight' section.pk section.get_class -1 %}">
+                                    <span class="glyphicon glyphicon-arrow-up"></span> Move up
+                                </a>
+                                <a class="btn btn-sm btn-default" href="{% url 'set_section_weight' section.pk section.get_class 1 %}">
+                                    <span class="glyphicon glyphicon-arrow-down"></span> Move down
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                </div>
+                <div class="section-border row">
+                    <div class="col-lg-12">
+                        <span class="section__class">{{ section.weight }} - {{ section.get_class }}</span>
+                    </div>
+                </div>
+                <div class="row">
+                {% endif %}
+                {% endfor %}
+                {% endwith %}
                 </div>
             </div>
         </div>
-    {% if forloop.counter|divisibleby:2 %}
     </div>
-    <div class="row">
-    {% endif %}
     {% endfor %}
-    </div>
 </div>
 {% endblock content %}

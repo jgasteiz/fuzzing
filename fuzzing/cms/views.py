@@ -214,6 +214,10 @@ class SetSectionWeight(CMSMixin, generic.edit.View):
         section_name = self.kwargs['section']
         weight = int(self.kwargs['weight'])
         section = get_object_or_404(SECTIONS_DICT[section_name]['model'], pk=pk)
+
+        # TODO: all sections weights should go from 0 to `num_sections`
+        # page_sections = section.page.get_sections()
+
         if weight < 0 and section.weight > 0:
             section.weight = section.weight - 1
             section.save()

@@ -8,34 +8,42 @@ from crispy_forms.layout import Layout, Submit, HTML
 from fuzzing.cms.fields import WellFieldset
 
 LAYOUT_CHOICES = (
-    ('one-whole', 'One Whole'),
-    ('one-half', 'One Half'),
-    ('one-third', 'One Third'),
-    ('one-quarter', 'One Quarter'),
-    ('two-thirds', 'Two Thirds'),
+    (u'one-whole', u'One Whole'),
+    (u'one-half', u'One Half'),
+    (u'one-third', u'One Third'),
+    (u'one-quarter', u'One Quarter'),
+    (u'two-thirds', u'Two Thirds'),
 )
 
+LAYOUT_CMS = {
+    u'one-whole': u'col-lg-12',
+    u'one-half': u'col-lg-6',
+    u'one-third': u'col-lg-4',
+    u'one-quarter': u'col-lg-3',
+    u'two-thirds': u'col-lg-8',
+}
+
 ALIGNMENT_CHOICES = (
-    ('top', 'Top Aligned'),
-    ('middle', 'Middle Aligned'),
-    ('bottom', 'Bottom Aligned'),
+    (u'top', u'Top Aligned'),
+    (u'middle', u'Middle Aligned'),
+    (u'bottom', u'Bottom Aligned'),
 )
 
 SECTION_OFFSET_CHOICES = (
-    ('no-offset', 'No offset'),
-    ('offset--one-quarter', 'One Quarter'),
-    ('offset--one-third', 'One Third'),
-    ('offset--one-half', 'One Half'),
-    ('offset--two-thirds', 'Two Thirds'),
+    (u'no-offset', u'No offset'),
+    (u'offset--one-quarter', u'One Quarter'),
+    (u'offset--one-third', u'One Third'),
+    (u'offset--one-half', u'One Half'),
+    (u'offset--two-thirds', u'Two Thirds'),
 )
 
 OFFSET_CHOICES = (
-    ('0', 'No offset'),
-    ('5%', '5%'),
-    ('10%', '10%'),
-    ('15%', '15%'),
-    ('20%', '20%'),
-    ('25%', '25%'),
+    (u'0', u'No offset'),
+    (u'5%', u'5%'),
+    (u'10%', u'10%'),
+    (u'15%', u'15%'),
+    (u'20%', u'20%'),
+    (u'25%', u'25%'),
 )
 
 
@@ -290,6 +298,9 @@ class LayoutMixin(models.Model):
     class Meta:
         abstract = True
 
+    def layout_cms(self):
+        return LAYOUT_CMS[self.layout]
+
 
 class TextSectionMixin(models.Model):
     """"""
@@ -316,10 +327,10 @@ class ImageSection(ImageSectionMixin, LayoutMixin, Section):
     title = models.CharField(blank=True, max_length=64, help_text='Image title')
 
     def preview(self):
-        return '<div class="section">\
-                    <span class="section__title">%s</span>\
-                    <p class="section__image">%s ...</p>\
-                </div>' % (self.title, self.image)
+        return """<div class="section">
+                    <img src="%s">
+                    <span class="section__title">%s</span>
+                </div>""" % (self.get_image_url(), self.title)
 
     @classmethod
     def get_form_layout(cls):
@@ -354,6 +365,14 @@ class ImageLinkSection(ImageSectionMixin, LayoutMixin, Section):
                 </div>' % (
                     self.title,
                     self.link)
+
+    def preview(self):
+        return """<div class="section">
+                    <img src="%s">
+                    <span class="section__title">%s</span>
+                    <span class="section__link">Link to: %s</span>
+                </div>""" % (self.get_image_url(), self.title, self.link)
+
 
     @classmethod
     def get_form_layout(cls):
@@ -529,9 +548,6 @@ class BackgroundImageTextSection(ImageSectionMixin, TextSectionMixin, Section):
 
 
 class SeparatorSection(Section):
-    def preview(self):
-        return '<hr />'
-
     @classmethod
     def get_form_layout(cls):
         return Layout(
