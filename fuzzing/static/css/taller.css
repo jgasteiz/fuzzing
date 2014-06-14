@@ -1181,6 +1181,28 @@ article[role="main"], .section, .header__logo--small, .navigation > ul, .sub-nav
   vertical-align: middle;
 }
 
+@media only screen and (max-width: 660px) {
+  .offset--one-quarter, .offset--one-third, .offset--one-half, .offset--two-thirds {
+    margin-left: 0 !important;
+  }
+}
+
+.offset--one-quarter {
+  margin-left: 25%;
+}
+
+.offset--one-third {
+  margin-left: 33.333%;
+}
+
+.offset--one-half {
+  margin-left: 50%;
+}
+
+.offset--two-thirds {
+  margin-left: 66.666%;
+}
+
 .section {
   margin-bottom: 20px;
 }
@@ -1204,6 +1226,7 @@ article[role="main"], .section, .header__logo--small, .navigation > ul, .sub-nav
 
 .BackgroundImageTextSection__image {
   background-size: cover;
+  border-radius: 5px;
   margin-left: -40px;
   margin-right: -40px;
   padding: 60px 40px;
@@ -1319,6 +1342,25 @@ article[role="main"], .section, .header__logo--small, .navigation > ul, .sub-nav
   margin-top: 0;
 }
 
+.VideoSection {
+  text-align: center;
+}
+.VideoSection iframe {
+  display: block;
+  margin: 0 auto;
+}
+
+.VideoSection__title {
+  color: #888;
+  font-size: 16px;
+  font-weight: 300;
+  margin: 10px 0;
+}
+
+.VideoSection__video-wrapper {
+  position: relative;
+}
+
 html {
   font-size: 100%;
   padding: 0 40px;
@@ -1353,9 +1395,9 @@ article[role="main"].with-sub-nav {
   margin-top: 160px;
 }
 
-.browsehappy {
-  background: #FF8;
-  padding: 5px 10px;
+.go-back {
+  display: inline-block;
+  margin: 0 0 20px;
 }
 
 .header__logo {

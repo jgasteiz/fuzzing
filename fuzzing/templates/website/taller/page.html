@@ -1,9 +1,6 @@
 {% extends "website/taller/base.html" %}
 
 {% block content %}
-	{% if page.parent_page %}
-		<a href="{{ page.parent_page.get_relative_url }}" class="link-back">Volver a {{ page.parent_page }}</a>
-	{% endif %}
 	<div class="page" style="padding: 0 {{ page.side_offset }};">
 		<div class="grid">
 		{% spaceless %}

@@ -31,6 +31,14 @@ SECTIONS_DICT = {
         'model': models.TextSection,
         'form_class': forms.TextSectionForm
     },
+    'VideoSection': {
+        'model': models.VideoSection,
+        'form_class': forms.VideoSectionForm
+    },
+    'SeparatorSection': {
+        'model': models.SeparatorSection,
+        'form_class': forms.SeparatorSectionForm
+    },
 }
 
 

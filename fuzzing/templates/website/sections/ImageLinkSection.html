@@ -1,4 +1,4 @@
-<div class="section ImageLinkSection grid__item {{ section.layout }} palm--one-whole tablet--one-whole"
+<div class="section ImageLinkSection grid__item {{ section.layout }} {{ section.offset }} palm--one-whole tablet--one-whole"
 		style="vertical-align: {{ section.alignment }};">
 	<a class="ImageLinkSection__image-wrp" href="{% url 'page' section.link %}">
 		<img class="ImageLinkSection__image" src="{{ section.get_image_url }}" alt=""/>

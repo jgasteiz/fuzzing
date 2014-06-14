@@ -16,3 +16,29 @@
 	display: inline-block;
 	vertical-align: middle;
 }
+
+%offset {
+	@include respond-to(palm) {
+		margin-left: 0 !important;
+	}
+}
+
+.offset--one-quarter {
+	@extend %offset;
+	margin-left: 25%;
+}
+
+.offset--one-third {
+	@extend %offset;
+	margin-left: 33.333%;
+}
+
+.offset--one-half {
+	@extend %offset;
+	margin-left: 50%;
+}
+
+.offset--two-thirds {
+	@extend %offset;
+	margin-left: 66.666%;
+}

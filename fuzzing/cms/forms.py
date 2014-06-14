@@ -62,3 +62,13 @@ class TextSectionForm(FormHelperMixin, forms.ModelForm):
 
     class Meta:
         model = models.TextSection
+
+
+class VideoSectionForm(FormHelperMixin, forms.ModelForm):
+    class Meta:
+        model = models.VideoSection
+
+
+class SeparatorSectionForm(FormHelperMixin, forms.ModelForm):
+    class Meta:
+        model = models.SeparatorSection

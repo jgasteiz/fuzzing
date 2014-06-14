@@ -21,6 +21,14 @@ ALIGNMENT_CHOICES = (
     ('bottom', 'Bottom Aligned'),
 )
 
+SECTION_OFFSET_CHOICES = (
+    ('no-offset', 'No offset'),
+    ('offset--one-quarter', 'One Quarter'),
+    ('offset--one-third', 'One Third'),
+    ('offset--one-half', 'One Half'),
+    ('offset--two-thirds', 'Two Thirds'),
+)
+
 OFFSET_CHOICES = (
     ('0', 'No offset'),
     ('5%', '5%'),
@@ -38,7 +46,13 @@ class SiteSettings(models.Model):
     - pick the theme for the site.
     """
     site_name = models.CharField(max_length=255, blank=True)
-    site_theme = models.CharField(max_length=255, blank=True, choices=settings.THEME_CHOICES)
+    site_theme = models.CharField(
+        max_length=255,
+        blank=True,
+        choices=settings.THEME_CHOICES)
+    show_admin_section_expander = models.BooleanField(
+        default=True,
+        help_text='Do you want to hide the sections automatically in the Admin?')
 
     @classmethod
     def get_form_layout(cls):
@@ -46,6 +60,7 @@ class SiteSettings(models.Model):
             WellFieldset('Site Settings',
                 'site_name',
                 'site_theme',
+                'show_admin_section_expander',
             ),
             FormActions(
                 Submit('submit', 'Submit'),
@@ -260,12 +275,17 @@ class LayoutMixin(models.Model):
         choices=LAYOUT_CHOICES,
         default='one-whole',
         help_text='Size of this section in the layout.')
-
+    offset = models.CharField(
+        max_length=64,
+        choices=SECTION_OFFSET_CHOICES,
+        default='no-offset',
+        help_text='Some offset on the side?')
     alignment = models.CharField(
         max_length=64,
         choices=ALIGNMENT_CHOICES,
         default='top',
-        help_text='Alignment of this section.')
+        help_text="""Vertical alignment of this section, useful when there
+        is text and an image next to it.""")
 
     class Meta:
         abstract = True
@@ -311,6 +331,7 @@ class ImageSection(ImageSectionMixin, LayoutMixin, Section):
             ),
             WellFieldset('Section layout',
                 'layout',
+                'offset',
                 'alignment',
             ),
             WellFieldset('Page containing this section',
@@ -346,9 +367,73 @@ class ImageLinkSection(ImageSectionMixin, LayoutMixin, Section):
             ),
             WellFieldset('Section layout',
                 'layout',
+                'offset',
                 'alignment',
             ),
             WellFieldset('Parent page',
+                'page',
+            ),
+            cls.get_button_layout()
+        )
+
+
+class VideoSection(LayoutMixin, Section):
+    """"""
+    title = models.CharField(blank=True, max_length=64, help_text='Link title')
+    youtube_id = models.CharField(
+        blank=True,
+        max_length=256,
+        help_text='Youtube video id')
+    vimeo_id = models.CharField(
+        blank=True,
+        max_length=256,
+        help_text='Vimeo video id')
+    height = models.CharField(
+        blank=True,
+        default='360px',
+        max_length=256,
+        help_text='Percentage or pixels of video height.'
+    )
+    width = models.CharField(
+        blank=True,
+        default='100%',
+        max_length=256,
+        help_text='Percentage or pixels of video width.'
+    )
+
+    def get_height(self):
+        return self.height.replace('px', '')
+
+    def get_width(self):
+        return self.width.replace('px', '')
+
+    def preview(self):
+        return '<div class="section">\
+                    <span class="section__title">%s</span>\
+                    <p class="section__video">%s</p>\
+                    <p class="section__size">%sx%s</p>\
+                </div>' % (self.title, self.youtube_id, self.width, self.height)
+
+    @classmethod
+    def get_form_layout(cls):
+        return Layout(
+            cls.get_basic_layout(),
+            WellFieldset(
+                'Section details',
+                'title',
+                'youtube_id',
+                'vimeo_id',
+                'width',
+                'height',
+            ),
+            WellFieldset(
+                'Section layout',
+                'layout',
+                'offset',
+                'alignment',
+            ),
+            WellFieldset(
+                'Page containing this section',
                 'page',
             ),
             cls.get_button_layout()
@@ -373,6 +458,7 @@ class TextSection(TextSectionMixin, LayoutMixin, Section):
             ),
             WellFieldset('Section layout',
                 'layout',
+                'offset',
                 'alignment',
             ),
             WellFieldset('Parent page',
@@ -442,9 +528,26 @@ class BackgroundImageTextSection(ImageSectionMixin, TextSectionMixin, Section):
         )
 
 
+class SeparatorSection(Section):
+    def preview(self):
+        return '<hr />'
+
+    @classmethod
+    def get_form_layout(cls):
+        return Layout(
+            cls.get_basic_layout(),
+            WellFieldset('Section\'s page',
+                'page',
+            ),
+            cls.get_button_layout()
+        )
+
+
 SECTIONS = (
     BackgroundImageTextSection,
     ImageLinkSection,
     ImageSection,
     TextSection,
+    VideoSection,
+    SeparatorSection,
 )

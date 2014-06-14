@@ -72,11 +72,13 @@
                 </div>
                 <div class="page__sections">
                     <strong>Page sections:</strong>
+                    {% if site_settings.show_admin_section_expander %}
                     <a ng-click="toggleSections('{{ page.pk }}')" href="">
                         <span ng-hide="sectionActive('{{ page.pk }}')">Show sections</span>
                         <span ng-show="sectionActive('{{ page.pk }}')">Hide sections</span>
                     </a>
-                    <ul ng-show="sectionActive('{{ page.pk }}')">
+                    {% endif %}
+                    <ul {% if site_settings.show_admin_section_expander %}ng-show="sectionActive('{{ page.pk }}')"{% endif %}>
                         {% with page.get_sections_cms as sections %}
                         {% for section in sections %}
                         <li class="section">

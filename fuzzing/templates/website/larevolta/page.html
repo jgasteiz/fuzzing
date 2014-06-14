@@ -1,52 +1,52 @@
 {% extends "website/larevolta/base.html" %}
 
 {% block content %}
-	{% spaceless %}
-	<article class="page" style="padding: 0 {{ page.side_offset }};">
-		<div class="grid">
+    {% spaceless %}
+    <article class="page" style="padding: 0 {{ page.side_offset }};">
+        <div class="grid">
             {% if page.parent_page %}
             <div class="grid__item one-whole">
                 <a class="go-back" href="{{ page.parent_page.get_relative_url }}">Atrás</a>
             </div>
             {% endif %}
-			{% if page.left_text %}
-			<div class="grid__item one-quarter palm--one-whole page__left-text">
-				{{ page.left_text|safe }}
-			</div>
-			{% endif %}
-			<div class="grid__item {{ page.get_layout_size }} palm--one-whole">
-				<div class="grid">
-				{% for section in page.get_sections %}
-					{% include section.template_name %}
-				{% empty %}
-					<h1 class="grid__item one-whole">No sections</h1>
-				{% endfor %}
-				</div>
-			</div>
-			{% if page.right_text %}
-			<div class="grid__item one-quarter palm--one-whole page__left-text">
-				{{ page.right_text|safe }}
-			</div>
-			{% endif %}
-			{% if page.is_long_page %}
-			<div class="grid__item one-whole">
-				<a class="go-up" href="#">Subir</a>
-			</div>
-			{% endif %}
-		</div>
-		{% if page.show_share %}
-			<div class="share-wrp">
-				{% include "website/larevolta/share.html" %}
-			</div>
-		{% endif %}
+            {% if page.left_text %}
+            <div class="grid__item one-quarter palm--one-whole page__left-text">
+                {{ page.left_text|safe }}
+            </div>
+            {% endif %}
+            <div class="grid__item {{ page.get_layout_size }} palm--one-whole">
+                <div class="grid">
+                {% for section in page.get_sections %}
+                    {% include section.template_name %}
+                {% empty %}
+                    <h1 class="grid__item one-whole">No sections</h1>
+                {% endfor %}
+                </div>
+            </div>
+            {% if page.right_text %}
+            <div class="grid__item one-quarter palm--one-whole page__left-text">
+                {{ page.right_text|safe }}
+            </div>
+            {% endif %}
+            {% if page.is_long_page %}
+            <div class="grid__item one-whole">
+                <a class="go-up" href="#">Subir</a>
+            </div>
+            {% endif %}
+        </div>
+        {% if page.show_share %}
+            <div class="share-wrp">
+                {% include "website/larevolta/share.html" %}
+            </div>
+        {% endif %}
 
-	</article>
-	{% endspaceless %}
+    </article>
+    {% endspaceless %}
 
-	{% if page.show_social_icons %}
-	<ul class="social-links">
-		{% include "website/larevolta/social-links.html" %}
-	</ul>
-	{% endif %}
+    {% if page.show_social_icons %}
+    <ul class="social-links">
+        {% include "website/larevolta/social-links.html" %}
+    </ul>
+    {% endif %}
 
 {% endblock content %}
