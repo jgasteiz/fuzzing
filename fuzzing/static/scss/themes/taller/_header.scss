@@ -4,7 +4,7 @@
 	margin-top: -260px;
 	position: absolute;
 	top: 50%;
-	transition: all 0.8s ease-in-out;
+	transition: all $transition-duration ease-in-out;
 	z-index: 99;
 
 	@include respond-to(portable) {
@@ -36,7 +36,7 @@
 	margin-top: 20px;
 	opacity: 0;
 	text-decoration: none;
-	transition: opacity 0.4s ease-in-out;
+	transition: opacity $opacity-duration ease-in-out;
 	z-index: 99;
 	.is-open & {
 		opacity: 1;
@@ -50,7 +50,7 @@
 	margin: 0;
 	background-color: #000;
 	padding: 0 20px;
-	transition: top 0.8s ease-in-out;
+	transition: top $transition-duration ease-in-out;
 	z-index: 100;
 
 	@include respond-to(portable) {

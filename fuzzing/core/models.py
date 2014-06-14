@@ -127,9 +127,17 @@ class Page(BaseModel):
         default=False,
         help_text='If you check this option, the page will show a share link.')
     parent_page = models.ForeignKey(
-        'Page',
+        'self',
         blank=True,
-        null=True)
+        null=True,
+        related_name='parent',
+        help_text='Does this page has a parent page?')
+    redirect_page = models.ForeignKey(
+        'self',
+        blank=True,
+        null=True,
+        related_name='redirect',
+        help_text='Should this page redirect to another page?')
     side_offset = models.CharField(
         max_length=64,
         choices=OFFSET_CHOICES,
@@ -161,6 +169,11 @@ class Page(BaseModel):
         if (self.left_text and not self.right_text) or (self.right_text and not self.left_text):
             return 'two-thirds'
         return 'one-whole'
+
+    def get_url(self):
+        if self.redirect_page:
+            return self.redirect_page.slug
+        return self.slug
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -198,6 +211,9 @@ class Page(BaseModel):
             ),
             WellFieldset('Page parent',
                 'parent_page',
+            ),
+            WellFieldset('Page redirect',
+                'redirect_page',
             ),
             cls.get_button_layout()
         )

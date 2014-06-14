@@ -399,14 +399,12 @@ th {
   font-weight: 400;
   src: local("Droid Sans"), local("DroidSans"), url(../fonts/droid-sans.woff) format("woff");
 }
-
 @font-face {
   font-family: 'Droid Sans';
   font-style: normal;
   font-weight: 700;
   src: local("Droid Sans Bold"), local("DroidSans-Bold"), url(../fonts/droid-sans-bold.woff) format("woff");
 }
-
 /*------------------------------------*\
     $CSSWIZARDRY-GRIDS
 \*------------------------------------*/
@@ -1345,14 +1343,14 @@ img {
 
 article[role="main"] {
   opacity: 0;
-  margin-top: 80px;
-  transition: opacity 0.4s ease-in-out;
+  margin-top: 100px;
+  transition: opacity 0.2s ease-in-out;
 }
 article[role="main"].is-active {
   opacity: 1;
 }
 article[role="main"].with-sub-nav {
-  margin-top: 140px;
+  margin-top: 160px;
 }
 
 .browsehappy {
@@ -1366,7 +1364,7 @@ article[role="main"].with-sub-nav {
   margin-top: -260px;
   position: absolute;
   top: 50%;
-  transition: all 0.8s ease-in-out;
+  transition: all 0.6s ease-in-out;
   z-index: 99;
 }
 @media only screen and (max-width: 960px) {
@@ -1399,7 +1397,7 @@ article[role="main"].with-sub-nav {
   margin-top: 20px;
   opacity: 0;
   text-decoration: none;
-  transition: opacity 0.4s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
   z-index: 99;
 }
 .is-open .header__logo--small {
@@ -1414,7 +1412,7 @@ article[role="main"].with-sub-nav {
   margin: 0;
   background-color: #000;
   padding: 0 20px;
-  transition: top 0.8s ease-in-out;
+  transition: top 0.6s ease-in-out;
   z-index: 100;
 }
 @media only screen and (max-width: 960px) {

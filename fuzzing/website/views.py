@@ -18,9 +18,8 @@ class PageView(DetailView):
         site_settings = SiteSettings.objects.get_or_create()[0]
 
         # Create a list of nav_items with pages slugs and titles.
-        ctx['nav_item_list'] = (
-            [{'slug': page.slug, 'title': page.title} for page in page_list]
-        )
+        ctx['nav_item_list'] = ({'url': page.get_url(), 'slug': page.slug, 'title': page.title} for page in page_list)
+
         ctx['site_settings'] = site_settings
 
         # Replace the `theme` directory with the current theme.
@@ -33,15 +32,13 @@ class PageView(DetailView):
         page_children = Page.objects.published().filter(parent_page=self.object)
         if page_children:
             ctx['sub_nav_item_list'] = (
-                [{'slug': page.slug, 'title': page.title} for page in page_children]
+                [{'url': page.get_url(), 'slug': page.slug, 'title': page.title} for page in page_children]
             )
 
         # Check if current page has parent and pick its siblings for the sub nav.
         if self.object.parent_page:
             page_siblings = Page.objects.published().filter(parent_page=self.object.parent_page)
-            ctx['sub_nav_item_list'] = (
-                [{'slug': page.slug, 'title': page.title} for page in page_siblings]
-            )
+            ctx['sub_nav_item_list'] = ({'url': page.get_url(), 'slug': page.slug, 'title': page.title} for page in page_siblings)
 
         if 'current_page' in ctx or 'nav-open' in self.request.GET:
             ctx['nav_open'] = True
