@@ -7,7 +7,7 @@
 	<form action="" method="post">{% csrf_token %}
 		<p>Are you sure you want to delete "{{ object }}"?</p>
 		<button type="submit" class="btn btn-danger">Delete</button>
-		<a href="{% url 'pages' %}" class="btn btn-primary" type="button">Cancel</a>
+		<a href="{% url 'page_list' %}" class="btn btn-primary" type="button">Cancel</a>
 	</form>
 
 {% endblock content %}

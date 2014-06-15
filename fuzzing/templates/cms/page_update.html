@@ -7,5 +7,6 @@
 
 {% block content %}
 	<h1>Edit page</h1>
+    <a class="btn btn-sm btn-default" href="{% url 'page_detail' page.pk %}">Back to page details</a>
 	{% crispy form form.helper %}
 {% endblock content %}

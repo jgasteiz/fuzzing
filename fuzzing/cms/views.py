@@ -2,7 +2,7 @@ from django.conf import settings
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login as auth_login, logout as auth_logout
 from django.contrib.auth.decorators import login_required
-from django.core.urlresolvers import reverse_lazy
+from django.core.urlresolvers import reverse_lazy, reverse
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, get_object_or_404
 from django.utils.decorators import method_decorator
@@ -104,10 +104,17 @@ class UpdateSiteSettings(CMSMixin, generic.edit.UpdateView):
 
 
 # Pages
-class PagesView(CMSMixin, generic.ListView):
+class PageList(CMSMixin, generic.ListView):
     context_object_name = "page_list"
     model = models.Page
-    template_name = 'cms/pages.html'
+    template_name = 'cms/page_list.html'
+    url = 'page'
+
+
+class PageDetail(CMSMixin, generic.DetailView):
+    context_object_name = "page"
+    model = models.Page
+    template_name = 'cms/page_detail.html'
     url = 'page'
 
 
@@ -115,27 +122,31 @@ class CreatePage(CMSMixin, generic.edit.CreateView):
     form_class = forms.PageForm
     model = models.Page
     template_name = 'cms/page_create.html'
-    success_url = reverse_lazy('pages')
     url = 'page'
+
+    def get_success_url(self):
+        return reverse('page_detail', kwargs={'pk': self.object.pk})
 
 
 class UpdatePage(CMSMixin, generic.edit.UpdateView):
     form_class = forms.PageForm
     model = models.Page
     template_name = 'cms/page_update.html'
-    success_url = reverse_lazy('pages')
     url = 'page'
+
+    def get_success_url(self):
+        return reverse('page_detail', kwargs={'pk': self.object.pk})
 
 
 class DeletePage(CMSMixin, generic.edit.DeleteView):
     model = models.Page
     template_name = 'cms/page_confirm_delete.html'
-    success_url = reverse_lazy('pages')
+    success_url = reverse_lazy('page_list')
     url = 'page'
 
 
 class SetPageWeight(CMSMixin, generic.edit.View):
-    success_url = reverse_lazy('pages')
+    success_url = reverse_lazy('page_list')
 
     def get(self, request, *args, **kwargs):
         pk = int(self.kwargs['pk'])
@@ -158,7 +169,6 @@ class SectionObjectsMixin(object):
 
 class CreateSection(SectionObjectsMixin, CMSMixin, generic.edit.CreateView):
     template_name = 'cms/section_create.html'
-    success_url = reverse_lazy('pages')
     url = 'section'
 
     def get_initial(self):
@@ -166,10 +176,12 @@ class CreateSection(SectionObjectsMixin, CMSMixin, generic.edit.CreateView):
         initial['page'] = int(self.kwargs['page_pk'])
         return initial
 
+    def get_success_url(self):
+        return reverse('page_detail', kwargs={'pk': self.kwargs['page_pk']})
+
 
 class UpdateSection(SectionObjectsMixin, CMSMixin, generic.edit.UpdateView):
     template_name = 'cms/section_update.html'
-    success_url = reverse_lazy('pages')
     url = 'section'
 
     def get_form_kwargs(self):
@@ -186,11 +198,13 @@ class UpdateSection(SectionObjectsMixin, CMSMixin, generic.edit.UpdateView):
         self.queryset = SECTIONS_DICT[section_name]['model'].objects.all()
         return self.object
 
+    def get_success_url(self):
+        return reverse('page_detail', kwargs={'pk': self.object.page.pk})
+
 
 
 class DeleteSection(CMSMixin, generic.edit.DeleteView):
     template_name = 'cms/section_confirm_delete.html'
-    success_url = reverse_lazy('pages')
     url = 'section'
 
     def get_object(self, queryset=None):
@@ -203,19 +217,19 @@ class DeleteSection(CMSMixin, generic.edit.DeleteView):
     def delete(self, request, *args, **kwargs):
         self.object = self.get_object()
         self.object.delete()
-        return redirect(self.success_url)
+        return self.get_success_url()
+
+    def get_success_url(self):
+        return reverse('page_detail', kwargs={'pk': self.object.page.pk})
 
 
 class SetSectionWeight(CMSMixin, generic.edit.View):
-    success_url = reverse_lazy('pages')
-
     def get(self, request, *args, **kwargs):
         pk = int(self.kwargs['pk'])
         section_name = self.kwargs['section']
         weight = int(self.kwargs['weight'])
         section = get_object_or_404(SECTIONS_DICT[section_name]['model'], pk=pk)
 
-        # TODO: all sections weights should go from `0` to `num_sections - 1`
         if weight < 0:
             new_weight = section.weight - 1 if section.weight > 0 else 0
         elif weight > 0:
@@ -228,12 +242,8 @@ class SetSectionWeight(CMSMixin, generic.edit.View):
         section = ordered_sections.pop(section_index)
         ordered_sections.insert(new_weight, section)
 
-        # import ipdb; ipdb.set_trace()
-
         for i in range(0, len(ordered_sections)):
             ordered_sections[i].weight = i
             ordered_sections[i].save()
 
-        # import ipdb; ipdb.set_trace()
-
-        return redirect(self.success_url)
+        return redirect(reverse('page_detail', kwargs={'pk': section.page.pk}))

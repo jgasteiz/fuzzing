@@ -70,20 +70,6 @@ class SiteSettings(models.Model):
         default=True,
         help_text='Do you want to hide the sections automatically in the Admin?')
 
-    @classmethod
-    def get_form_layout(cls):
-        return Layout(
-            WellFieldset('Site Settings',
-                'site_name',
-                'site_theme',
-                'show_admin_section_expander',
-            ),
-            FormActions(
-                Submit('submit', 'Submit'),
-                HTML('<a class="btn btn-default" href="{% url \'pages\' %}">Cancel</a>'),
-            )
-        )
-
 
 class BaseManager(models.Manager):
     def published(self):
@@ -108,15 +94,6 @@ class BaseModel(models.Model):
             WellFieldset('Basic details',
                 'published',
                 'weight',
-            )
-        )
-
-    @classmethod
-    def get_button_layout(cls):
-        return Layout(
-            FormActions(
-                Submit('submit', 'Submit'),
-                HTML('<a class="btn btn-default" href="{% url \'pages\' %}">Cancel</a>'),
             )
         )
 
@@ -246,7 +223,6 @@ class Page(BaseModel):
             WellFieldset('Page redirect',
                 'redirect_page',
             ),
-            cls.get_button_layout()
         )
 
     def get_sections(self, published=True):
@@ -361,7 +337,6 @@ class ImageSection(ImageSectionMixin, LayoutMixin, Section):
             WellFieldset('Page containing this section',
                 'page',
             ),
-            cls.get_button_layout()
         )
 
 
@@ -405,7 +380,6 @@ class ImageLinkSection(ImageSectionMixin, LayoutMixin, Section):
             WellFieldset('Parent page',
                 'page',
             ),
-            cls.get_button_layout()
         )
 
 
@@ -468,7 +442,6 @@ class VideoSection(LayoutMixin, Section):
                 'Page containing this section',
                 'page',
             ),
-            cls.get_button_layout()
         )
 
 
@@ -496,7 +469,6 @@ class TextSection(TextSectionMixin, LayoutMixin, Section):
             WellFieldset('Parent page',
                 'page',
             ),
-            cls.get_button_layout()
         )
 
 
@@ -556,7 +528,6 @@ class BackgroundImageTextSection(ImageSectionMixin, TextSectionMixin, Section):
             WellFieldset('Section\'s page',
                 'page',
             ),
-            cls.get_button_layout()
         )
 
 
@@ -568,7 +539,6 @@ class SeparatorSection(Section):
             WellFieldset('Section\'s page',
                 'page',
             ),
-            cls.get_button_layout()
         )
 
 

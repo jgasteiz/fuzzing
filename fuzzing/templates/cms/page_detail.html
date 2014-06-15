@@ -9,19 +9,11 @@
 
     <div class="row">
         <div class="col-md-6">
-            <h1>Pages</h1>
-            <div class="button-holder">
-                <input type="text" class="form-control" ng-model="search" placeholder="Search page by name"/>
-            </div>
-        </div>
-        <div class="col-md-6 text-right">
-            <div class="button-holder">
-                <a href="{% url 'create_page' %}" class="btn btn-primary">Create page</a>
-            </div>
+            <h1>Page: {{ page.title }}</h1>
+            <a class="btn btn-sm btn-default" href="{% url 'page_list' %}">Back to pages</a>
         </div>
     </div>
 
-    {% for page in page_list %}
     <div ng-hide="isExcludedByFilter('{{ page.title }}')">
         <div class="page well">
             <div class="pull-right">
@@ -40,6 +32,11 @@
                 <strong>Page side offset: </strong>{{ page.side_offset }}
             </div>
             <div class="page__actions button-holder">
+                <div class="button-holder">
+                    <a href="{% url 'update_page' page.pk %}" class="btn btn-default"><span class="glyphicon glyphicon-edit"></span> Edit page</a>
+                    <a href="{% url 'delete_page' page.pk %}" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Delete page</a>
+                </div>
+                <hr/>
                 <div class="btn-group">
                     <button type="button" class="btn btn-sm btn-primary">Add section</button>
                     <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown">
@@ -54,20 +51,6 @@
                 </div>
                 <button ng-click="openModal('{% url 'page' page.slug %}')" type="button" class="btn btn-sm btn-info">Preview</button>
                 <hr/>
-                <div class="btn-group">
-                    <a class="btn btn-sm btn-default" href="{% url 'update_page' page.pk %}">
-                        <span class="glyphicon glyphicon-edit"></span> Edit
-                    </a>
-                    <a class="btn btn-sm btn-default" href="{% url 'delete_page' page.pk %}">
-                        <span class="glyphicon glyphicon-trash"></span> Delete
-                    </a>
-                    <a class="btn btn-sm btn-default" href="{% url 'set_page_weight' page.pk -1 %}">
-                        <span class="glyphicon glyphicon-arrow-up"></span> Move page up
-                    </a>
-                    <a class="btn btn-sm btn-default" href="{% url 'set_page_weight' page.pk 1 %}">
-                        <span class="glyphicon glyphicon-arrow-down"></span> Move page down
-                    </a>
-                </div>
             </div>
             <div class="page__sections">
                 <strong>Page sections:</strong>
@@ -117,6 +100,5 @@
             </div>
         </div>
     </div>
-    {% endfor %}
 </div>
 {% endblock content %}

@@ -1,4 +1,5 @@
-from django.conf.urls import patterns, include, url
+from django.conf.urls import patterns, url
+from django.views.generic import RedirectView
 
 from . import views
 
@@ -15,8 +16,11 @@ urlpatterns = patterns('',
         views.UpdateSiteSettings.as_view(), name='update_settings'),
 
     # Pages
-    url(r'^$', views.PagesView.as_view(), name='pages'),
-    url(r'^pages/$', views.PagesView.as_view(), name='pages'),
+    url(r'^$', RedirectView.as_view(url='/cms/page_list/'), name='cms'),
+    url(r'^page_list/$', views.PageList.as_view(), name='page_list'),
+    url(r'^page_detail/(?P<pk>[-\d]+)/$',
+        views.PageDetail.as_view(), name='page_detail'),
+
     url(r'^create_page/$', views.CreatePage.as_view(), name='create_page'),
     url(r'^update_page/(?P<pk>[-\d]+)/$',
         views.UpdatePage.as_view(), name='update_page'),
