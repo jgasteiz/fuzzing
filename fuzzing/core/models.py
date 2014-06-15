@@ -23,6 +23,14 @@ LAYOUT_CMS = {
     u'two-thirds': u'col-lg-8',
 }
 
+OFFSET_CMS = {
+    u'no-offset': u'no-offset',
+    u'offset--one-quarter': u'col-lg-offset-3',
+    u'offset--one-third': u'col-lg-offset-4',
+    u'offset--one-half': u'col-lg-offset-2',
+    u'offset--two-thirds': u'col-lg-offset-8',
+}
+
 ALIGNMENT_CHOICES = (
     (u'top', u'Top Aligned'),
     (u'middle', u'Middle Aligned'),
@@ -300,6 +308,11 @@ class LayoutMixin(models.Model):
 
     def layout_cms(self):
         return LAYOUT_CMS[self.layout]
+
+    def offset_cms(self):
+        if self.offset:
+            return OFFSET_CMS[self.offset]
+        return ''
 
 
 class TextSectionMixin(models.Model):

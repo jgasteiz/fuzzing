@@ -6380,7 +6380,8 @@ textarea.form-control {
 }
 
 .section {
-  margin: 10px 0;
+  margin-bottom: 10px;
+  margin-top: 10px;
 }
 
 .section-border {

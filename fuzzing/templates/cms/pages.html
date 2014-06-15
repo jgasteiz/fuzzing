@@ -81,7 +81,7 @@
                 {% with page.get_sections_cms as sections %}
                 {% for section in sections %}
                 {% if section.layout %}
-                    <div class="section section-border {{ section.layout_cms }}">
+                    <div class="section section-border {{ section.layout_cms }} {{ section.offset_cms }}">
                         <span class="section__class">{{ section.weight }} - {{ section.get_class }}</span>
                         <span class="section__layout"><strong>Section layout:</strong> {{ section.layout }}</span>
                         <div class="section__section">{{ section.preview|safe }}</div>

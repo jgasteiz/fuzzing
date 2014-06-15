@@ -215,13 +215,25 @@ class SetSectionWeight(CMSMixin, generic.edit.View):
         weight = int(self.kwargs['weight'])
         section = get_object_or_404(SECTIONS_DICT[section_name]['model'], pk=pk)
 
-        # TODO: all sections weights should go from 0 to `num_sections`
-        # page_sections = section.page.get_sections()
-
-        if weight < 0 and section.weight > 0:
-            section.weight = section.weight - 1
-            section.save()
+        # TODO: all sections weights should go from `0` to `num_sections - 1`
+        if weight < 0:
+            new_weight = section.weight - 1 if section.weight > 0 else 0
         elif weight > 0:
-            section.weight = section.weight + 1
-            section.save()
+            new_weight = section.weight + 1
+        else:
+            new_weight = section.weight
+
+        ordered_sections = list(section.page.get_sections())
+        section_index = ordered_sections.index(section)
+        section = ordered_sections.pop(section_index)
+        ordered_sections.insert(new_weight, section)
+
+        # import ipdb; ipdb.set_trace()
+
+        for i in range(0, len(ordered_sections)):
+            ordered_sections[i].weight = i
+            ordered_sections[i].save()
+
+        # import ipdb; ipdb.set_trace()
+
         return redirect(self.success_url)
