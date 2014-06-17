@@ -38,7 +38,7 @@ class SiteSettingsForm(FormHelperMixin, forms.ModelForm):
         model = models.SiteSettings
 
     def get_cancel_url(self):
-        return reverse('settings')
+        return reverse('settings', kwargs={'pk': self.instance.pk})
 
 
 class PageForm(FormHelperMixin, forms.ModelForm):

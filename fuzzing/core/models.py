@@ -66,9 +66,15 @@ class SiteSettings(models.Model):
         max_length=255,
         blank=True,
         choices=settings.THEME_CHOICES)
-    show_admin_section_expander = models.BooleanField(
-        default=True,
-        help_text='Do you want to hide the sections automatically in the Admin?')
+
+    @classmethod
+    def get_form_layout(cls):
+        return Layout(
+            WellFieldset('Site settings',
+                'site_name',
+                'site_theme',
+            ),
+        )
 
 
 class BaseManager(models.Manager):

@@ -29,25 +29,6 @@ fuzzing.app.controller('PageListCtrl', function($scope) {
 		return !(name.indexOf(search) !== -1);
 	};
 
-	/**
-	 * Return visibility of a page sections area.
-	 *
-	 * @param pageId
-	 * @returns {*}
-	 */
-	$scope.sectionActive = function(pageId) {
-		return _visiblePageSections[pageId]
-	};
-
-	/**
-	 * Toggles page sections area visibility.
-	 *
-	 * @param pageId
-	 */
-	$scope.toggleSections = function(pageId) {
-		_visiblePageSections[pageId] = !_visiblePageSections[pageId];
-	};
-
 	$scope.openModal = function(url) {
 		$scope.modalOpen = true;
 		$scope.previewUrl = url;
