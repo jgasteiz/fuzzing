@@ -26,6 +26,7 @@ TEMPLATE_DEBUG = True
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.request',
+    'django.core.context_processors.i18n',
 )
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '188.226.146.75']
@@ -37,6 +38,7 @@ TEMPLATE_DIRS = (
 # Application definition
 
 INSTALLED_APPS = (
+    'localeurl',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -52,10 +54,21 @@ INSTALLED_APPS = (
     'fuzzing.cms',
     'fuzzing.website',
     'gunicorn',
+    'modeltranslation',
 )
+
+gettext = lambda s: s
+LANGUAGES = (
+    ('es', gettext('CAST')),
+    ('ca', gettext('CAT')),
+    ('en', gettext('EN')),
+)
+
+MODELTRANSLATION_DEFAULT_LANGUAGE = 'es'
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'localeurl.middleware.LocaleURLMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',

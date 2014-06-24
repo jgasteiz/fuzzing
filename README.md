@@ -18,6 +18,7 @@
 - `dropdb dbname`
 - `createdb dbname`
 - `psql dbname < filename.sql`
+- i.e. `dropdb larevolta && createdb larevolta && psql larevolta < ~/Desktop/larevolta-06-24-2014.sql`
 
 
 ## Useful tips

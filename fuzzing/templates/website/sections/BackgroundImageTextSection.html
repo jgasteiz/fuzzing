@@ -1,17 +1,17 @@
 <section class="section grid__item BackgroundImageTextSection tablet--one-whole">
-	<div class="BackgroundImageTextSection__image" style="
-			background-image: url({{ section.get_image_url }});
-			background-position: {{ section.background_position }};
-			color: {{ section.text_color }}">
-		<div class="grid {% ifequal section.text_side 'right' %}grid--right{% endifequal %}">
-			<div class="grid__item one-third palm--one-whole">
-				{% if section.title %}
-				<h1 class="TextSection__title">{{ section.title }}</h1>
-				{% endif %}
-				{% if section.text %}
-				<div class="TextSection__text">{{ section.text|safe }}</div>
-				{% endif %}
-			</div>
-		</div>
-	</div>
+    <div class="BackgroundImageTextSection__image" style="
+            background-image: url({{ section.get_image_url }});
+            background-position: {{ section.background_position }};
+            color: {{ section.text_color }}">
+        <div class="grid {% ifequal section.text_side 'right' %}grid--right{% endifequal %}">
+            <div class="grid__item one-third palm--one-whole">
+                {% if section.title %}
+                <h1 class="TextSection__title">{{ section.title }}</h1>
+                {% endif %}
+                {% if section.text %}
+                <div class="TextSection__text">{{ section.text|safe }}</div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
 </section>

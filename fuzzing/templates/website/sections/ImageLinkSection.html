@@ -1,12 +1,13 @@
+{% load localeurl_tags %}
 <div class="section ImageLinkSection grid__item {{ section.layout }} {{ section.offset }} palm--one-whole tablet--one-whole"
-		style="vertical-align: {{ section.alignment }};">
-	<a class="ImageLinkSection__image-wrp" href="{% url 'page' section.link %}">
-		<img class="ImageLinkSection__image" src="{{ section.get_image_url }}" alt=""/>
-		<div class="ImageLinkSection__overlay center-wrapper">
-			<div class="center-item">
-				<span class="ImageLinkSection__title">{{ section.title }}</span>
-				<span class="ImageLinkSection__subtitle">{{ section.subtitle }}</span>
-			</div>
-		</div>
-	</a>
+        style="vertical-align: {{ section.alignment }};">
+    <a class="ImageLinkSection__image-wrp" href="{% url 'page' section.link %}">
+        <img class="ImageLinkSection__image" src="{{ section.get_image_url }}" alt=""/>
+        <div class="ImageLinkSection__overlay center-wrapper">
+            <div class="center-item">
+                <span class="ImageLinkSection__title">{{ section.title }}</span>
+                <span class="ImageLinkSection__subtitle">{{ section.subtitle }}</span>
+            </div>
+        </div>
+    </a>
 </div>

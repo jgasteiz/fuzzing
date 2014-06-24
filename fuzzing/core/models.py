@@ -116,6 +116,7 @@ class BaseModel(models.Model):
 class Page(BaseModel):
     """"""
     title = models.CharField(
+        blank=True,
         help_text='Title of the page',
         max_length=36)
     slug = models.CharField(
@@ -205,17 +206,26 @@ class Page(BaseModel):
     def get_form_layout(cls):
         return Layout(
             cls.get_basic_layout(),
-            WellFieldset('Page details',
-                'title',
+            WellFieldset(
+                'Page details',
+                'title_es',
+                'title_en',
+                'title_ca',
                 'slug',
             ),
-            WellFieldset('Side texts',
-                'left_text',
+            WellFieldset(
+                'Side texts',
+                'left_text_es',
+                'left_text_en',
+                'left_text_ca',
                 HTML('<p>If you write text here, the page will have a left column with this content.</p>'),
-                'right_text',
+                'right_text_es',
+                'right_text_en',
+                'right_text_ca',
                 HTML('<p>If you write text here, the page will have a right column with this content.</p>'),
             ),
-            WellFieldset('Page layout',
+            WellFieldset(
+                'Page layout',
                 'in_navigation',
                 'is_home_page',
                 'side_offset',
@@ -223,10 +233,12 @@ class Page(BaseModel):
                 'show_social_icons',
                 'show_share',
             ),
-            WellFieldset('Page parent',
+            WellFieldset(
+                'Page parent',
                 'parent_page',
             ),
-            WellFieldset('Page redirect',
+            WellFieldset(
+                'Page redirect',
                 'redirect_page',
             ),
         )
@@ -332,7 +344,9 @@ class ImageSection(ImageSectionMixin, LayoutMixin, Section):
         return Layout(
             cls.get_basic_layout(),
             WellFieldset('Section details',
-                'title',
+                'title_es',
+                'title_en',
+                'title_ca',
                 'image',
             ),
             WellFieldset('Section layout',
@@ -372,18 +386,25 @@ class ImageLinkSection(ImageSectionMixin, LayoutMixin, Section):
     def get_form_layout(cls):
         return Layout(
             cls.get_basic_layout(),
-            WellFieldset('Section details',
-                'title',
-                'subtitle',
+            WellFieldset(
+                'Section details',
+                'title_es',
+                'title_en',
+                'title_ca',
+                'subtitle_es',
+                'subtitle_en',
+                'subtitle_ca',
                 'link',
                 'image',
             ),
-            WellFieldset('Section layout',
+            WellFieldset(
+                'Section layout',
                 'layout',
                 'offset',
                 'alignment',
             ),
-            WellFieldset('Parent page',
+            WellFieldset(
+                'Parent page',
                 'page',
             ),
         )
@@ -432,7 +453,9 @@ class VideoSection(LayoutMixin, Section):
             cls.get_basic_layout(),
             WellFieldset(
                 'Section details',
-                'title',
+                'title_es',
+                'title_en',
+                'title_ca',
                 'youtube_id',
                 'vimeo_id',
                 'width',
@@ -463,9 +486,14 @@ class TextSection(TextSectionMixin, LayoutMixin, Section):
     def get_form_layout(cls):
         return Layout(
             cls.get_basic_layout(),
-            WellFieldset('Section details',
-                'title',
-                'text',
+            WellFieldset(
+                'Section details',
+                'title_es',
+                'title_en',
+                'title_ca',
+                'text_es',
+                'text_en',
+                'text_ca',
             ),
             WellFieldset('Section layout',
                 'layout',
@@ -523,9 +551,14 @@ class BackgroundImageTextSection(ImageSectionMixin, TextSectionMixin, Section):
     def get_form_layout(cls):
         return Layout(
             cls.get_basic_layout(),
-            WellFieldset('Section details',
-                'title',
-                'text',
+            WellFieldset(
+                'Section details',
+                'title_es',
+                'title_en',
+                'title_ca',
+                'text_es',
+                'text_en',
+                'text_ca',
                 'image',
                 'text_color',
                 'text_side',
@@ -542,7 +575,8 @@ class SeparatorSection(Section):
     def get_form_layout(cls):
         return Layout(
             cls.get_basic_layout(),
-            WellFieldset('Section\'s page',
+            WellFieldset(
+                'Section\'s page',
                 'page',
             ),
         )

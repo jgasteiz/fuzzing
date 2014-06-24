@@ -1,9 +1,9 @@
 <section class="section TextSection grid__item {{ section.layout }} {{ section.offset }} palm--one-whole tablet--one-whole"
-	style="vertical-align: {{ section.alignment }};">
-	{% if section.title %}
-	<h1 class="TextSection__title">{{ section.title }}</h1>
-	{% endif %}
-	{% if section.text %}
-	<div class="TextSection__text">{{ section.text|safe }}</div>
-	{% endif %}
+    style="vertical-align: {{ section.alignment }};">
+    {% if section.title %}
+    <h1 class="TextSection__title">{{ section.title }}</h1>
+    {% endif %}
+    {% if section.text %}
+    <div class="TextSection__text">{{ section.text|safe }}</div>
+    {% endif %}
 </section>

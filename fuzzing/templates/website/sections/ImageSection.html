@@ -1,10 +1,10 @@
 <section class="section ImageSection grid__item {{ section.layout }} {{ section.offset }} palm--one-whole tablet--one-whole"
-	style="vertical-align: {{ section.alignment }};">
-	<div class="ImageSection__image-wrapper">
-		<img src="{{ section.get_image_url }}" alt="">
-		<div class="ImageSection__overlay"></div>
-	</div>
-	{% if section.title %}
-		<h1 class="ImageSection__title">{{ section.title }}</h1>
-	{% endif %}
+    style="vertical-align: {{ section.alignment }};">
+    <div class="ImageSection__image-wrapper">
+        <img src="{{ section.get_image_url }}" alt="">
+        <div class="ImageSection__overlay"></div>
+    </div>
+    {% if section.title %}
+        <h1 class="ImageSection__title">{{ section.title }}</h1>
+    {% endif %}
 </section>

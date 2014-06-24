@@ -42,8 +42,18 @@ class SiteSettingsForm(FormHelperMixin, forms.ModelForm):
 
 
 class PageForm(FormHelperMixin, forms.ModelForm):
-    left_text = forms.CharField(required=False, widget=TinyMCE(attrs={'cols': 120, 'rows': 20}))
-    right_text = forms.CharField(required=False, widget=TinyMCE(attrs={'cols': 120, 'rows': 20}))
+    left_text_es = forms.CharField(
+        required=False, widget=TinyMCE(attrs={'cols': 120, 'rows': 20}))
+    left_text_en = forms.CharField(
+        required=False, widget=TinyMCE(attrs={'cols': 120, 'rows': 20}))
+    left_text_ca = forms.CharField(
+        required=False, widget=TinyMCE(attrs={'cols': 120, 'rows': 20}))
+    right_text_es = forms.CharField(
+        required=False, widget=TinyMCE(attrs={'cols': 120, 'rows': 20}))
+    right_text_en = forms.CharField(
+        required=False, widget=TinyMCE(attrs={'cols': 120, 'rows': 20}))
+    right_text_ca = forms.CharField(
+        required=False, widget=TinyMCE(attrs={'cols': 120, 'rows': 20}))
 
     class Meta:
         model = models.Page
@@ -67,7 +77,12 @@ class SectionFormMixin(FormHelperMixin):
 
 
 class BackgroundImageTextSectionForm(SectionFormMixin, forms.ModelForm):
-    text = forms.CharField(required=False, widget=TinyMCE(attrs={'cols': 120, 'rows': 20}))
+    text_es = forms.CharField(
+        required=False, widget=TinyMCE(attrs={'cols': 120, 'rows': 20}))
+    text_en = forms.CharField(
+        required=False, widget=TinyMCE(attrs={'cols': 120, 'rows': 20}))
+    text_ca = forms.CharField(
+        required=False, widget=TinyMCE(attrs={'cols': 120, 'rows': 20}))
 
     class Meta:
         model = models.BackgroundImageTextSection
@@ -90,7 +105,12 @@ class ImageLinkSectionForm(SectionFormMixin, forms.ModelForm):
 
 
 class TextSectionForm(SectionFormMixin, forms.ModelForm):
-    text = forms.CharField(required=False, widget=TinyMCE(attrs={'cols': 120, 'rows': 20}))
+    text_es = forms.CharField(
+        required=False, widget=TinyMCE(attrs={'cols': 120, 'rows': 20}))
+    text_en = forms.CharField(
+        required=False, widget=TinyMCE(attrs={'cols': 120, 'rows': 20}))
+    text_ca = forms.CharField(
+        required=False, widget=TinyMCE(attrs={'cols': 120, 'rows': 20}))
 
     class Meta:
         model = models.TextSection

@@ -1,69 +1,79 @@
 {% load staticfiles %}
+{% load localeurl_tags %}
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>{% block page_title %}{{ site_settings.site_name }}{% endblock page_title %}</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{% block page_title %}{{ site_settings.site_name }}{% endblock page_title %}</title>
 
-	<meta name="keywords" content="fotografía, publicidad, diseño grafico, barcelona, identidad visual corporativa, diseño editorial, logotipos, freelance" />
-	<meta name="title" content="La Revolta">
-	<meta name="author" content="Sandra Solorzano">
-	<meta name="description" content="Photography and Graphic Design">
-	<meta name="viewport" content="width=device-width">
-	<meta name="robots" content="index, follow" />
+    <meta name="keywords" content="fotografía, publicidad, diseño grafico, barcelona, identidad visual corporativa, diseño editorial, logotipos, freelance" />
+    <meta name="title" content="La Revolta">
+    <meta name="author" content="Sandra Solorzano">
+    <meta name="description" content="Photography and Graphic Design">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="index, follow" />
 
-	<link rel="shortcut icon" href="{% static "img/larevolta/favicon.png" %}">
+    <link rel="shortcut icon" href="{% static "img/larevolta/favicon.png" %}">
 
-	<link rel="stylesheet" href="{% static "css/larevolta.css" %}">
+    <link rel="stylesheet" href="{% static "css/larevolta.css" %}">
 </head>
 <body>
-	<!--[if lt IE 10]>
-		<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-	<![endif]-->
+    <!--[if lt IE 10]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
 
-	<header id="header" class="header">
-		{% spaceless %}
-		<nav class="navigation">
-			<a href="/" class="navigation__brand">
-				<span class="sprite sprite-logo navigation__logo"></span>
-				<span class="sprite sprite-logo-mobile navigation__logo-mobile"></span>
-			</a>
-			<ul class="navigation-links">
-				{% for nav_item in nav_item_list %}
-				<li>
-					<a class="navigation-link navigation-link--{{ nav_item.slug }} {% ifequal nav_item.slug current_page %}is-active{% endifequal %}"
-						href="/{{ nav_item.slug }}/">{{ nav_item.title }}</a>
-				</li>
-				{% endfor %}
-			</ul>
-		</nav>
-		{% endspaceless %}
-	</header>
+    <header id="header" class="header">
+        {% spaceless %}
+        <nav class="navigation">
+            <ul class="language-links">
+                {% for lang in LANGUAGES %}
+                    {% ifequal lang.0 LANGUAGE_CODE %}
+                        <li class="is-active"><a>{{ lang.1 }}</a></li>
+                    {% else %}
+                        <li><a href="{{ request.path|chlocale:lang.0 }}">{{ lang.1 }}</a></li>
+                    {% endifequal %}
+                {% endfor %}
+            </ul>
+            <a href="{% url 'home' %}" class="navigation__brand">
+                <span class="sprite sprite-logo navigation__logo"></span>
+                <span class="sprite sprite-logo-mobile navigation__logo-mobile"></span>
+            </a>
+            <ul class="navigation-links">
+                {% for nav_item in nav_item_list %}
+                <li>
+                    <a class="navigation-link navigation-link--{{ nav_item.slug }} {% ifequal nav_item.slug current_page %}is-active{% endifequal %}"
+                        href="{% url 'page' nav_item.slug %}">{{ nav_item.title }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </nav>
+        {% endspaceless %}
+    </header>
 
-	<article id="main" role="main">{% block content %}{% endblock content %}</article>
+    <article id="main" role="main">{% block content %}{% endblock content %}</article>
 
-	<footer class="footer">
-		<p>© 2014 Sandra Solorzano</p>
-	</footer>
+    <footer class="footer">
+        <p>© 2014 Sandra Solorzano</p>
+    </footer>
 
-	<script src="{% static "bower_components/jquery/dist/jquery.min.js" %}"></script>
+    <script src="{% static "bower_components/jquery/dist/jquery.min.js" %}"></script>
 
-	{% if not request.user.is_authenticated %}
-	<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-	<script>
-		(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-		function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-		e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-		e.src='//www.google-analytics.com/analytics.js';
-		r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-		ga('create','UA-51535781-1');ga('send','pageview');
-	</script>
-	{% endif %}
+    {% if not request.user.is_authenticated %}
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+    <script>
+        (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+        function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+        e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+        e.src='//www.google-analytics.com/analytics.js';
+        r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+        ga('create','UA-51535781-1');ga('send','pageview');
+    </script>
+    {% endif %}
 
-	<script src="{% static "js/larevolta/larevolta.js" %}"></script>
+    <script src="{% static "js/larevolta/larevolta.js" %}"></script>
 </body>
 </html>

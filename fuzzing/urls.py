@@ -7,7 +7,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^tinymce/', include('tinymce.urls')),
-
+    url(r'^localeurl/', include('localeurl.urls')),
     url(r'^cms/', include('fuzzing.cms.urls')),
 
     url(r'^$', PageView.as_view(), name='home'),

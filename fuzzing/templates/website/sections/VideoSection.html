@@ -1,6 +1,6 @@
 <section class="section VideoSection grid__item {{ section.layout }} {{ section.offset }} palm--one-whole tablet--one-whole"
-	style="vertical-align: {{ section.alignment }};">
-	<div class="VideoSection__video-wrapper">
+    style="vertical-align: {{ section.alignment }};">
+    <div class="VideoSection__video-wrapper">
         {% if section.youtube_id %}
         {% elif section.vimeo_id %}
         <iframe src="//player.vimeo.com/video/{{ section.vimeo_id }}"
@@ -9,8 +9,8 @@
                 frameborder="0"
                 webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
         {% endif %}
-	</div>
-	{% if section.title %}
-		<h1 class="VideoSection__title">{{ section.title }}</h1>
-	{% endif %}
+    </div>
+    {% if section.title %}
+        <h1 class="VideoSection__title">{{ section.title }}</h1>
+    {% endif %}
 </section>

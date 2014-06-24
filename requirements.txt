@@ -7,8 +7,11 @@ South==0.8.4
 coverage==3.7.1
 django-crispy-forms==1.4.0
 django-debug-toolbar==1.0.1
+django-localeurl==2.0.1
+django-modeltranslation==0.7.3
 django-reversion==1.8.0
 django-tinymce==1.5.2
+-e git://github.com/potatolondon/glue.git@282e906f147535227b642600266350721dac3cd3#egg=glue-origin/HEAD
 gunicorn==18.0
 ipdb==0.8
 ipython==1.2.1
@@ -16,5 +19,3 @@ psycopg2==2.5.2
 readline==6.2.4.1
 sqlparse==0.1.11
 wsgiref==0.1.2
-
--e git://github.com/potatolondon/glue.git#egg=glue-dev
