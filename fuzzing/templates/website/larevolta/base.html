@@ -29,6 +29,7 @@
     <header id="header" class="header">
         {% spaceless %}
         <nav class="navigation">
+            {% if request.user.is_authenticated %}
             <ul class="language-links">
                 {% for lang in LANGUAGES %}
                     {% ifequal lang.0 LANGUAGE_CODE %}
@@ -38,6 +39,7 @@
                     {% endifequal %}
                 {% endfor %}
             </ul>
+            {% endif %}
             <a href="{% url 'home' %}" class="navigation__brand">
                 <span class="sprite sprite-logo navigation__logo"></span>
                 <span class="sprite sprite-logo-mobile navigation__logo-mobile"></span>
