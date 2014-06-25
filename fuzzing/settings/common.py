@@ -32,10 +32,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '188.226.146.75']
 
 TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, 'fuzzing/templates')
+    os.path.join(BASE_DIR, 'fuzzing/../templates')
 )
-
-# Application definition
 
 INSTALLED_APPS = (
     'localeurl',
@@ -57,15 +55,6 @@ INSTALLED_APPS = (
     'modeltranslation',
 )
 
-gettext = lambda s: s
-LANGUAGES = (
-    ('en', gettext('EN')),
-    ('ca', gettext('CAT')),
-    ('es', gettext('CAST')),
-)
-
-MODELTRANSLATION_DEFAULT_LANGUAGE = 'es'
-
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
@@ -75,10 +64,6 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-)
-
-LOCALE_PATHS = (
-    '/Users/javi/dev/fuzzing/locale',
 )
 
 ROOT_URLCONF = 'fuzzing.urls'
@@ -116,7 +101,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
@@ -124,7 +108,7 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    os.path.join(BASE_DIR, 'fuzzing/static'),
+    os.path.join(BASE_DIR, 'fuzzing/../static'),
 )
 
 STATIC_URL = '/static/'
@@ -147,5 +131,3 @@ TINYMCE_DEFAULT_CONFIG = {
 }
 
 DEBUG_TOOLBAR_PATCH_SETTINGS = False
-
-from local_settings import *
