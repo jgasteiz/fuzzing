@@ -59,9 +59,9 @@ INSTALLED_APPS = (
 
 gettext = lambda s: s
 LANGUAGES = (
-    ('es', gettext('CAST')),
-    ('ca', gettext('CAT')),
     ('en', gettext('EN')),
+    ('ca', gettext('CAT')),
+    ('es', gettext('CAST')),
 )
 
 MODELTRANSLATION_DEFAULT_LANGUAGE = 'es'

@@ -1589,9 +1589,21 @@ p {
   text-align: left;
   top: 20px;
 }
+@media only screen and (max-width: 660px) {
+  .language-links {
+    position: static;
+    text-align: right;
+  }
+}
 .language-links li {
   display: block;
   padding: 0;
+}
+@media only screen and (max-width: 660px) {
+  .language-links li {
+    display: inline-block;
+    margin-left: 20px;
+  }
 }
 .language-links li a {
   border-bottom: 1px solid rgba(0, 0, 0, 0);
@@ -1621,7 +1633,7 @@ p {
     left: 50%;
     margin: 0 0 0 -149px;
     position: absolute;
-    top: 20px;
+    top: 60px;
   }
 }
 
