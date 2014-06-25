@@ -68,12 +68,17 @@ MODELTRANSLATION_DEFAULT_LANGUAGE = 'es'
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'localeurl.middleware.LocaleURLMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+)
+
+LOCALE_PATHS = (
+    '/Users/javi/dev/fuzzing/locale',
 )
 
 ROOT_URLCONF = 'fuzzing.urls'

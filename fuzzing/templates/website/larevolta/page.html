@@ -1,4 +1,5 @@
 {% extends "website/larevolta/base.html" %}
+{% load i18n %}
 
 {% block content %}
     {% spaceless %}
@@ -6,7 +7,7 @@
         <div class="grid">
             {% if page.parent_page %}
             <div class="grid__item one-whole">
-                <a class="go-back" href="{{ page.parent_page.get_relative_url }}">Atrás</a>
+                <a class="go-back" href="{{ page.parent_page.get_relative_url }}">{% trans "Atrás" %}</a>
             </div>
             {% endif %}
             {% if page.left_text %}
@@ -30,7 +31,7 @@
             {% endif %}
             {% if page.is_long_page %}
             <div class="grid__item one-whole">
-                <a class="go-up" href="#">Subir</a>
+                <a class="go-up" href="#">{% trans "Subir" %}</a>
             </div>
             {% endif %}
         </div>

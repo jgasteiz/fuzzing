@@ -1,5 +1,6 @@
+{% load i18n %}
 <div class="share">
-    <a href="#" class="share-opener" data-share-container-id="share-list">Compartir</a>
+    <a href="#" class="share-opener" data-share-container-id="share-list">{% trans "Compartir" %}</a>
     <ul id="share-list" class="share-list share-list--hidden">
         <li><a target="_blank" href="http://www.facebook.com/sharer.php?u=http://larevolta.me{{ request.path }}">Facebook</a></li>
         <li><a target="_blank" href="https://twitter.com/share?url=http://larevolta.me{{ request.path }}">Twitter</a></li>
