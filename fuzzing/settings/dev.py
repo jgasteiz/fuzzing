@@ -9,12 +9,14 @@ LOCALE_PATHS = (
     '/Users/javi/dev/fuzzing/locale',
 )
 
-DISPLAY_LANGUAGES = [
+DISPLAY_LANGUAGES = (
     'en',
     'es',
     'eu',
     'fr',
-]
+)
+
+SITE_THEME = 'taller'
 
 DATABASES = {
     'default': {

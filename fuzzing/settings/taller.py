@@ -16,6 +16,8 @@ DISPLAY_LANGUAGES = (
     'fr',
 )
 
+SITE_THEME = 'taller'
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',

@@ -99,8 +99,10 @@ class UpdateSiteSettings(CMSMixin, generic.edit.UpdateView):
     form_class = forms.SiteSettingsForm
     model = models.SiteSettings
     template_name = 'cms/settings_update.html'
-    success_url = reverse_lazy('pages')
     url = 'settings'
+
+    def get_success_url(self):
+        return reverse('settings', kwargs={'pk': self.object.pk})
 
 
 # Pages

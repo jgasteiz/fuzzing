@@ -130,11 +130,6 @@ LOGOUT_REDIRECT_URL = '/'
 LOGIN_URL = '/cms/login/'
 LOGOUT_URL = '/cms/logout/'
 
-THEME_CHOICES = (
-    ('larevolta', 'La Revolta'),
-    ('taller', 'Taller de Asier'),
-)
-
 TINYMCE_DEFAULT_CONFIG = {
     'theme': "advanced",
     'cleanup_on_startup': True,

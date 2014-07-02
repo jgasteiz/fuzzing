@@ -2,7 +2,7 @@ from django.conf import settings
 from django.db import models
 from django.utils.text import slugify
 
-from crispy_forms.layout import Layout, HTML
+from crispy_forms.layout import Layout
 
 from fuzzing.cms.fields import WellFieldset
 
@@ -61,17 +61,13 @@ class SiteSettings(models.Model):
     - pick the theme for the site.
     """
     site_name = models.CharField(max_length=255, blank=True)
-    site_theme = models.CharField(
-        max_length=255,
-        blank=True,
-        choices=settings.THEME_CHOICES)
 
     @classmethod
     def get_form_layout(cls):
         return Layout(
-            WellFieldset('Site settings',
+            WellFieldset(
+                'Site settings',
                 'site_name',
-                'site_theme',
             ),
         )
 
@@ -93,7 +89,7 @@ class BaseModel(models.Model):
 
     class Meta:
         abstract = True
-        ordering = ['weight',]
+        ordering = ('weight',)
 
     @classmethod
     def get_basic_layout(cls):
@@ -350,7 +346,8 @@ class ImageSection(ImageSectionMixin, LayoutMixin, Section):
     def get_form_layout(cls):
         return Layout(
             cls.get_basic_layout(),
-            WellFieldset('Section details',
+            WellFieldset(
+                'Section details',
                 'title_es',
                 'title_en',
                 'title_ca',
@@ -358,12 +355,14 @@ class ImageSection(ImageSectionMixin, LayoutMixin, Section):
                 'title_fr',
                 'image',
             ),
-            WellFieldset('Section layout',
+            WellFieldset(
+                'Section layout',
                 'layout',
                 'offset',
                 'alignment',
             ),
-            WellFieldset('Page containing this section',
+            WellFieldset(
+                'Page containing this section',
                 'page',
             ),
         )
@@ -376,20 +375,11 @@ class ImageLinkSection(ImageSectionMixin, LayoutMixin, Section):
     link = models.CharField(blank=True, max_length=64, help_text='To which page should this section link to?')
 
     def preview(self):
-        return '<div class="section">\
-                    <span class="section__title">%s</span>\
-                    <p class="section__link-to">%s ...</p>\
-                </div>' % (
-                    self.title,
-                    self.link)
-
-    def preview(self):
         return """<div class="section">
                     <img src="%s">
                     <span class="section__title">%s</span>
                     <span class="section__link">Link to: %s</span>
                 </div>""" % (self.get_image_url(), self.title, self.link)
-
 
     @classmethod
     def get_form_layout(cls):
@@ -514,12 +504,14 @@ class TextSection(TextSectionMixin, LayoutMixin, Section):
                 'text_eu',
                 'text_fr',
             ),
-            WellFieldset('Section layout',
+            WellFieldset(
+                'Section layout',
                 'layout',
                 'offset',
                 'alignment',
             ),
-            WellFieldset('Parent page',
+            WellFieldset(
+                'Parent page',
                 'page',
             ),
         )
@@ -587,7 +579,8 @@ class BackgroundImageTextSection(ImageSectionMixin, TextSectionMixin, Section):
                 'text_side',
                 'background_position',
             ),
-            WellFieldset('Section\'s page',
+            WellFieldset(
+                'Section\'s page',
                 'page',
             ),
         )

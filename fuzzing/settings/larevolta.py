@@ -14,6 +14,8 @@ DISPLAY_LANGUAGES = (
     'ca',
 )
 
+SITE_THEME = 'larevolta'
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
