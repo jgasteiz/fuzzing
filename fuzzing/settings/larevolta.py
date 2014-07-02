@@ -2,17 +2,16 @@ from .common import *
 
 DEBUG = False
 
-gettext = lambda s: s
-LANGUAGES = (
-    ('en', gettext('EN')),
-    ('ca', gettext('CAT')),
-    ('es', gettext('CAST')),
-)
-
 MODELTRANSLATION_DEFAULT_LANGUAGE = 'es'
 
 LOCALE_PATHS = (
     '/Users/javi/dev/fuzzing/locale',
+)
+
+DISPLAY_LANGUAGES = (
+    'en',
+    'es',
+    'ca',
 )
 
 DATABASES = {
