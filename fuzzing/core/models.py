@@ -2,8 +2,7 @@ from django.conf import settings
 from django.db import models
 from django.utils.text import slugify
 
-from crispy_forms.bootstrap import FormActions
-from crispy_forms.layout import Layout, Submit, HTML
+from crispy_forms.layout import Layout, HTML
 
 from fuzzing.cms.fields import WellFieldset
 
@@ -83,9 +82,11 @@ class BaseManager(models.Manager):
 
 
 class BaseModel(models.Model):
-    published = models.BooleanField(default=True,
+    published = models.BooleanField(
+        default=True,
         help_text='Only published pages/secions will be shown in live.')
-    weight = models.IntegerField(default=0,
+    weight = models.IntegerField(
+        default=0,
         help_text='The higher the weight, the lower - or the righter - in the page will appear.')
 
     objects = BaseManager()
@@ -97,7 +98,8 @@ class BaseModel(models.Model):
     @classmethod
     def get_basic_layout(cls):
         return Layout(
-            WellFieldset('Basic details',
+            WellFieldset(
+                'Basic details',
                 'published',
                 'weight',
             )
@@ -170,11 +172,12 @@ class Page(BaseModel):
     def __unicode__(self):
         return self.title
 
-    def get_unique_slug(self, slug):
-        new_slug = slug
+    @classmethod
+    def get_unique_slug(cls, slug):
         counter = 1
-        while Page.objects.filter(slug=new_slug).exists():
-            new_slug = "%s-%s" % (slug, counter)
+        new_slug = slug if slug else str(counter)
+        while cls.objects.filter(slug=new_slug).exists():
+            new_slug = "%s-%d" % (slug, counter)
             counter += 1
         return new_slug
 
@@ -193,7 +196,7 @@ class Page(BaseModel):
     def save(self, *args, **kwargs):
         if not self.slug:
             possible_slug = slugify(self.title)
-            self.slug = self.get_unique_slug(possible_slug)
+            self.slug = self.__class__.get_unique_slug(possible_slug)
 
         # There can only be one home page
         if self.is_home_page is True:
@@ -211,18 +214,22 @@ class Page(BaseModel):
                 'title_es',
                 'title_en',
                 'title_ca',
+                'title_eu',
+                'title_fr',
                 'slug',
             ),
             WellFieldset(
-                'Side texts',
+                'Translatable properties',
                 'left_text_es',
                 'left_text_en',
                 'left_text_ca',
-                HTML('<p>If you write text here, the page will have a left column with this content.</p>'),
+                'left_text_eu',
+                'left_text_fr',
                 'right_text_es',
                 'right_text_en',
                 'right_text_ca',
-                HTML('<p>If you write text here, the page will have a right column with this content.</p>'),
+                'right_text_eu',
+                'right_text_fr',
             ),
             WellFieldset(
                 'Page layout',
@@ -347,6 +354,8 @@ class ImageSection(ImageSectionMixin, LayoutMixin, Section):
                 'title_es',
                 'title_en',
                 'title_ca',
+                'title_eu',
+                'title_fr',
                 'image',
             ),
             WellFieldset('Section layout',
@@ -363,7 +372,7 @@ class ImageSection(ImageSectionMixin, LayoutMixin, Section):
 class ImageLinkSection(ImageSectionMixin, LayoutMixin, Section):
     """"""
     title = models.CharField(blank=True, max_length=64, help_text='Link title')
-    subtitle = models.CharField(blank=True, max_length=256, help_text='Link title')
+    subtitle = models.CharField(blank=True, max_length=256, help_text='Link subtitle')
     link = models.CharField(blank=True, max_length=64, help_text='To which page should this section link to?')
 
     def preview(self):
@@ -391,9 +400,13 @@ class ImageLinkSection(ImageSectionMixin, LayoutMixin, Section):
                 'title_es',
                 'title_en',
                 'title_ca',
+                'title_eu',
+                'title_fr',
                 'subtitle_es',
                 'subtitle_en',
                 'subtitle_ca',
+                'subtitle_eu',
+                'subtitle_fr',
                 'link',
                 'image',
             ),
@@ -456,6 +469,8 @@ class VideoSection(LayoutMixin, Section):
                 'title_es',
                 'title_en',
                 'title_ca',
+                'title_eu',
+                'title_fr',
                 'youtube_id',
                 'vimeo_id',
                 'width',
@@ -491,9 +506,13 @@ class TextSection(TextSectionMixin, LayoutMixin, Section):
                 'title_es',
                 'title_en',
                 'title_ca',
+                'title_eu',
+                'title_fr',
                 'text_es',
                 'text_en',
                 'text_ca',
+                'text_eu',
+                'text_fr',
             ),
             WellFieldset('Section layout',
                 'layout',
@@ -556,9 +575,13 @@ class BackgroundImageTextSection(ImageSectionMixin, TextSectionMixin, Section):
                 'title_es',
                 'title_en',
                 'title_ca',
+                'title_eu',
+                'title_fr',
                 'text_es',
                 'text_en',
                 'text_ca',
+                'text_eu',
+                'text_fr',
                 'image',
                 'text_color',
                 'text_side',
