@@ -36,7 +36,7 @@ urlpatterns = patterns('',
     url(r'^update_section/(?P<pk>[-\d]+)/(?P<section>[-\w]+)/$',
         views.UpdateSection.as_view(), name='update_section'),
     url(r'^delete_section/(?P<pk>[-\d]+)/(?P<section>[-\w]+)/$',
-        views.DeleteSection.as_view(), name='delete_section'),
+        views.delete_section, name='delete_section'),
 
     url(r'^set_section_weight/(?P<pk>[-\d]+)/(?P<section>[-\w]+)/(?P<weight>[-\d]+)/$',
         views.SetSectionWeight.as_view(), name='set_section_weight'),

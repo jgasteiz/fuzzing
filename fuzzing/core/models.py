@@ -551,10 +551,10 @@ class BackgroundImageTextSection(ImageSectionMixin, TextSectionMixin, Section):
     )
 
     def preview(self):
-        return '<div class="section">\
-                    <p><strong>background image:</strong> %s</p>\
-                    <span class="section__title">%s</span>\
-                </div>' % (self.image, self.title)
+        return """<div class="section">
+                    <img src="%s">
+                    <p class="section__title">%s</p>
+                </div>""" % (self.get_image_url(), self.title)
 
     @classmethod
     def get_form_layout(cls):

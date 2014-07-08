@@ -2,12 +2,12 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-	<h1>Delete section</h1>
+    <h1>Delete section</h1>
 
-	<form action="" method="post">{% csrf_token %}
-		<p>Are you sure you want to delete the section "{{ object }}"?</p>
-		<button type="submit" class="btn btn-danger">Delete</button>
-		<a href="{% url 'page_list' %}" class="btn btn-primary" type="button">Cancel</a>
-	</form>
+    <form action="" method="post">{% csrf_token %}
+        <p>Are you sure you want to delete the section "{{ object }}"?</p>
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a href="{% url 'page_list' %}" class="btn btn-primary" type="button">Cancel</a>
+    </form>
 
 {% endblock content %}
