@@ -70,14 +70,14 @@
 	}
 
 	.is-open & {
-		top: 96px;
+		top: 140px;
 	}
 }
 
 .sub-navigation {
 	@extend .navigation;
 	.is-open & {
-		top: 152px;
+		top: 190px;
 	}
 }
 

@@ -1200,6 +1200,18 @@ th {
   margin-left: 66.666%;
 }
 
+.align-left {
+  text-align: left;
+}
+
+.align-right {
+  text-align: right;
+}
+
+.align-center {
+  text-align: center;
+}
+
 .section {
   margin-bottom: 20px;
 }

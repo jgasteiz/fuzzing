@@ -36,6 +36,12 @@ ALIGNMENT_CHOICES = (
     (u'bottom', u'Bottom Aligned'),
 )
 
+TEXT_ALIGNMENT_CHOICES = (
+    (u'left', u'Align text to the left'),
+    (u'right', u'Align text to the right'),
+    (u'center', u'Align text to the center'),
+)
+
 SECTION_OFFSET_CHOICES = (
     (u'no-offset', u'No offset'),
     (u'offset--one-quarter', u'One Quarter'),
@@ -313,6 +319,10 @@ class LayoutMixin(models.Model):
 class TextSectionMixin(models.Model):
     """"""
     title = models.CharField(blank=True, max_length=64, help_text='Title')
+    title_alignment = models.CharField(
+        blank=True,
+        max_length=64,
+        choices=TEXT_ALIGNMENT_CHOICES)
     text = models.TextField(blank=True, help_text='Text')
 
     class Meta:
@@ -358,6 +368,7 @@ class ImageSection(ImageSectionMixin, LayoutMixin, Section):
                 'layout',
                 'offset',
                 'alignment',
+                'title_alignment',
             ),
             WellFieldset(
                 'Page containing this section',
@@ -403,6 +414,7 @@ class ImageLinkSection(ImageSectionMixin, LayoutMixin, Section):
                 'layout',
                 'offset',
                 'alignment',
+                'title_alignment',
             ),
             WellFieldset(
                 'Parent page',
@@ -469,6 +481,7 @@ class VideoSection(LayoutMixin, Section):
                 'layout',
                 'offset',
                 'alignment',
+                'title_alignment',
             ),
             WellFieldset(
                 'Page containing this section',
@@ -507,6 +520,7 @@ class TextSection(TextSectionMixin, LayoutMixin, Section):
                 'layout',
                 'offset',
                 'alignment',
+                'title_alignment',
             ),
             WellFieldset(
                 'Parent page',
@@ -576,6 +590,7 @@ class BackgroundImageTextSection(ImageSectionMixin, TextSectionMixin, Section):
                 'text_color',
                 'text_side',
                 'background_position',
+                'title_alignment',
             ),
             WellFieldset(
                 'Section\'s page',

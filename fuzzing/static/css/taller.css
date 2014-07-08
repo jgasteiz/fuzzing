@@ -1205,6 +1205,18 @@ article[role="main"], .section, .header__logo--small, .navigation > ul, .sub-nav
   margin-left: 66.666%;
 }
 
+.align-left {
+  text-align: left;
+}
+
+.align-right {
+  text-align: right;
+}
+
+.align-center {
+  text-align: center;
+}
+
 .section {
   margin-bottom: 20px;
 }
@@ -1387,14 +1399,14 @@ img {
 
 article[role="main"] {
   opacity: 0;
-  margin-top: 100px;
+  margin-top: 80px;
   transition: opacity 0.2s ease-in-out;
 }
 article[role="main"].is-active {
   opacity: 1;
 }
 article[role="main"].with-sub-nav {
-  margin-top: 160px;
+  margin-top: 130px;
 }
 
 .go-back {
@@ -1477,11 +1489,11 @@ article[role="main"].with-sub-nav {
   }
 }
 .is-open .navigation, .is-open .sub-navigation {
-  top: 96px;
+  top: 140px;
 }
 
 .is-open .sub-navigation {
-  top: 152px;
+  top: 190px;
 }
 
 .navigation__link {
