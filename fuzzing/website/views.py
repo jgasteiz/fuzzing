@@ -54,6 +54,11 @@ class PageView(DetailView):
         if 'slug' in self.kwargs and self.object.is_home_page:
             return redirect(reverse('home'))
 
+        if self.object.redirect_page:
+            return redirect(reverse(
+                'page',
+                kwargs={'slug': self.object.redirect_page.slug}))
+
         context = self.get_context_data(object=self.object)
         return self.render_to_response(context)
 

@@ -12,6 +12,11 @@
             <h1>Page: {{ page.title }}</h1>
             <a class="btn btn-sm btn-default" href="{% url 'page_list' %}">Back to pages</a>
         </div>
+        <div class="col-md-6 text-right">
+            <div class="button-holder">
+                <a href="{% url 'create_page' %}" class="btn btn-primary">Create page</a>
+            </div>
+        </div>
     </div>
 
     <div ng-hide="isExcludedByFilter('{{ page.title }}')">

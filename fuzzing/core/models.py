@@ -185,8 +185,6 @@ class Page(BaseModel):
         return 'one-whole'
 
     def get_url(self):
-        if self.redirect_page:
-            return self.redirect_page.slug
         return self.slug
 
     def save(self, *args, **kwargs):
