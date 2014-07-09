@@ -46,7 +46,9 @@
         }
     });
 
-    _.delay(function() {
-        $('body').addClass('is-active');
-    }, ANIMATION_DURATION);
+    if ($('body').hasClass('is-active') === false) {
+        _.delay(function() {
+            $('body').addClass('is-active');
+        }, ANIMATION_DURATION);
+    }
 })();

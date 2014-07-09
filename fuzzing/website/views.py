@@ -46,6 +46,9 @@ class PageView(DetailView):
         if 'current_page' in ctx or 'nav-open' in self.request.GET:
             ctx['nav_open'] = True
 
+        if 'current_page' in ctx or 'nav-open' in self.request.GET:
+            ctx['body_active'] = 'is-active'
+
         return ctx
 
     def get(self, request, *args, **kwargs):
@@ -76,4 +79,3 @@ def custom_handler_404(request):
 
 def custom_handler_500(request):
     return render(request, 'website/larevolta/500.html')
-
