@@ -25,6 +25,7 @@
             $header.removeClass('is-open');
         }
     });
+
     $('.nav-opener').click(function(e) {
         e.preventDefault();
         href = $(e.currentTarget).attr('href');
@@ -44,4 +45,8 @@
             window.location.href = href;
         }
     });
+
+    _.delay(function() {
+        $('body').addClass('is-active');
+    }, ANIMATION_DURATION);
 })();
