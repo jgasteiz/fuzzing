@@ -46,7 +46,6 @@ INSTALLED_APPS += (
     'tinymce',
     'south',
     'crispy_forms',
-    'debug_toolbar',
     'fuzzing.core',
     'fuzzing.cms',
     'fuzzing.website',
