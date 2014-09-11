@@ -17,3 +17,5 @@ env/
 fuzzing/static/dist/el-taller-de-asier.min.css
 fuzzing/static/dist/el-taller-de-asier.min.js
 fuzzing/static/vendor/*
+
+static/*

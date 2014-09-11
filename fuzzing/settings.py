@@ -1,28 +1,25 @@
-"""
-Django settings for fuzzing-cms project.
-
-For more information on this file, see
-https://docs.djangoproject.com/en/1.6/topics/settings/
-
-For the full list of settings and their values, see
-https://docs.djangoproject.com/en/1.6/ref/settings/
-"""
-
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+from django.utils.translation import ugettext_lazy as _
+
+
+def get_env_setting(setting):
+    """ Get the environment setting or return exception """
+    try:
+        return environ[setting]
+    except KeyError:
+        error_msg = "Set the %s env variable" % setting
+        raise ImproperlyConfigured(error_msg)
+
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'sr+$itn8!+a#i-=!uz--$f5g8gb)gf@4$frvoi4&2o8_+2u@7r'
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+TEMPLATE_DEBUG = DEBUG
 
-TEMPLATE_DEBUG = True
+SITE_URL = "http://eltallerdeasier.com"
 
 ALLOWED_HOSTS = []
 
@@ -32,23 +29,31 @@ TEMPLATE_DIRS = (
 
 # Application definition
 
-INSTALLED_APPS = (
+
+DJANGO_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sitemaps',
 )
+
+# Apps specific for this project go here.
+LOCAL_APPS = (
+    'fuzzing.core',
+    'fuzzing.cms',
+    'fuzzing.website',
+)
+
+INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS
 
 INSTALLED_APPS += (
     'reversion',
     'tinymce',
     'south',
     'crispy_forms',
-    'fuzzing.core',
-    'fuzzing.cms',
-    'fuzzing.website',
     'gunicorn',
 )
 
@@ -83,17 +88,33 @@ DATABASES = {
     }
 }
 
-# Internationalization
-# https://docs.djangoproject.com/en/1.6/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
+LANGUAGES = (
+    ('es', _('Spanish')),
+    ('en', _('English')),
+    ('eu', _('Euskara'))
+)
+
+
+# MODELTRANSLATION_FALLBACK_LANGUAGES = ('es', )
+# MODELTRANSLATION_AUTO_POPULATE = False
+# MODELTRANSLATION_LOADDATA_RETAIN_LOCALE = True
+
+# MODELTRANSLATION_TRANSLATION_FILES = (
+#     'fuzzing.core.translation',
+# )
+
+
+LANGUAGES_DICT = dict(LANGUAGES)
+LANGUAGE_COOKIE_NAME = 'user_language'
 
 TIME_ZONE = 'UTC'
 
+### Internationalization
+# https://docs.djangoproject.com/en/1.6/topics/i18n/
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
 
@@ -108,12 +129,15 @@ STATICFILES_DIRS = (
 )
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 UPLOADS_ROOT = 'uploads'
 
 LOGIN_REDIRECT_URL = '/cms/'
 LOGOUT_REDIRECT_URL = '/'
 LOGIN_URL = '/cms/login/'
 LOGOUT_URL = '/cms/logout/'
+
+
 
 THEME_CHOICES = (
     ('larevolta', 'La Revolta'),
