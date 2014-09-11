@@ -1,0 +1,19 @@
+{
+  "name": "el-taller-de-asier",
+  "version": "0.0.0",
+  "homepage": "http://www.eltallerdeasier.com",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "latest",
+    "modernizer": "2.6.3",
+    "sass-bootstrap": "3.0.2",
+    "lodash": "2.4.1"
+  }
+}

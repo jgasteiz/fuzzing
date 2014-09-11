@@ -1,7 +1,19 @@
 *.pyc
 uploads/*
 db.sqlite3
+
 .sass-cache
 local_settings.py
 .idea
 tiny_mce
+
+#node packages
+node_modules
+
+#vitualenv
+env/
+
+#App statics
+fuzzing/static/dist/el-taller-de-asier.min.css
+fuzzing/static/dist/el-taller-de-asier.min.js
+fuzzing/static/vendor/*

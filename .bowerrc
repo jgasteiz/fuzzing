@@ -1,0 +1,4 @@
+{
+  "directory": "fuzzing/static/vendor",
+  "json": "bower.json"
+}
