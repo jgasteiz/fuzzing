@@ -4,6 +4,9 @@ from .common import *
 gettext = lambda s: s
 
 MODELTRANSLATION_DEFAULT_LANGUAGE = 'es'
+MODELTRANSLATION_TRANSLATION_FILES = (
+    'fuzzing.core.translation',
+)
 
 LOCALE_PATHS = (
     '/Users/javi/dev/fuzzing/locale',
@@ -16,7 +19,9 @@ DISPLAY_LANGUAGES = (
     'fr',
 )
 
-SITE_THEME = 'taller'
+INSTALLED_APPS += (
+    'debug_toolbar',
+)
 
 DATABASES = {
     'default': {

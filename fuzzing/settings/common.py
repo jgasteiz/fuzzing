@@ -1,29 +1,27 @@
 # coding=utf-8
 """
 Django settings for fuzzing-cms project.
-
-For more information on this file, see
-https://docs.djangoproject.com/en/1.6/topics/settings/
-
-For the full list of settings and their values, see
-https://docs.djangoproject.com/en/1.6/ref/settings/
 """
-
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
+from django.core.exceptions import ImproperlyConfigured
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
+def get_env_setting(setting):
+    """ Get the environment setting or return exception """
+    try:
+        return os.environ[setting]
+    except KeyError:
+        error_msg = "Set the %s env variable" % setting
+        raise ImproperlyConfigured(error_msg)
+
+
+# SECRET_KEY = get_env_setting("SECRET_KEY")
 SECRET_KEY = 'sr+$itn8!+a#i-=!uz--$f5g8gb)gf@4$frvoi4&2o8_+2u@7r'
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-TEMPLATE_DEBUG = True
+TEMPLATE_DEBUG = DEBUG
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.request',
@@ -32,29 +30,37 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '188.226.146.75', '188.226.222.173']
 
-TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, 'fuzzing/../templates')
-)
 
-INSTALLED_APPS = (
-    'localeurl',
+DJANGO_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'reversion',
-    'tinymce',
-    'south',
-    'crispy_forms',
-    'debug_toolbar',
+    'django.contrib.sitemaps',
+)
+
+# Apps specific for this project go here.
+LOCAL_APPS = (
     'fuzzing.core',
     'fuzzing.cms',
     'fuzzing.website',
+)
+
+INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS
+
+
+INSTALLED_APPS += (
+    'localeurl',
+    'reversion',
+    'tinymce',
+    'south',
     'gunicorn',
     'modeltranslation',
+    'crispy_forms',
 )
+
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -99,21 +105,17 @@ LANGUAGES = (
 )
 
 
-# Internationalization
-# https://docs.djangoproject.com/en/1.6/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.6/howto/static-files/
+
+TEMPLATE_DIRS = (
+    os.path.join(BASE_DIR, 'fuzzing/../templates')
+)
 
 STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
@@ -137,3 +139,6 @@ TINYMCE_DEFAULT_CONFIG = {
 }
 
 DEBUG_TOOLBAR_PATCH_SETTINGS = False
+
+SITE_THEME = 'taller'
+DISPLAY_LANGUAGES = ()

@@ -23,6 +23,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'taller',
         'USER': 'taller',
+        # 'PASSWORD': get_env_setting("DB_ADMIN_PASS"),
         'PASSWORD': 'taller',
     }
 }
