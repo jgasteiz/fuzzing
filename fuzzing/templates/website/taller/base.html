@@ -1,73 +1,142 @@
+{% load i18n %}
 {% load static %}
-<!doctype html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>{{ site_settings.site_name }}</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width">
-        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-        <link rel="stylesheet" href="{% static "css/taller.css" %}">
-    </head>
-    <body class="{{ body_active }}">
-        <header id="header" class="header {% if nav_open %}is-open{% endif %}">
-            <a {% if current_page %}href="/?nav-open"{% else %}href="#"{% endif %} class="{% if not current_page %}intro-opener{% endif %} header__logo--small"><img class="" src="{% static "img/taller/logo-1-small.png" %}" alt="{{ site_settings.site_name }} - Logo"></a>
-            <a {% if current_page %}href="/?nav-open"{% else %}href="#"{% endif %} class="{% if not current_page %}intro-opener{% endif %} header__logo">
-                <img class="" src="{% static "img/taller/logo-1.png" %}" alt="{{ site_settings.site_name }} - Logo">
-            </a>
-            {% spaceless %}
-            <nav class="navigation">
-                <ul>
-                {% for nav_item in nav_item_list %}
-                    <li>
-                        <a class="navigation__link nav-opener {% ifequal nav_item.slug current_page %}is-active{% endifequal %}"
-                            href="{% url 'page' nav_item.url %}">{{ nav_item.title }}</a>
-                    </li>
-                {% endfor %}
-                </ul>
-            </nav>
-            {% if sub_nav_item_list %}
-            <nav class="sub-navigation">
-                <ul>
-                {% for nav_item in sub_nav_item_list %}
-                    <li>
-                        <a class="navigation__link {% ifequal nav_item.slug current_page %}is-active{% endifequal %}"
-                           href="{% url 'page' nav_item.url %}">{{ nav_item.title }}</a>
-                    </li>
-                {% endfor %}
-                </ul>
-            </nav>
-            {% endif %}
-            {% endspaceless %}
-        </header>
+{% get_available_languages as LANGUAGES %}
+{% get_current_language as lang_code %}
 
-        <article
-                id="main"
-                class="{% if nav_open %}is-active{% endif %} {% if sub_nav_item_list %}with-sub-nav{% endif %}"
-                role="main">
-            {% block content %}{% endblock content %}
-        </article>
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="{{ lang_code }}" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="{{ lang_code }}" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="{{ lang_code }}" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="{{ lang_code }}" class="no-js"> <!--<![endif]-->
+<head>
 
-        <footer class="footer"></footer>
+    <title>
+    {% block title %}
+        {{ site_settings.site_name }} |
+    {% endblock %}
+    </title>
 
-        <script src="{% static "bower_components/jquery/dist/jquery.min.js" %}"></script>
-        <script src="{% static "bower_components/lodash/dist/lodash.min.js" %}"></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-        <script>
-            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-            e.src='//www.google-analytics.com/analytics.js';
-            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-            ga('create','UA-XXXXX-X');ga('send','pageview');
-        </script>
+    <meta name="author" content="El Taller de Asier">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
 
-        <script src="{% static "js/taller/taller.js" %}"></script>
-    </body>
+  {% block social_metatags %}
+    {# Facebook #}
+    <meta property="og:title" content="">
+    <meta property="og:description" content="">
+    <meta property="og:url" content="{{ SITE_URL }}"/>
+    <meta property="og:site_name" property="">
+    <meta property="og:image" content="{{ SITE_URL }}{% static 'images/social-share/share-facebook.png' %}">
+
+    {# Twitter #}
+    <meta name="twitter:card" content="photo">
+    <meta name="twitter:site" content="">
+    <meta name="twitter:creator" content="">
+    <meta name="twitter:domain" content="">
+    <meta name="twitter:title" content="">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:image:src" content="{{ SITE_URL }}{% static 'images/social-share/share-twitter.png' %}">
+  {% endblock social_metatags %}
+
+
+    {# Languages #}
+    {% for lang in LANGUAGES %}
+        <link rel="alternate" hreflang="{{ lang.0 }}" href="{{ SITE_URL }}/{{ lang.0 }}/">
+    {% endfor %}
+
+
+    {# Favicons #}
+    <link rel="stylesheet" href="{% static "css/taller.css" %}">
+    <link rel="apple-touch-icon" sizes="57x57" href="{% static 'img/favicons/apple-touch-icon-57x57.png' %}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{% static 'img/favicons/apple-touch-icon-114x114.png' %}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{% static 'img/favicons/apple-touch-icon-72x72.png' %}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{% static 'img/favicons/apple-touch-icon-144x144.png' %}">
+    <link rel="apple-touch-icon" sizes="60x60" href="{% static 'img/favicons/apple-touch-icon-60x60.png' %}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{% static 'img/favicons/apple-touch-icon-120x120.png' %}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{% static 'img/favicons/apple-touch-icon-76x76.png' %}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{% static 'img/favicons/apple-touch-icon-152x152.png' %}">
+    <link rel="icon" type="image/png" href="{% static 'img/favicons/favicon-196x196.png' %}" sizes="196x196">
+    <link rel="icon" type="image/png" href="{% static 'img/favicons/favicon-160x160.png' %}" sizes="160x160">
+    <link rel="icon" type="image/png" href="{% static 'img/favicons/favicon-96x96.png' %}" sizes="96x96">
+    <link rel="icon" type="image/png" href="{% static 'img/favicons/favicon-16x16.png' %}" sizes="16x16">
+    <link rel="icon" type="image/png" href="{% static 'img/favicons/favicon-32x32.png' %}" sizes="32x32">
+
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+
+  {% block stylesheets %}
+
+  {% if debug %}
+    <link rel="stylesheet" href='{% static "stylesheets/css/layout.css" %}'>
+  {% else %}
+
+    <link rel="stylesheet" href="{% static 'stylesheets/el-taller-de-asier.min.css' %}">
+  {% endif %}
+
+  {% endblock stylesheets %}
+
+
+
+</head>
+<body class="{{ body_active }}">
+    <header id="header" class="header {% if nav_open %}is-open{% endif %}">
+        <a {% if current_page %}href="/?nav-open"{% else %}href="#"{% endif %} class="{% if not current_page %}intro-opener{% endif %} header__logo--small"><img class="" src="{% static "img/taller/logo-1-small.png" %}" alt="{{ site_settings.site_name }} - Logo"></a>
+        <a {% if current_page %}href="/?nav-open"{% else %}href="#"{% endif %} class="{% if not current_page %}intro-opener{% endif %} header__logo">
+            <img class="" src="{% static "img/taller/logo-1.png" %}" alt="{{ site_settings.site_name }} - Logo">
+        </a>
+        {% spaceless %}
+        <nav class="navigation">
+            <ul>
+            {% for nav_item in nav_item_list %}
+                <li>
+                    <a class="navigation__link nav-opener {% ifequal nav_item.slug current_page %}is-active{% endifequal %}"
+                        href="{% url 'page' nav_item.url %}">{{ nav_item.title }}</a>
+                </li>
+            {% endfor %}
+            </ul>
+        </nav>
+        {% if sub_nav_item_list %}
+        <nav class="sub-navigation">
+            <ul>
+            {% for nav_item in sub_nav_item_list %}
+                <li>
+                    <a class="navigation__link {% ifequal nav_item.slug current_page %}is-active{% endifequal %}"
+                       href="{% url 'page' nav_item.url %}">{{ nav_item.title }}</a>
+                </li>
+            {% endfor %}
+            </ul>
+        </nav>
+        {% endif %}
+        {% endspaceless %}
+    </header>
+
+    <article
+        id="main"
+        class="{% if nav_open %}is-active{% endif %} {% if sub_nav_item_list %}with-sub-nav{% endif %}"
+        role="main">
+        {% block content %}{% endblock content %}
+    </article>
+
+    <footer class="footer"></footer>
+
+    <script src="{% static "bower_components/jquery/dist/jquery.min.js" %}"></script>
+    <script src="{% static "bower_components/lodash/dist/lodash.min.js" %}"></script>
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+    <script>
+        (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+        function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+        e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+        e.src='//www.google-analytics.com/analytics.js';
+        r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+        ga('create','UA-XXXXX-X');ga('send','pageview');
+    </script>
+
+    <script src="{% static "js/taller/taller.js" %}"></script>
+</body>
 </html>

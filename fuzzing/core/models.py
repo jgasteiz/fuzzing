@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.db import models
+from django.core.urlresolvers import reverse
 from django.utils.text import slugify
 
 from crispy_forms.layout import Layout
@@ -267,7 +268,7 @@ class Page(BaseModel):
     def get_relative_url(self):
         if self.is_home_page:
             return '/'
-        return '/%s/' % self.slug
+        return reverse('page', kwargs={'slug': self.slug})
 
 
 class Section(BaseModel):

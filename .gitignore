@@ -7,3 +7,5 @@ local_settings.py
 .idea
 tiny_mce
 node_modules
+*.DS_Store
+env
