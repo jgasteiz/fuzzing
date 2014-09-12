@@ -1,12 +1,15 @@
 # coding=utf-8
+import os
 from .common import *
 
 DEBUG = False
 
+SITE_URL = "http://eltallerdeasier.com"
+
 MODELTRANSLATION_DEFAULT_LANGUAGE = 'es'
 
 LOCALE_PATHS = (
-    '/Users/javi/dev/fuzzing/locale',
+    os.path.join(BASE_DIR, 'locale')
 )
 
 DISPLAY_LANGUAGES = (

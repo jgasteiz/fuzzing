@@ -1,17 +1,56 @@
+{% load i18n %}
 {% load static %}
-<!doctype html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+
+{% get_available_languages as LANGUAGES %}
+{% get_current_language as lang_code %}
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="{{ lang_code }}" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="{{ lang_code }}" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="{{ lang_code }}" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="{{ lang_code }}" class="no-js"> <!--<![endif]-->
 <head>
+
+    <title>
+    {% block title %}
+        {{ site_settings.site_name }} |
+    {% endblock %}
+    </title>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{{ site_settings.site_name }}</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
+    <meta name="author" content="El Taller de Asier">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+  {% block social_metatags %}
+    {# Facebook #}
+    <meta property="og:title" content="">
+    <meta property="og:description" content="">
+    <meta property="og:url" content="{{ SITE_URL }}"/>
+    <meta property="og:site_name" property="">
+    <meta property="og:image" content="{{ SITE_URL }}{% static 'images/social-share/share-facebook.png' %}">
+
+    {# Twitter #}
+    <meta name="twitter:card" content="photo">
+    <meta name="twitter:site" content="">
+    <meta name="twitter:creator" content="">
+    <meta name="twitter:domain" content="">
+    <meta name="twitter:title" content="">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:image:src" content="{{ SITE_URL }}{% static 'images/social-share/share-twitter.png' %}">
+  {% endblock social_metatags %}
+
+
+    {# Languages #}
+    {% for lang in LANGUAGES %}
+        <link rel="alternate" hreflang="{{ lang.0 }}" href="{{ SITE_URL }}/{{ lang.0 }}/">
+    {% endfor %}
+
+
+    {# Favicons #}
     <link rel="stylesheet" href="{% static "css/taller.css" %}">
     <link rel="apple-touch-icon" sizes="57x57" href="{% static 'img/favicons/apple-touch-icon-57x57.png' %}">
     <link rel="apple-touch-icon" sizes="114x114" href="{% static 'img/favicons/apple-touch-icon-114x114.png' %}">
@@ -26,8 +65,23 @@
     <link rel="icon" type="image/png" href="{% static 'img/favicons/favicon-96x96.png' %}" sizes="96x96">
     <link rel="icon" type="image/png" href="{% static 'img/favicons/favicon-16x16.png' %}" sizes="16x16">
     <link rel="icon" type="image/png" href="{% static 'img/favicons/favicon-32x32.png' %}" sizes="32x32">
+
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+
+  {% block stylesheets %}
+
+  {% if debug %}
+    <link rel="stylesheet" href='{% static "stylesheets/css/layout.css" %}'>
+  {% else %}
+
+    <link rel="stylesheet" href="{% static 'stylesheets/el-taller-de-asier.min.css' %}">
+  {% endif %}
+
+  {% endblock stylesheets %}
+
+
+
 </head>
 <body class="{{ body_active }}">
     <header id="header" class="header {% if nav_open %}is-open{% endif %}">

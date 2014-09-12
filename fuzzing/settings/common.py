@@ -16,6 +16,7 @@ def get_env_setting(setting):
         error_msg = "Set the %s env variable" % setting
         raise ImproperlyConfigured(error_msg)
 
+SITE_URL = "http://localhost:8000"
 
 # SECRET_KEY = get_env_setting("SECRET_KEY")
 SECRET_KEY = 'sr+$itn8!+a#i-=!uz--$f5g8gb)gf@4$frvoi4&2o8_+2u@7r'
@@ -71,6 +72,10 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+)
+
+TEMPLATE_CONTEXT_PROCESSORS += (
+    "fuzzing.cms.context_processors.i18n_extended",
 )
 
 ROOT_URLCONF = 'fuzzing.urls'

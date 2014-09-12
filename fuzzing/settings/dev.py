@@ -1,6 +1,8 @@
 # coding=utf-8
 from .common import *
 
+SITE_URL = "http://localhost:8000"
+
 gettext = lambda s: s
 
 MODELTRANSLATION_DEFAULT_LANGUAGE = 'es'
