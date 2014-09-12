@@ -73,11 +73,11 @@ For development just run `grunt watch` and any changes in your javascript or sas
 
 ## Tests
 
-We are using django_nose which provides the `nose` module with some extra utilities to work with Django.
+<!-- We are using django_nose which provides the `nose` module with some extra utilities to work with Django.
 
 To run execute the tests, use:
 `./manage.py test tests/<folder>/<test_*.py>`
-
+ -->
 
 
 ## Translations

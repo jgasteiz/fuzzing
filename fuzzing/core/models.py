@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.db import models
 from django.utils.text import slugify
+from django.core.urlresolvers import reverse
 
 from crispy_forms.bootstrap import FormActions
 from crispy_forms.layout import Layout, Div, Field, Submit, HTML
@@ -38,7 +39,8 @@ class SiteSettings(models.Model):
     - pick the theme for the site.
     """
     site_name = models.CharField(max_length=255, blank=True)
-    site_theme = models.CharField(max_length=255, blank=True, choices=settings.THEME_CHOICES)
+    site_theme = models.CharField(
+        max_length=255, blank=True, choices=settings.THEME_CHOICES, default=settings.THEME_CHOICES[1][0])
 
     @classmethod
     def get_form_layout(cls):
@@ -167,7 +169,7 @@ class Page(BaseModel):
     def get_relative_url(self):
         if self.is_home_page:
             return '/'
-        return '/%s/' % self.slug
+        return reverse('page', kwargs={'slug': self.slug})
 
 
 class Section(BaseModel):

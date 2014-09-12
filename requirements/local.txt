@@ -12,3 +12,4 @@ ipdb==0.8
 ipython==1.2.1
 sqlparse==0.1.11
 wsgiref==0.1.2
+django-modeltranslation==0.7.3
