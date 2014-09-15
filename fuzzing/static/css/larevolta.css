@@ -1270,9 +1270,7 @@ th {
 }
 
 .ImageLinkSection__overlay {
-  background: none;
-  color: #555555;
-  padding-top: 5px;
+  margin-top: 5px;
 }
 .ImageLinkSection__overlay:hover {
   color: #F71425;
