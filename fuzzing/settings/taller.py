@@ -16,6 +16,13 @@ DISPLAY_LANGUAGES = (
     'fr',
 )
 
+LANGUAGES = (
+    ('en', gettext(u'English')),
+    ('es', gettext(u'Castellano')),
+    ('eu', gettext(u'Euskara')),
+    ('fr', gettext(u'Français')),
+)
+
 SITE_THEME = 'taller'
 
 DATABASES = {

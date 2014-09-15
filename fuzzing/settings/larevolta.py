@@ -14,6 +14,12 @@ DISPLAY_LANGUAGES = (
     'ca',
 )
 
+LANGUAGES = (
+    ('en', gettext(u'English')),
+    ('es', gettext(u'Castellano')),
+    ('ca', gettext(u'Català')),
+)
+
 SITE_THEME = 'larevolta'
 
 DATABASES = {

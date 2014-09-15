@@ -12,16 +12,20 @@ LOCALE_PATHS = (
 DISPLAY_LANGUAGES = (
     'en',
     'es',
-    'eu',
-    'fr',
+    'ca',
 )
 
-SITE_THEME = 'taller'
+LANGUAGES = (
+    ('en', gettext(u'English')),
+    ('es', gettext(u'Castellano')),
+    ('ca', gettext(u'Català')),
+)
+
+SITE_THEME = 'larevolta'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'taller',
-        'USER': 'taller',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'larevolta.db'
     }
 }

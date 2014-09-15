@@ -93,7 +93,7 @@ LANGUAGES = (
     ('en', gettext(u'English')),
     ('eu', gettext(u'Euskara')),
     ('es', gettext(u'Castellano')),
-    ('ca', gettext(u'Castellano')),
+    ('ca', gettext(u'Català')),
     ('fr', gettext(u'Français')),
 )
 
