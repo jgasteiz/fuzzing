@@ -1275,7 +1275,7 @@ article[role="main"], .section, .header__logo--small, .navigation > ul, .sub-nav
 }
 
 .ImageLinkSection__overlay {
-  margin-top: 5px;
+  margin-top: 10px;
 }
 .ImageLinkSection__overlay:hover {
   color: #F71425;
@@ -1288,12 +1288,7 @@ article[role="main"], .section, .header__logo--small, .navigation > ul, .sub-nav
 
 .ImageLinkSection__title {
   display: block;
-  font-size: 24px;
-}
-@media only screen and (max-width: 660px) {
-  .ImageLinkSection__title {
-    font-size: 18px;
-  }
+  font-size: 18px;
 }
 
 .ImageLinkSection__subtitle {

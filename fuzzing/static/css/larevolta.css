@@ -1270,7 +1270,7 @@ th {
 }
 
 .ImageLinkSection__overlay {
-  margin-top: 5px;
+  margin-top: 10px;
 }
 .ImageLinkSection__overlay:hover {
   color: #F71425;
@@ -1283,12 +1283,7 @@ th {
 
 .ImageLinkSection__title {
   display: block;
-  font-size: 24px;
-}
-@media only screen and (max-width: 660px) {
-  .ImageLinkSection__title {
-    font-size: 18px;
-  }
+  font-size: 18px;
 }
 
 .ImageLinkSection__subtitle {

@@ -29,7 +29,7 @@
 }
 
 .ImageLinkSection__overlay {
-	margin-top: 5px;
+	margin-top: 10px;
 
 	&:hover {
 		color: #F71425;
@@ -43,11 +43,7 @@
 
 .ImageLinkSection__title {
 	display: block;
-	font-size: 24px;
-
-	@include respond-to (palm) {
-		font-size: 18px;
-	}
+	font-size: 18px;
 }
 
 .ImageLinkSection__subtitle {
