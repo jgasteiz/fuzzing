@@ -12,7 +12,7 @@ LANGUAGES = (
 MODELTRANSLATION_DEFAULT_LANGUAGE = 'es'
 
 LOCALE_PATHS = (
-    '/Users/javi/dev/fuzzing/locale',
+    '/opt/larevolta/fuzzing/locale',
 )
 
 DATABASES = {
@@ -20,5 +20,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'larevolta',
         'USER': 'larevolta',
+        'PASSWORD': 'Girasol13',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
