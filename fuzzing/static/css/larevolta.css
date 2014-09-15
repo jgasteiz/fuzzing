@@ -399,12 +399,14 @@ th {
   font-weight: 400;
   src: local("Droid Sans"), local("DroidSans"), url(../fonts/droid-sans.woff) format("woff");
 }
+
 @font-face {
   font-family: 'Droid Sans';
   font-style: normal;
   font-weight: 700;
   src: local("Droid Sans Bold"), local("DroidSans-Bold"), url(../fonts/droid-sans-bold.woff) format("woff");
 }
+
 /*------------------------------------*\
     $CSSWIZARDRY-GRIDS
 \*------------------------------------*/
@@ -1268,28 +1270,12 @@ th {
 }
 
 .ImageLinkSection__overlay {
-  background-color: rgba(247, 20, 37, 0.75);
-  bottom: 0;
-  color: #FFF;
-  left: 0;
-  opacity: 0;
-  padding: 0 10px;
-  position: absolute;
-  right: 0;
-  top: 0;
-  transition: opacity 0.2s ease-in;
-  z-index: 5;
+  background: none;
+  color: #555555;
+  padding-top: 5px;
 }
-@media only screen and (max-width: 660px) {
-  .ImageLinkSection__overlay {
-    background: none;
-    bottom: auto;
-    color: #555555;
-    padding-top: 5px;
-    opacity: 1;
-    text-shadow: none;
-    top: 100%;
-  }
+.ImageLinkSection__overlay:hover {
+  color: #F71425;
 }
 
 .ImageLinkSection__title,
@@ -1368,7 +1354,7 @@ th {
   position: relative;
 }
 
-/* glue: 0.3 hash: 8b82b5726f */
+/* glue: 0.3 hash: 5c74a343fd */
 .sprite-logo,
 .sprite-logo-mobile,
 .sprite-linkedin,
@@ -1616,7 +1602,7 @@ p {
   }
 }
 .language-links li a {
-  border-bottom: 1px solid transparent;
+  border-bottom: 1px solid rgba(0, 0, 0, 0);
   color: #555;
   line-height: 1.5em;
 }
