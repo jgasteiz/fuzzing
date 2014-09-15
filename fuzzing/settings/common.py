@@ -48,7 +48,6 @@ INSTALLED_APPS = (
     'tinymce',
     'south',
     'crispy_forms',
-    'debug_toolbar',
     'fuzzing.core',
     'fuzzing.cms',
     'fuzzing.website',
@@ -135,5 +134,3 @@ TINYMCE_DEFAULT_CONFIG = {
     'cleanup_on_startup': True,
     'custom_undo_redo_levels': 10,
 }
-
-DEBUG_TOOLBAR_PATCH_SETTINGS = False
