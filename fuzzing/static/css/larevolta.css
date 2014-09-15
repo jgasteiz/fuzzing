@@ -1200,6 +1200,18 @@ th {
   margin-left: 66.666%;
 }
 
+.align-left {
+  text-align: left;
+}
+
+.align-right {
+  text-align: right;
+}
+
+.align-center {
+  text-align: center;
+}
+
 .section {
   margin-bottom: 20px;
 }
@@ -1258,28 +1270,12 @@ th {
 }
 
 .ImageLinkSection__overlay {
-  background-color: rgba(247, 20, 37, 0.75);
-  bottom: 0;
-  color: #FFF;
-  left: 0;
-  opacity: 0;
-  padding: 0 10px;
-  position: absolute;
-  right: 0;
-  top: 0;
-  transition: opacity 0.2s ease-in;
-  z-index: 5;
+  background: none;
+  color: #555555;
+  padding-top: 5px;
 }
-@media only screen and (max-width: 660px) {
-  .ImageLinkSection__overlay {
-    background: none;
-    bottom: auto;
-    color: #555555;
-    padding-top: 5px;
-    opacity: 1;
-    text-shadow: none;
-    top: 100%;
-  }
+.ImageLinkSection__overlay:hover {
+  color: #F71425;
 }
 
 .ImageLinkSection__title,

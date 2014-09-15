@@ -10,9 +10,15 @@ html {
 body {
 	font-family: 'Lato', sans-serif;
 	font-size: 18px;
+	opacity: 0;
+
 	&.overflow-hidden {
 		height: 100%;
 		overflow: hidden;
+	}
+	&.is-active {
+		opacity: 1;
+		transition: opacity $opacity-duration ease-in-out;
 	}
 }
 img {
@@ -20,12 +26,11 @@ img {
 }
 article[role="main"] {
 	@extend %wrapper;
-	opacity: 0;
+	display: none;
 	margin-top: $article-margin-top;
-	transition: opacity $opacity-duration ease-in-out;
 
 	&.is-active {
-		opacity: 1;
+		display: block;
 	}
 	&.with-sub-nav {
 		margin-top: $article-sub-nav-margin-top;

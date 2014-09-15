@@ -6,7 +6,7 @@
         <div class="grid {% ifequal section.text_side 'right' %}grid--right{% endifequal %}">
             <div class="grid__item one-third palm--one-whole">
                 {% if section.title %}
-                <h1 class="TextSection__title">{{ section.title }}</h1>
+                <h1 class="TextSection__title align-{{ section.title_alignment }}">{{ section.title }}</h1>
                 {% endif %}
                 {% if section.text %}
                 <div class="TextSection__text">{{ section.text|safe }}</div>

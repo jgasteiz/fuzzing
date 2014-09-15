@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 
-from website.views import PageView, customHandler404, customHandler500
+from website.views import PageView, custom_handler_404, custom_handler_500
 
 admin.autodiscover()
 
@@ -14,5 +14,5 @@ urlpatterns = patterns('',
     url(r'^(?P<slug>[-\w]+)/', PageView.as_view(), name='page'),
 )
 
-handler404 = customHandler404
-handler500 = customHandler500
+handler404 = custom_handler_404
+handler500 = custom_handler_500

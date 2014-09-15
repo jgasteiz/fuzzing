@@ -2,8 +2,7 @@ from django.conf import settings
 from django.db import models
 from django.utils.text import slugify
 
-from crispy_forms.bootstrap import FormActions
-from crispy_forms.layout import Layout, Submit, HTML
+from crispy_forms.layout import Layout
 
 from fuzzing.cms.fields import WellFieldset
 
@@ -37,6 +36,12 @@ ALIGNMENT_CHOICES = (
     (u'bottom', u'Bottom Aligned'),
 )
 
+TEXT_ALIGNMENT_CHOICES = (
+    (u'left', u'Align text to the left'),
+    (u'right', u'Align text to the right'),
+    (u'center', u'Align text to the center'),
+)
+
 SECTION_OFFSET_CHOICES = (
     (u'no-offset', u'No offset'),
     (u'offset--one-quarter', u'One Quarter'),
@@ -62,17 +67,13 @@ class SiteSettings(models.Model):
     - pick the theme for the site.
     """
     site_name = models.CharField(max_length=255, blank=True)
-    site_theme = models.CharField(
-        max_length=255,
-        blank=True,
-        choices=settings.THEME_CHOICES)
 
     @classmethod
     def get_form_layout(cls):
         return Layout(
-            WellFieldset('Site settings',
+            WellFieldset(
+                'Site settings',
                 'site_name',
-                'site_theme',
             ),
         )
 
@@ -83,21 +84,24 @@ class BaseManager(models.Manager):
 
 
 class BaseModel(models.Model):
-    published = models.BooleanField(default=True,
+    published = models.BooleanField(
+        default=True,
         help_text='Only published pages/secions will be shown in live.')
-    weight = models.IntegerField(default=0,
+    weight = models.IntegerField(
+        default=0,
         help_text='The higher the weight, the lower - or the righter - in the page will appear.')
 
     objects = BaseManager()
 
     class Meta:
         abstract = True
-        ordering = ['weight',]
+        ordering = ('weight',)
 
     @classmethod
     def get_basic_layout(cls):
         return Layout(
-            WellFieldset('Basic details',
+            WellFieldset(
+                'Basic details',
                 'published',
                 'weight',
             )
@@ -170,11 +174,12 @@ class Page(BaseModel):
     def __unicode__(self):
         return self.title
 
-    def get_unique_slug(self, slug):
-        new_slug = slug
+    @classmethod
+    def get_unique_slug(cls, slug):
         counter = 1
-        while Page.objects.filter(slug=new_slug).exists():
-            new_slug = "%s-%s" % (slug, counter)
+        new_slug = slug if slug else str(counter)
+        while cls.objects.filter(slug=new_slug).exists():
+            new_slug = "%s-%d" % (slug, counter)
             counter += 1
         return new_slug
 
@@ -186,14 +191,12 @@ class Page(BaseModel):
         return 'one-whole'
 
     def get_url(self):
-        if self.redirect_page:
-            return self.redirect_page.slug
         return self.slug
 
     def save(self, *args, **kwargs):
         if not self.slug:
             possible_slug = slugify(self.title)
-            self.slug = self.get_unique_slug(possible_slug)
+            self.slug = self.__class__.get_unique_slug(possible_slug)
 
         # There can only be one home page
         if self.is_home_page is True:
@@ -211,18 +214,22 @@ class Page(BaseModel):
                 'title_es',
                 'title_en',
                 'title_ca',
+                'title_eu',
+                'title_fr',
                 'slug',
             ),
             WellFieldset(
-                'Side texts',
+                'Translatable properties',
                 'left_text_es',
                 'left_text_en',
                 'left_text_ca',
-                HTML('<p>If you write text here, the page will have a left column with this content.</p>'),
+                'left_text_eu',
+                'left_text_fr',
                 'right_text_es',
                 'right_text_en',
                 'right_text_ca',
-                HTML('<p>If you write text here, the page will have a right column with this content.</p>'),
+                'right_text_eu',
+                'right_text_fr',
             ),
             WellFieldset(
                 'Page layout',
@@ -312,6 +319,10 @@ class LayoutMixin(models.Model):
 class TextSectionMixin(models.Model):
     """"""
     title = models.CharField(blank=True, max_length=64, help_text='Title')
+    title_alignment = models.CharField(
+        blank=True,
+        max_length=64,
+        choices=TEXT_ALIGNMENT_CHOICES)
     text = models.TextField(blank=True, help_text='Text')
 
     class Meta:
@@ -343,18 +354,24 @@ class ImageSection(ImageSectionMixin, LayoutMixin, Section):
     def get_form_layout(cls):
         return Layout(
             cls.get_basic_layout(),
-            WellFieldset('Section details',
+            WellFieldset(
+                'Section details',
                 'title_es',
                 'title_en',
                 'title_ca',
+                'title_eu',
+                'title_fr',
                 'image',
             ),
-            WellFieldset('Section layout',
+            WellFieldset(
+                'Section layout',
                 'layout',
                 'offset',
                 'alignment',
+                'title_alignment',
             ),
-            WellFieldset('Page containing this section',
+            WellFieldset(
+                'Page containing this section',
                 'page',
             ),
         )
@@ -363,16 +380,8 @@ class ImageSection(ImageSectionMixin, LayoutMixin, Section):
 class ImageLinkSection(ImageSectionMixin, LayoutMixin, Section):
     """"""
     title = models.CharField(blank=True, max_length=64, help_text='Link title')
-    subtitle = models.CharField(blank=True, max_length=256, help_text='Link title')
+    subtitle = models.CharField(blank=True, max_length=256, help_text='Link subtitle')
     link = models.CharField(blank=True, max_length=64, help_text='To which page should this section link to?')
-
-    def preview(self):
-        return '<div class="section">\
-                    <span class="section__title">%s</span>\
-                    <p class="section__link-to">%s ...</p>\
-                </div>' % (
-                    self.title,
-                    self.link)
 
     def preview(self):
         return """<div class="section">
@@ -380,7 +389,6 @@ class ImageLinkSection(ImageSectionMixin, LayoutMixin, Section):
                     <span class="section__title">%s</span>
                     <span class="section__link">Link to: %s</span>
                 </div>""" % (self.get_image_url(), self.title, self.link)
-
 
     @classmethod
     def get_form_layout(cls):
@@ -391,9 +399,13 @@ class ImageLinkSection(ImageSectionMixin, LayoutMixin, Section):
                 'title_es',
                 'title_en',
                 'title_ca',
+                'title_eu',
+                'title_fr',
                 'subtitle_es',
                 'subtitle_en',
                 'subtitle_ca',
+                'subtitle_eu',
+                'subtitle_fr',
                 'link',
                 'image',
             ),
@@ -402,6 +414,7 @@ class ImageLinkSection(ImageSectionMixin, LayoutMixin, Section):
                 'layout',
                 'offset',
                 'alignment',
+                'title_alignment',
             ),
             WellFieldset(
                 'Parent page',
@@ -456,6 +469,8 @@ class VideoSection(LayoutMixin, Section):
                 'title_es',
                 'title_en',
                 'title_ca',
+                'title_eu',
+                'title_fr',
                 'youtube_id',
                 'vimeo_id',
                 'width',
@@ -466,6 +481,7 @@ class VideoSection(LayoutMixin, Section):
                 'layout',
                 'offset',
                 'alignment',
+                'title_alignment',
             ),
             WellFieldset(
                 'Page containing this section',
@@ -491,16 +507,23 @@ class TextSection(TextSectionMixin, LayoutMixin, Section):
                 'title_es',
                 'title_en',
                 'title_ca',
+                'title_eu',
+                'title_fr',
                 'text_es',
                 'text_en',
                 'text_ca',
+                'text_eu',
+                'text_fr',
             ),
-            WellFieldset('Section layout',
+            WellFieldset(
+                'Section layout',
                 'layout',
                 'offset',
                 'alignment',
+                'title_alignment',
             ),
-            WellFieldset('Parent page',
+            WellFieldset(
+                'Parent page',
                 'page',
             ),
         )
@@ -542,10 +565,10 @@ class BackgroundImageTextSection(ImageSectionMixin, TextSectionMixin, Section):
     )
 
     def preview(self):
-        return '<div class="section">\
-                    <p><strong>background image:</strong> %s</p>\
-                    <span class="section__title">%s</span>\
-                </div>' % (self.image, self.title)
+        return """<div class="section">
+                    <img src="%s">
+                    <p class="section__title">%s</p>
+                </div>""" % (self.get_image_url(), self.title)
 
     @classmethod
     def get_form_layout(cls):
@@ -556,15 +579,21 @@ class BackgroundImageTextSection(ImageSectionMixin, TextSectionMixin, Section):
                 'title_es',
                 'title_en',
                 'title_ca',
+                'title_eu',
+                'title_fr',
                 'text_es',
                 'text_en',
                 'text_ca',
+                'text_eu',
+                'text_fr',
                 'image',
                 'text_color',
                 'text_side',
                 'background_position',
+                'title_alignment',
             ),
-            WellFieldset('Section\'s page',
+            WellFieldset(
+                'Section\'s page',
                 'page',
             ),
         )

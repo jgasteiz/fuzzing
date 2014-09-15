@@ -1,8 +1,11 @@
+from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404, redirect, render
-from django.views.generic import DetailView, TemplateView
+from django.views.generic import DetailView
 
 from fuzzing.core.models import Page, SiteSettings
+
+SITE_THEME = settings.SITE_THEME
 
 
 class PageView(DetailView):
@@ -23,7 +26,7 @@ class PageView(DetailView):
         ctx['site_settings'] = site_settings
 
         # Replace the `theme` directory with the current theme.
-        self.template_name = self.template_name.replace('theme', site_settings.site_theme)
+        self.template_name = self.template_name.replace('theme', SITE_THEME)
 
         if self.kwargs and self.kwargs['slug']:
             ctx['current_page'] = self.kwargs['slug']
@@ -43,6 +46,9 @@ class PageView(DetailView):
         if 'current_page' in ctx or 'nav-open' in self.request.GET:
             ctx['nav_open'] = True
 
+        if 'current_page' in ctx or 'nav-open' in self.request.GET:
+            ctx['body_active'] = 'is-active'
+
         return ctx
 
     def get(self, request, *args, **kwargs):
@@ -50,6 +56,11 @@ class PageView(DetailView):
 
         if 'slug' in self.kwargs and self.object.is_home_page:
             return redirect(reverse('home'))
+
+        if self.object.redirect_page:
+            return redirect(reverse(
+                'page',
+                kwargs={'slug': self.object.redirect_page.slug}))
 
         context = self.get_context_data(object=self.object)
         return self.render_to_response(context)
@@ -62,10 +73,9 @@ class PageView(DetailView):
             return get_object_or_404(Page, is_home_page=True)
 
 
-def customHandler404(request):
+def custom_handler_404(request):
     return render(request, 'website/larevolta/404.html')
 
 
-def customHandler500(request):
+def custom_handler_500(request):
     return render(request, 'website/larevolta/500.html')
-

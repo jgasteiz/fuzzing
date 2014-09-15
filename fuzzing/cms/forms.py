@@ -1,12 +1,27 @@
+from django import forms
+from django.conf import settings
+from django.core.urlresolvers import reverse
+
 from crispy_forms.bootstrap import FormActions
 from crispy_forms.layout import Layout, Submit, HTML
-from django import forms
-
 from crispy_forms.helper import FormHelper
-from django.core.urlresolvers import reverse
 from tinymce.widgets import TinyMCE
 
 from fuzzing.core import models
+
+TRANSLATABLE_PROPERTIES = (
+    'title',
+    'subtitle',
+    'text',
+    'right_text',
+    'left_text',
+)
+
+TEXT_PROPERTIES = (
+    'text',
+    'right_text',
+    'left_text',
+)
 
 
 class FormHelperMixin(object):
@@ -20,6 +35,18 @@ class FormHelperMixin(object):
             self.model.get_form_layout(),
             self.get_button_layout()
         )
+        lang_diff = [lang for lang, lang_text in settings.LANGUAGES if lang not in settings.DISPLAY_LANGUAGES]
+        for prop in TRANSLATABLE_PROPERTIES:
+            if hasattr(self.instance, prop):
+                for language in lang_diff:
+                    property_name = '%s_%s' % (prop, language)
+                    self.fields.pop(property_name, None)
+
+            if prop in TEXT_PROPERTIES and hasattr(self.instance, prop):
+                for language in settings.DISPLAY_LANGUAGES:
+                    property_name = '%s_%s' % (prop, language)
+                    self.fields[property_name].required = False
+                    self.fields[property_name].widget = TinyMCE(attrs={'cols': 120, 'rows': 20})
 
     def get_button_layout(self):
         return Layout(
@@ -42,18 +69,6 @@ class SiteSettingsForm(FormHelperMixin, forms.ModelForm):
 
 
 class PageForm(FormHelperMixin, forms.ModelForm):
-    left_text_es = forms.CharField(
-        required=False, widget=TinyMCE(attrs={'cols': 120, 'rows': 20}))
-    left_text_en = forms.CharField(
-        required=False, widget=TinyMCE(attrs={'cols': 120, 'rows': 20}))
-    left_text_ca = forms.CharField(
-        required=False, widget=TinyMCE(attrs={'cols': 120, 'rows': 20}))
-    right_text_es = forms.CharField(
-        required=False, widget=TinyMCE(attrs={'cols': 120, 'rows': 20}))
-    right_text_en = forms.CharField(
-        required=False, widget=TinyMCE(attrs={'cols': 120, 'rows': 20}))
-    right_text_ca = forms.CharField(
-        required=False, widget=TinyMCE(attrs={'cols': 120, 'rows': 20}))
 
     class Meta:
         model = models.Page

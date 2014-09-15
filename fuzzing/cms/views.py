@@ -4,7 +4,7 @@ from django.contrib.auth import login as auth_login, logout as auth_logout
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse_lazy, reverse
 from django.http import HttpResponseRedirect
-from django.shortcuts import redirect, get_object_or_404
+from django.shortcuts import redirect, get_object_or_404, render
 from django.utils.decorators import method_decorator
 from django.views import generic
 from django.views.decorators.debug import sensitive_post_parameters
@@ -99,8 +99,10 @@ class UpdateSiteSettings(CMSMixin, generic.edit.UpdateView):
     form_class = forms.SiteSettingsForm
     model = models.SiteSettings
     template_name = 'cms/settings_update.html'
-    success_url = reverse_lazy('pages')
     url = 'settings'
+
+    def get_success_url(self):
+        return reverse('settings', kwargs={'pk': self.object.pk})
 
 
 # Pages
@@ -202,25 +204,34 @@ class UpdateSection(SectionObjectsMixin, CMSMixin, generic.edit.UpdateView):
         return reverse('page_detail', kwargs={'pk': self.object.page.pk})
 
 
+@login_required
+def delete_section(request, *args, **kwargs):
 
-class DeleteSection(CMSMixin, generic.edit.DeleteView):
-    template_name = 'cms/section_confirm_delete.html'
-    url = 'section'
+    section_name = kwargs['section']
+    pk = int(kwargs['pk'])
+    section_model = SECTIONS_DICT[section_name]['model']
 
-    def get_object(self, queryset=None):
-        section_name = self.kwargs['section']
-        pk = int(self.kwargs['pk'])
-        self.object = get_object_or_404(SECTIONS_DICT[section_name]['model'], pk=pk)
-        self.model = SECTIONS_DICT[section_name]['model']
-        return self.object
+    try:
+        section = section_model.objects.get(pk=pk)
+    except section_model.DoesNotExist:
+        section = None
 
-    def delete(self, request, *args, **kwargs):
-        self.object = self.get_object()
-        self.object.delete()
-        return self.get_success_url()
+    site_settings, created = models.SiteSettings.objects.get_or_create()
+    ctx=dict(
+        current_user=request.user,
+        section_list=sorted(list(SECTIONS_DICT)),
+        site_settings=site_settings,
+        url='section',
+        object=section
+    )
 
-    def get_success_url(self):
-        return reverse('page_detail', kwargs={'pk': self.object.page.pk})
+    if request.method == 'POST':
+        page_pk = section.page.pk
+        section.delete()
+        page_detail_url = reverse('page_detail', kwargs={'pk': page_pk})
+        return redirect(page_detail_url)
+
+    return render(request, 'cms/section_confirm_delete.html', ctx)
 
 
 class SetSectionWeight(CMSMixin, generic.edit.View):

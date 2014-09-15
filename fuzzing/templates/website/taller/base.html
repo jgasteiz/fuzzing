@@ -1,4 +1,4 @@
-{% load staticfiles %}
+{% load static %}
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -14,11 +14,11 @@
 
         <link rel="stylesheet" href="{% static "css/taller.css" %}">
     </head>
-    <body>
+    <body class="{{ body_active }}">
         <header id="header" class="header {% if nav_open %}is-open{% endif %}">
-            <a {% if current_page %}href="/?nav-open"{% else %}href="#"{% endif %} class="{% if not current_page %}intro-opener{% endif %} header__logo--small">{{ site_settings.site_name }}</a>
+            <a {% if current_page %}href="/?nav-open"{% else %}href="#"{% endif %} class="{% if not current_page %}intro-opener{% endif %} header__logo--small"><img class="" src="{% static "img/taller/logo-1-small.png" %}" alt="{{ site_settings.site_name }} - Logo"></a>
             <a {% if current_page %}href="/?nav-open"{% else %}href="#"{% endif %} class="{% if not current_page %}intro-opener{% endif %} header__logo">
-                <img class="" src="{% static "img/taller/logo.png" %}" alt="{{ site_settings.site_name }} - Logo">
+                <img class="" src="{% static "img/taller/logo-1.png" %}" alt="{{ site_settings.site_name }} - Logo">
             </a>
             {% spaceless %}
             <nav class="navigation">

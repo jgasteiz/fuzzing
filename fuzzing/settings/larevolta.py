@@ -2,18 +2,19 @@ from .common import *
 
 DEBUG = False
 
-gettext = lambda s: s
-LANGUAGES = (
-    ('en', gettext('EN')),
-    ('ca', gettext('CAT')),
-    ('es', gettext('CAST')),
-)
-
 MODELTRANSLATION_DEFAULT_LANGUAGE = 'es'
 
 LOCALE_PATHS = (
     '/opt/larevolta/fuzzing/locale',
 )
+
+DISPLAY_LANGUAGES = (
+    'en',
+    'es',
+    'ca',
+)
+
+SITE_THEME = 'larevolta'
 
 DATABASES = {
     'default': {
