@@ -33,7 +33,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '188.226.146.75', '188.226.222.173']
 
 TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, 'fuzzing/../templates')
+    os.path.join(BASE_DIR, 'fuzzing/../templates'),
 )
 
 INSTALLED_APPS = (
@@ -44,15 +44,16 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'reversion',
     'tinymce',
-    'south',
     'crispy_forms',
+    'gunicorn',
+    'modeltranslation',
+
     'fuzzing.core',
     'fuzzing.cms',
     'fuzzing.website',
-    'gunicorn',
-    'modeltranslation',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -121,6 +122,7 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'fuzzing/../static'),
 )
 
+STATIC_ROOT = ''
 STATIC_URL = '/static/'
 UPLOADS_ROOT = 'uploads'
 
