@@ -1,123 +1,229 @@
 # -*- coding: utf-8 -*-
-from south.utils import datetime_utils as datetime
-from south.db import db
-from south.v2 import SchemaMigration
-from django.db import models
+from __future__ import unicode_literals
+
+from django.db import models, migrations
 
 
-class Migration(SchemaMigration):
+class Migration(migrations.Migration):
 
-    def forwards(self, orm):
-        # Adding model 'Page'
-        db.create_table(u'core_page', (
-            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('weight', self.gf('django.db.models.fields.IntegerField')(default=0)),
-            ('title', self.gf('django.db.models.fields.CharField')(max_length=36)),
-            ('slug', self.gf('django.db.models.fields.CharField')(max_length=64, blank=True)),
-            ('in_navigation', self.gf('django.db.models.fields.BooleanField')(default=True)),
-            ('is_home_page', self.gf('django.db.models.fields.BooleanField')(default=False)),
-            ('parent_page', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['core.Page'], null=True, blank=True)),
-            ('side_offset', self.gf('django.db.models.fields.CharField')(default='0', max_length=64)),
-        ))
-        db.send_create_signal(u'core', ['Page'])
+    dependencies = [
+    ]
 
-        # Adding model 'ImageSection'
-        db.create_table(u'core_imagesection', (
-            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('weight', self.gf('django.db.models.fields.IntegerField')(default=0)),
-            ('layout', self.gf('django.db.models.fields.CharField')(default='one-whole', max_length=64)),
-            ('alignment', self.gf('django.db.models.fields.CharField')(default='top', max_length=64)),
-            ('image', self.gf('django.db.models.fields.files.ImageField')(max_length=100)),
-            ('title', self.gf('django.db.models.fields.CharField')(max_length=64, blank=True)),
-            ('page', self.gf('django.db.models.fields.related.ForeignKey')(default=None, to=orm['core.Page'], null=True)),
-        ))
-        db.send_create_signal(u'core', ['ImageSection'])
-
-        # Adding model 'ImageLinkSection'
-        db.create_table(u'core_imagelinksection', (
-            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('weight', self.gf('django.db.models.fields.IntegerField')(default=0)),
-            ('layout', self.gf('django.db.models.fields.CharField')(default='one-whole', max_length=64)),
-            ('alignment', self.gf('django.db.models.fields.CharField')(default='top', max_length=64)),
-            ('image', self.gf('django.db.models.fields.files.ImageField')(max_length=100)),
-            ('title', self.gf('django.db.models.fields.CharField')(max_length=64, blank=True)),
-            ('subtitle', self.gf('django.db.models.fields.CharField')(max_length=256, blank=True)),
-            ('link', self.gf('django.db.models.fields.CharField')(max_length=64, blank=True)),
-            ('page', self.gf('django.db.models.fields.related.ForeignKey')(default=None, to=orm['core.Page'], null=True)),
-        ))
-        db.send_create_signal(u'core', ['ImageLinkSection'])
-
-        # Adding model 'TextSection'
-        db.create_table(u'core_textsection', (
-            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('weight', self.gf('django.db.models.fields.IntegerField')(default=0)),
-            ('layout', self.gf('django.db.models.fields.CharField')(default='one-whole', max_length=64)),
-            ('alignment', self.gf('django.db.models.fields.CharField')(default='top', max_length=64)),
-            ('title', self.gf('django.db.models.fields.CharField')(max_length=64, blank=True)),
-            ('text', self.gf('django.db.models.fields.TextField')(blank=True)),
-            ('page', self.gf('django.db.models.fields.related.ForeignKey')(default=None, to=orm['core.Page'], null=True)),
-        ))
-        db.send_create_signal(u'core', ['TextSection'])
-
-
-    def backwards(self, orm):
-        # Deleting model 'Page'
-        db.delete_table(u'core_page')
-
-        # Deleting model 'ImageSection'
-        db.delete_table(u'core_imagesection')
-
-        # Deleting model 'ImageLinkSection'
-        db.delete_table(u'core_imagelinksection')
-
-        # Deleting model 'TextSection'
-        db.delete_table(u'core_textsection')
-
-
-    models = {
-        u'core.imagelinksection': {
-            'Meta': {'object_name': 'ImageLinkSection'},
-            'alignment': ('django.db.models.fields.CharField', [], {'default': "'top'", 'max_length': '64'}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'image': ('django.db.models.fields.files.ImageField', [], {'max_length': '100'}),
-            'layout': ('django.db.models.fields.CharField', [], {'default': "'one-whole'", 'max_length': '64'}),
-            'link': ('django.db.models.fields.CharField', [], {'max_length': '64', 'blank': 'True'}),
-            'page': ('django.db.models.fields.related.ForeignKey', [], {'default': 'None', 'to': u"orm['core.Page']", 'null': 'True'}),
-            'subtitle': ('django.db.models.fields.CharField', [], {'max_length': '256', 'blank': 'True'}),
-            'title': ('django.db.models.fields.CharField', [], {'max_length': '64', 'blank': 'True'}),
-            'weight': ('django.db.models.fields.IntegerField', [], {'default': '0'})
-        },
-        u'core.imagesection': {
-            'Meta': {'object_name': 'ImageSection'},
-            'alignment': ('django.db.models.fields.CharField', [], {'default': "'top'", 'max_length': '64'}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'image': ('django.db.models.fields.files.ImageField', [], {'max_length': '100'}),
-            'layout': ('django.db.models.fields.CharField', [], {'default': "'one-whole'", 'max_length': '64'}),
-            'page': ('django.db.models.fields.related.ForeignKey', [], {'default': 'None', 'to': u"orm['core.Page']", 'null': 'True'}),
-            'title': ('django.db.models.fields.CharField', [], {'max_length': '64', 'blank': 'True'}),
-            'weight': ('django.db.models.fields.IntegerField', [], {'default': '0'})
-        },
-        u'core.page': {
-            'Meta': {'ordering': "['weight']", 'object_name': 'Page'},
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'in_navigation': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
-            'is_home_page': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
-            'parent_page': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['core.Page']", 'null': 'True', 'blank': 'True'}),
-            'side_offset': ('django.db.models.fields.CharField', [], {'default': "'0'", 'max_length': '64'}),
-            'slug': ('django.db.models.fields.CharField', [], {'max_length': '64', 'blank': 'True'}),
-            'title': ('django.db.models.fields.CharField', [], {'max_length': '36'}),
-            'weight': ('django.db.models.fields.IntegerField', [], {'default': '0'})
-        },
-        u'core.textsection': {
-            'Meta': {'object_name': 'TextSection'},
-            'alignment': ('django.db.models.fields.CharField', [], {'default': "'top'", 'max_length': '64'}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'layout': ('django.db.models.fields.CharField', [], {'default': "'one-whole'", 'max_length': '64'}),
-            'page': ('django.db.models.fields.related.ForeignKey', [], {'default': 'None', 'to': u"orm['core.Page']", 'null': 'True'}),
-            'text': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
-            'title': ('django.db.models.fields.CharField', [], {'max_length': '64', 'blank': 'True'}),
-            'weight': ('django.db.models.fields.IntegerField', [], {'default': '0'})
-        }
-    }
-
-    complete_apps = ['core']
+    operations = [
+        migrations.CreateModel(
+            name='BackgroundImageTextSection',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('published', models.BooleanField(default=True, help_text=b'Only published pages/secions will be shown in live.')),
+                ('weight', models.IntegerField(default=0, help_text=b'The higher the weight, the lower - or the righter - in the page will appear.')),
+                ('title', models.CharField(help_text=b'Title', max_length=64, blank=True)),
+                ('title_en', models.CharField(help_text=b'Title', max_length=64, null=True, blank=True)),
+                ('title_eu', models.CharField(help_text=b'Title', max_length=64, null=True, blank=True)),
+                ('title_es', models.CharField(help_text=b'Title', max_length=64, null=True, blank=True)),
+                ('title_ca', models.CharField(help_text=b'Title', max_length=64, null=True, blank=True)),
+                ('title_fr', models.CharField(help_text=b'Title', max_length=64, null=True, blank=True)),
+                ('title_alignment', models.CharField(blank=True, max_length=64, choices=[('left', 'Align text to the left'), ('right', 'Align text to the right'), ('center', 'Align text to the center')])),
+                ('text', models.TextField(help_text=b'Text', blank=True)),
+                ('text_en', models.TextField(help_text=b'Text', null=True, blank=True)),
+                ('text_eu', models.TextField(help_text=b'Text', null=True, blank=True)),
+                ('text_es', models.TextField(help_text=b'Text', null=True, blank=True)),
+                ('text_ca', models.TextField(help_text=b'Text', null=True, blank=True)),
+                ('text_fr', models.TextField(help_text=b'Text', null=True, blank=True)),
+                ('image', models.ImageField(help_text=b'Image to display', upload_to=b'uploads')),
+                ('background_position', models.CharField(default=b'center', help_text=b'What alignment do you want for the background image?', max_length=64, choices=[(b'top', b'Top'), (b'center', b'Center'), (b'bottom', b'Bottom')])),
+                ('text_color', models.CharField(default=b'#000000', help_text=b'Text color for this section?', max_length=64, choices=[(b'#ffffff', b'White'), (b'#000000', b'Black')])),
+                ('text_side', models.CharField(default=b'left', help_text=b'Where do you want the text to appear?', max_length=64, choices=[(b'left', b'Left'), (b'right', b'Right')])),
+            ],
+            options={
+                'abstract': False,
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='ImageLinkSection',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('published', models.BooleanField(default=True, help_text=b'Only published pages/secions will be shown in live.')),
+                ('weight', models.IntegerField(default=0, help_text=b'The higher the weight, the lower - or the righter - in the page will appear.')),
+                ('layout', models.CharField(default=b'one-whole', help_text=b'Size of this section in the layout.', max_length=64, choices=[('one-whole', 'One Whole'), ('one-half', 'One Half'), ('one-third', 'One Third'), ('one-quarter', 'One Quarter'), ('two-thirds', 'Two Thirds')])),
+                ('offset', models.CharField(default=b'no-offset', help_text=b'Some offset on the side?', max_length=64, choices=[('no-offset', 'No offset'), ('offset--one-quarter', 'One Quarter'), ('offset--one-third', 'One Third'), ('offset--one-half', 'One Half'), ('offset--two-thirds', 'Two Thirds')])),
+                ('alignment', models.CharField(default=b'top', help_text=b'Vertical alignment of this section, useful when there\n        is text and an image next to it.', max_length=64, choices=[('top', 'Top Aligned'), ('middle', 'Middle Aligned'), ('bottom', 'Bottom Aligned')])),
+                ('image', models.ImageField(help_text=b'Image to display', upload_to=b'uploads')),
+                ('title', models.CharField(help_text=b'Link title', max_length=64, blank=True)),
+                ('title_en', models.CharField(help_text=b'Link title', max_length=64, null=True, blank=True)),
+                ('title_eu', models.CharField(help_text=b'Link title', max_length=64, null=True, blank=True)),
+                ('title_es', models.CharField(help_text=b'Link title', max_length=64, null=True, blank=True)),
+                ('title_ca', models.CharField(help_text=b'Link title', max_length=64, null=True, blank=True)),
+                ('title_fr', models.CharField(help_text=b'Link title', max_length=64, null=True, blank=True)),
+                ('subtitle', models.CharField(help_text=b'Link subtitle', max_length=256, blank=True)),
+                ('subtitle_en', models.CharField(help_text=b'Link subtitle', max_length=256, null=True, blank=True)),
+                ('subtitle_eu', models.CharField(help_text=b'Link subtitle', max_length=256, null=True, blank=True)),
+                ('subtitle_es', models.CharField(help_text=b'Link subtitle', max_length=256, null=True, blank=True)),
+                ('subtitle_ca', models.CharField(help_text=b'Link subtitle', max_length=256, null=True, blank=True)),
+                ('subtitle_fr', models.CharField(help_text=b'Link subtitle', max_length=256, null=True, blank=True)),
+                ('link', models.CharField(help_text=b'To which page should this section link to?', max_length=64, blank=True)),
+            ],
+            options={
+                'abstract': False,
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='ImageSection',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('published', models.BooleanField(default=True, help_text=b'Only published pages/secions will be shown in live.')),
+                ('weight', models.IntegerField(default=0, help_text=b'The higher the weight, the lower - or the righter - in the page will appear.')),
+                ('layout', models.CharField(default=b'one-whole', help_text=b'Size of this section in the layout.', max_length=64, choices=[('one-whole', 'One Whole'), ('one-half', 'One Half'), ('one-third', 'One Third'), ('one-quarter', 'One Quarter'), ('two-thirds', 'Two Thirds')])),
+                ('offset', models.CharField(default=b'no-offset', help_text=b'Some offset on the side?', max_length=64, choices=[('no-offset', 'No offset'), ('offset--one-quarter', 'One Quarter'), ('offset--one-third', 'One Third'), ('offset--one-half', 'One Half'), ('offset--two-thirds', 'Two Thirds')])),
+                ('alignment', models.CharField(default=b'top', help_text=b'Vertical alignment of this section, useful when there\n        is text and an image next to it.', max_length=64, choices=[('top', 'Top Aligned'), ('middle', 'Middle Aligned'), ('bottom', 'Bottom Aligned')])),
+                ('image', models.ImageField(help_text=b'Image to display', upload_to=b'uploads')),
+                ('title', models.CharField(help_text=b'Image title', max_length=64, blank=True)),
+                ('title_en', models.CharField(help_text=b'Image title', max_length=64, null=True, blank=True)),
+                ('title_eu', models.CharField(help_text=b'Image title', max_length=64, null=True, blank=True)),
+                ('title_es', models.CharField(help_text=b'Image title', max_length=64, null=True, blank=True)),
+                ('title_ca', models.CharField(help_text=b'Image title', max_length=64, null=True, blank=True)),
+                ('title_fr', models.CharField(help_text=b'Image title', max_length=64, null=True, blank=True)),
+            ],
+            options={
+                'abstract': False,
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Page',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('published', models.BooleanField(default=True, help_text=b'Only published pages/secions will be shown in live.')),
+                ('weight', models.IntegerField(default=0, help_text=b'The higher the weight, the lower - or the righter - in the page will appear.')),
+                ('title', models.CharField(help_text=b'Title of the page', max_length=36, blank=True)),
+                ('title_en', models.CharField(help_text=b'Title of the page', max_length=36, null=True, blank=True)),
+                ('title_eu', models.CharField(help_text=b'Title of the page', max_length=36, null=True, blank=True)),
+                ('title_es', models.CharField(help_text=b'Title of the page', max_length=36, null=True, blank=True)),
+                ('title_ca', models.CharField(help_text=b'Title of the page', max_length=36, null=True, blank=True)),
+                ('title_fr', models.CharField(help_text=b'Title of the page', max_length=36, null=True, blank=True)),
+                ('slug', models.CharField(help_text=b'How the page url will appear in the browser.', max_length=64, blank=True)),
+                ('in_navigation', models.BooleanField(default=True, help_text=b'Should this page be in the main navigation?')),
+                ('is_home_page', models.BooleanField(default=False, help_text=b'Is this the main page of the site?')),
+                ('is_long_page', models.BooleanField(default=False, help_text=b'\n        Is this page long? If you activate this option, you will see\n        a go-up arrow at the bottom of the page\n        ')),
+                ('show_social_icons', models.BooleanField(default=False, help_text=b'If you check this option, the page will show social icons.')),
+                ('show_share', models.BooleanField(default=False, help_text=b'If you check this option, the page will show a share link.')),
+                ('side_offset', models.CharField(default=b'0', help_text=b'Pick the percentage of white space you want on each side of the page.', max_length=64, choices=[('0', 'No offset'), ('5%', '5%'), ('10%', '10%'), ('15%', '15%'), ('20%', '20%'), ('25%', '25%')])),
+                ('left_text', models.TextField(help_text=b'If you type some text here, it will appear as a fixed column on the left of the page.', blank=True)),
+                ('left_text_en', models.TextField(help_text=b'If you type some text here, it will appear as a fixed column on the left of the page.', null=True, blank=True)),
+                ('left_text_eu', models.TextField(help_text=b'If you type some text here, it will appear as a fixed column on the left of the page.', null=True, blank=True)),
+                ('left_text_es', models.TextField(help_text=b'If you type some text here, it will appear as a fixed column on the left of the page.', null=True, blank=True)),
+                ('left_text_ca', models.TextField(help_text=b'If you type some text here, it will appear as a fixed column on the left of the page.', null=True, blank=True)),
+                ('left_text_fr', models.TextField(help_text=b'If you type some text here, it will appear as a fixed column on the left of the page.', null=True, blank=True)),
+                ('right_text', models.TextField(help_text=b'If you type some text here, it will appear as a fixed column on the right of the page.', blank=True)),
+                ('right_text_en', models.TextField(help_text=b'If you type some text here, it will appear as a fixed column on the right of the page.', null=True, blank=True)),
+                ('right_text_eu', models.TextField(help_text=b'If you type some text here, it will appear as a fixed column on the right of the page.', null=True, blank=True)),
+                ('right_text_es', models.TextField(help_text=b'If you type some text here, it will appear as a fixed column on the right of the page.', null=True, blank=True)),
+                ('right_text_ca', models.TextField(help_text=b'If you type some text here, it will appear as a fixed column on the right of the page.', null=True, blank=True)),
+                ('right_text_fr', models.TextField(help_text=b'If you type some text here, it will appear as a fixed column on the right of the page.', null=True, blank=True)),
+                ('parent_page', models.ForeignKey(related_name='parent', blank=True, to='core.Page', help_text=b'Does this page has a parent page?', null=True)),
+                ('redirect_page', models.ForeignKey(related_name='redirect', blank=True, to='core.Page', help_text=b'Should this page redirect to another page?', null=True)),
+            ],
+            options={
+                'ordering': ('weight',),
+                'abstract': False,
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='SeparatorSection',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('published', models.BooleanField(default=True, help_text=b'Only published pages/secions will be shown in live.')),
+                ('weight', models.IntegerField(default=0, help_text=b'The higher the weight, the lower - or the righter - in the page will appear.')),
+                ('page', models.ForeignKey(default=None, to='core.Page', null=True)),
+            ],
+            options={
+                'abstract': False,
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='SiteSettings',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('site_name', models.CharField(max_length=255, blank=True)),
+            ],
+            options={
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='TextSection',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('published', models.BooleanField(default=True, help_text=b'Only published pages/secions will be shown in live.')),
+                ('weight', models.IntegerField(default=0, help_text=b'The higher the weight, the lower - or the righter - in the page will appear.')),
+                ('layout', models.CharField(default=b'one-whole', help_text=b'Size of this section in the layout.', max_length=64, choices=[('one-whole', 'One Whole'), ('one-half', 'One Half'), ('one-third', 'One Third'), ('one-quarter', 'One Quarter'), ('two-thirds', 'Two Thirds')])),
+                ('offset', models.CharField(default=b'no-offset', help_text=b'Some offset on the side?', max_length=64, choices=[('no-offset', 'No offset'), ('offset--one-quarter', 'One Quarter'), ('offset--one-third', 'One Third'), ('offset--one-half', 'One Half'), ('offset--two-thirds', 'Two Thirds')])),
+                ('alignment', models.CharField(default=b'top', help_text=b'Vertical alignment of this section, useful when there\n        is text and an image next to it.', max_length=64, choices=[('top', 'Top Aligned'), ('middle', 'Middle Aligned'), ('bottom', 'Bottom Aligned')])),
+                ('title', models.CharField(help_text=b'Title', max_length=64, blank=True)),
+                ('title_en', models.CharField(help_text=b'Title', max_length=64, null=True, blank=True)),
+                ('title_eu', models.CharField(help_text=b'Title', max_length=64, null=True, blank=True)),
+                ('title_es', models.CharField(help_text=b'Title', max_length=64, null=True, blank=True)),
+                ('title_ca', models.CharField(help_text=b'Title', max_length=64, null=True, blank=True)),
+                ('title_fr', models.CharField(help_text=b'Title', max_length=64, null=True, blank=True)),
+                ('title_alignment', models.CharField(blank=True, max_length=64, choices=[('left', 'Align text to the left'), ('right', 'Align text to the right'), ('center', 'Align text to the center')])),
+                ('text', models.TextField(help_text=b'Text', blank=True)),
+                ('text_en', models.TextField(help_text=b'Text', null=True, blank=True)),
+                ('text_eu', models.TextField(help_text=b'Text', null=True, blank=True)),
+                ('text_es', models.TextField(help_text=b'Text', null=True, blank=True)),
+                ('text_ca', models.TextField(help_text=b'Text', null=True, blank=True)),
+                ('text_fr', models.TextField(help_text=b'Text', null=True, blank=True)),
+                ('page', models.ForeignKey(default=None, to='core.Page', null=True)),
+            ],
+            options={
+                'abstract': False,
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='VideoSection',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('published', models.BooleanField(default=True, help_text=b'Only published pages/secions will be shown in live.')),
+                ('weight', models.IntegerField(default=0, help_text=b'The higher the weight, the lower - or the righter - in the page will appear.')),
+                ('layout', models.CharField(default=b'one-whole', help_text=b'Size of this section in the layout.', max_length=64, choices=[('one-whole', 'One Whole'), ('one-half', 'One Half'), ('one-third', 'One Third'), ('one-quarter', 'One Quarter'), ('two-thirds', 'Two Thirds')])),
+                ('offset', models.CharField(default=b'no-offset', help_text=b'Some offset on the side?', max_length=64, choices=[('no-offset', 'No offset'), ('offset--one-quarter', 'One Quarter'), ('offset--one-third', 'One Third'), ('offset--one-half', 'One Half'), ('offset--two-thirds', 'Two Thirds')])),
+                ('alignment', models.CharField(default=b'top', help_text=b'Vertical alignment of this section, useful when there\n        is text and an image next to it.', max_length=64, choices=[('top', 'Top Aligned'), ('middle', 'Middle Aligned'), ('bottom', 'Bottom Aligned')])),
+                ('title', models.CharField(help_text=b'Link title', max_length=64, blank=True)),
+                ('title_en', models.CharField(help_text=b'Link title', max_length=64, null=True, blank=True)),
+                ('title_eu', models.CharField(help_text=b'Link title', max_length=64, null=True, blank=True)),
+                ('title_es', models.CharField(help_text=b'Link title', max_length=64, null=True, blank=True)),
+                ('title_ca', models.CharField(help_text=b'Link title', max_length=64, null=True, blank=True)),
+                ('title_fr', models.CharField(help_text=b'Link title', max_length=64, null=True, blank=True)),
+                ('youtube_id', models.CharField(help_text=b'Youtube video id', max_length=256, blank=True)),
+                ('vimeo_id', models.CharField(help_text=b'Vimeo video id', max_length=256, blank=True)),
+                ('height', models.CharField(default=b'360px', help_text=b'Percentage or pixels of video height.', max_length=256, blank=True)),
+                ('width', models.CharField(default=b'100%', help_text=b'Percentage or pixels of video width.', max_length=256, blank=True)),
+                ('page', models.ForeignKey(default=None, to='core.Page', null=True)),
+            ],
+            options={
+                'abstract': False,
+            },
+            bases=(models.Model,),
+        ),
+        migrations.AddField(
+            model_name='imagesection',
+            name='page',
+            field=models.ForeignKey(default=None, to='core.Page', null=True),
+            preserve_default=True,
+        ),
+        migrations.AddField(
+            model_name='imagelinksection',
+            name='page',
+            field=models.ForeignKey(default=None, to='core.Page', null=True),
+            preserve_default=True,
+        ),
+        migrations.AddField(
+            model_name='backgroundimagetextsection',
+            name='page',
+            field=models.ForeignKey(default=None, to='core.Page', null=True),
+            preserve_default=True,
+        ),
+    ]
