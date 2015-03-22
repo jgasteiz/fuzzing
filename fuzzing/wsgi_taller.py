@@ -10,5 +10,5 @@ https://docs.djangoproject.com/en/1.6/howto/deployment/wsgi/
 import os
 from django.core.wsgi import get_wsgi_application
 
-os.environ['DJANGO_SETTINGS_MODULE'] = 'fuzzing.settings.common'
+os.environ['DJANGO_SETTINGS_MODULE'] = 'fuzzing.settings.taller'
 application = get_wsgi_application()
