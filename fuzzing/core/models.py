@@ -194,9 +194,8 @@ class Page(BaseModel):
         return self.slug
 
     def save(self, *args, **kwargs):
-        if not self.slug:
-            possible_slug = slugify(self.title)
-            self.slug = self.__class__.get_unique_slug(possible_slug)
+        possible_slug = slugify(self.title)
+        self.slug = self.__class__.get_unique_slug(possible_slug)
 
         # There can only be one home page
         if self.is_home_page is True:
