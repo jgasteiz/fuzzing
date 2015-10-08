@@ -1,5 +1,7 @@
 # Fuzzing CMS
 
+[![volkswagen status](https://auchenberg.github.io/volkswagen/volkswargen_ci.svg)](https://github.com/auchenberg/volkswagen)
+
 ## How to run the thing
 - Clone the repo `git@github.com:jgasteiz/fuzzing-cms.git`
 - Create virtualenv and install requirements: `mkvirtualenv fuzzing && pip install -r requirements.txt`
