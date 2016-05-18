@@ -2,6 +2,7 @@
 from .common import *
 
 DEBUG = False
+gettext = lambda s: s
 
 MODELTRANSLATION_DEFAULT_LANGUAGE = 'es'
 
