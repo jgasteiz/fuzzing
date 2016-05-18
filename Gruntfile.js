@@ -28,7 +28,6 @@ module.exports = function(grunt) {
 				options: {
 					retina: true,
 					recursive: true,
-					scss: true,
 					"sprite-namespace": "sprite",
 					url: '../img/'
 				}

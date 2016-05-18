@@ -25,7 +25,11 @@ SITE_THEME = 'larevolta'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'larevolta.db'
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'larevolta',
+        'USER': 'test',
+        'PASSWORD': '',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
